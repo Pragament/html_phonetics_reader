@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
     const inputText = document.getElementById('inputText');
@@ -25,8 +24,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const androidWarning = document.getElementById('androidWarning');
     const voiceSelect = document.getElementById('voiceSelect');
     const loopSwitch = document.getElementById('loopSwitch');
-
     const autoCorrectBtn = document.getElementById('autoCorrectBtn');
+    const promptSelect = document.getElementById('promptSelect');
+    const managePromptsBtn = document.getElementById('managePromptsBtn');
+    const promptsModal = document.getElementById('promptsModal');
+    const closeModal = document.querySelector('.close');
+    const newPromptName = document.getElementById('newPromptName');
+    const newPromptText = document.getElementById('newPromptText');
+    const addPromptBtn = document.getElementById('addPromptBtn');
+    const customPromptsList = document.getElementById('customPromptsList');
+    const microphoneBtn = document.getElementById('microphoneBtn');
 
     // Check if Android device
     const isAndroid = /Android/i.test(navigator.userAgent);
@@ -45,6 +52,340 @@ document.addEventListener('DOMContentLoaded', function () {
     let wordTimingInterval = null;
     let voices = [];
     let loopEnabled = false;
+
+    // Speech recognition variables
+    let recognition = null;
+    let isListening = false;
+    let recognizedWords = [];
+
+    // Create recognition status element
+    const recognitionStatus = document.createElement('div');
+    recognitionStatus.className = 'recognition-status';
+    document.body.appendChild(recognitionStatus);
+
+    // Prompt system variables
+    let customPrompts = {};
+    const defaultPrompts = {
+        'autocorrect': 'Autocorrect this: {text}',
+        'dictionary': 'Define this word: {text}',
+        'translate': 'Translate to English: {text}'
+    };
+
+    // Initialize prompts from localStorage
+    function initPrompts() {
+        const savedPrompts = localStorage.getItem('customPrompts');
+        if (savedPrompts) {
+            customPrompts = JSON.parse(savedPrompts);
+            updatePromptSelect();
+            renderCustomPromptsList();
+        }
+    }
+    
+    // Check for speech recognition support
+    function checkSpeechRecognitionSupport() {
+        if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
+            // Show a message to the user
+            const warning = document.createElement('div');
+            warning.className = 'android-warning';
+            warning.textContent = 'Speech recognition is not supported in your browser. Try using Chrome or Edge.';
+            warning.style.display = 'block';
+            warning.style.marginTop = '10px';
+            
+            // Insert after the microphone button
+            microphoneBtn.parentNode.insertBefore(warning, microphoneBtn.nextSibling);
+            
+            // Disable the microphone button
+            microphoneBtn.disabled = true;
+            return false;
+        }
+        return true;
+    }
+
+    // Save prompts to localStorage
+    function savePrompts() {
+        localStorage.setItem('customPrompts', JSON.stringify(customPrompts));
+    }
+
+    // Update prompt select dropdown
+    function updatePromptSelect() {
+        // Clear existing custom options (if any)
+        const customOptions = promptSelect.querySelectorAll('[data-custom]');
+        customOptions.forEach(option => option.remove());
+        
+        // Add custom prompts to dropdown
+        Object.keys(customPrompts).forEach(key => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = key;
+            option.setAttribute('data-custom', 'true');
+            promptSelect.appendChild(option);
+        });
+    }
+
+    // Render custom prompts list in modal
+    function renderCustomPromptsList() {
+        customPromptsList.innerHTML = '';
+        
+        Object.keys(customPrompts).forEach(key => {
+            const li = document.createElement('li');
+            
+            const promptItem = document.createElement('div');
+            promptItem.className = 'prompt-item';
+            
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'prompt-name';
+            nameSpan.textContent = key;
+            
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'prompt-actions';
+            
+            const useButton = document.createElement('button');
+            useButton.className = 'use-prompt';
+            useButton.textContent = 'Use';
+            useButton.addEventListener('click', () => {
+                promptSelect.value = key;
+                promptsModal.style.display = 'none';
+            });
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-prompt';
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => {
+                delete customPrompts[key];
+                savePrompts();
+                updatePromptSelect();
+                renderCustomPromptsList();
+            });
+            
+            actionsDiv.appendChild(useButton);
+            actionsDiv.appendChild(deleteButton);
+            
+            promptItem.appendChild(nameSpan);
+            promptItem.appendChild(actionsDiv);
+            
+            li.appendChild(promptItem);
+            customPromptsList.appendChild(li);
+        });
+    }
+
+    // Get the current prompt template
+    function getCurrentPrompt() {
+        const selectedValue = promptSelect.value;
+        let promptText = '';
+        
+        if (defaultPrompts[selectedValue]) {
+            promptText = defaultPrompts[selectedValue];
+        } else if (customPrompts[selectedValue]) {
+            promptText = customPrompts[selectedValue];
+        } else {
+            promptText = defaultPrompts['autocorrect']; // Fallback
+        }
+        
+        // Ensure the prompt contains {text} placeholder
+        if (!promptText.includes('{text}')) {
+            promptText += ' {text}';
+        }
+        
+        return promptText;
+    }
+
+    // Initialize speech recognition
+    function initSpeechRecognition() {
+        if (!checkSpeechRecognitionSupport()) {
+            return;
+        }
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = 'en-US';
+
+        // Recognition event handlers
+        recognition.onstart = function() {
+            isListening = true;
+            microphoneBtn.textContent = '🔴 Stop';
+            microphoneBtn.classList.add('listening');
+            recognitionStatus.textContent = 'Listening...';
+            recognitionStatus.classList.add('active');
+            recognizedWords = [];
+        };
+
+        recognition.onresult = function(event) {
+            let interimTranscript = '';
+            
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    // Store current text and selection
+                    const currentText = inputText.value;
+                    const startPos = inputText.selectionStart;
+                    const endPos = inputText.selectionEnd;
+                    
+                    // Add the recognized text
+                    const newText = currentText.substring(0, startPos) + 
+                                transcript + 
+                                currentText.substring(endPos, currentText.length);
+                    
+                    inputText.value = newText;
+                    
+                    // Highlight the newly added words in the input field
+                    highlightInputText(startPos, startPos + transcript.length);
+                    
+                    // Update phonetics display
+                    updatePhoneticsDisplay();
+                } else {
+                    interimTranscript += transcript;
+                }
+            }
+            
+            // Show interim results in status
+            if (interimTranscript) {
+                recognitionStatus.textContent = 'Listening: ' + interimTranscript;
+            }
+        };
+
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error', event.error);
+                    recognitionStatus.textContent = 'Error: ' + event.error;
+                    stopRecognition();
+                    
+                    // Reset after a delay
+                    setTimeout(() => {
+                        recognitionStatus.classList.remove('active');
+                    }, 2000);
+                };
+
+                recognition.onend = function() {
+                    stopRecognition();
+                    recognitionStatus.textContent = 'Speech recognition ended';
+                    
+                    // Hide status after a delay
+                    setTimeout(() => {
+                        recognitionStatus.classList.remove('active');
+                    }, 2000);
+                };
+            }
+
+    // Start speech recognition
+    function startRecognition() {
+        if (recognition) {
+            try {
+                recognition.start();
+            } catch (error) {
+                console.error('Recognition start error:', error);
+                // Try again after a short delay if already started
+                setTimeout(() => {
+                    if (!isListening) {
+                        recognition.start();
+                    }
+                }, 100);
+            }
+        }
+    }
+
+    // Stop speech recognition
+    function stopRecognition() {
+        if (recognition && isListening) {
+            recognition.stop();
+            isListening = false;
+            microphoneBtn.textContent = '🎤 Speech Input';
+            microphoneBtn.classList.remove('listening');
+        }
+    }
+
+    // Toggle recognition
+    function toggleRecognition() {
+        if (isListening) {
+            stopRecognition();
+        } else {
+            startRecognition();
+        }
+    }
+
+    function highlightInputText(start, end) {
+        inputText.focus();
+        inputText.setSelectionRange(start, end);
+        
+        // Use a temporary marker to create a highlight effect
+        setTimeout(() => {
+            // Scroll to the highlighted area
+            inputText.scrollLeft = inputText.scrollWidth;
+            
+            // Remove selection after a delay to create highlight effect
+            setTimeout(() => {
+                inputText.setSelectionRange(end, end);
+            }, 500);
+        }, 10);
+    }
+
+    // Function to highlight a recognized word temporarily
+    function highlightRecognizedWord(wordIndex) {
+        // Wait a bit to ensure DOM is updated
+        setTimeout(() => {
+            const wordElement = document.getElementById(`word-${wordIndex}`);
+            if (wordElement) {
+                // Add recognition highlight class
+                wordElement.classList.add('recognized');
+                
+                // Remove highlight after a short delay
+                setTimeout(() => {
+                    if (wordElement) {
+                        wordElement.classList.remove('recognized');
+                    }
+                }, 1000);
+            }
+        }, 50);
+    }
+
+    // Modal functionality
+    managePromptsBtn.addEventListener('click', () => {
+        promptsModal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', () => {
+        promptsModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === promptsModal) {
+            promptsModal.style.display = 'none';
+        }
+    });
+
+    addPromptBtn.addEventListener('click', () => {
+        const name = newPromptName.value.trim();
+        let text = newPromptText.value.trim();
+        
+        if (!name || !text) {
+            alert('Please enter both a name and prompt text.');
+            return;
+        }
+        
+        // Automatically add {text} placeholder if not included
+        if (!text.includes('{text}')) {
+            text += ' {text}';
+        }
+        
+        // Add or update custom prompt
+        customPrompts[name] = text;
+        savePrompts();
+        updatePromptSelect();
+        renderCustomPromptsList();
+        
+        // Clear form
+        newPromptName.value = '';
+        newPromptText.value = '';
+        
+        // Select the new prompt
+        promptSelect.value = name;
+        
+        // Show confirmation message
+        alert(`Prompt "${name}" added successfully!`);
+    });
+
+    // Initialize prompts system
+    initPrompts();
 
     // Load available voices
     function loadVoices() {
@@ -268,7 +609,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (word.toLowerCase() === "all") return "ɔːl";
                 if (word.toLowerCase() === "letters") return "ˈlɛtəz";
                 if (word.toLowerCase() === "of") return "ɒv";
-                if (word.toLowerCase() === "english") return "ˈɪŋɡlɪʃ";
+                if (word.toLowerCase() === "english") return "ˈɪŋɡlīʃ";
                 if (word.toLowerCase() === "alphabet") return "ˈælfəbɛt";
 
                 // Default transformation for unknown words
@@ -532,38 +873,43 @@ document.addEventListener('DOMContentLoaded', function () {
         jumpToWord(newIndex);
     }
 
-    async function correctText(text) {
+    async function processTextWithPrompt(text) {
         try {
-            autoCorrectBtn.textContent = 'Correcting...';
+            autoCorrectBtn.textContent = 'Processing...';
             autoCorrectBtn.disabled = true;
 
+            // Get the current prompt template
+            const promptTemplate = getCurrentPrompt();
+            
+            // Replace the {text} placeholder with the actual text
+            const prompt = promptTemplate.replace('{text}', text);
+            
             const response = await fetch(
-                `https://text.pollinations.ai/${encodeURIComponent("Autocorrect this: " + text)}`
+                `https://text.pollinations.ai/${encodeURIComponent(prompt)}`
             );
 
             if (!response.ok) {
                 throw new Error(`API error: ${response.status}`);
             }
 
-            let correctedText = await response.text();
+            let processedText = await response.text();
             
-            // Remove the unwanted prefix from the API response
-            const unwantedPrefix = "Sure! Here's the corrected version:";
-            if (correctedText.startsWith(unwantedPrefix)) {
-                correctedText = correctedText.substring(unwantedPrefix.length).trim();
-            }
-            
-            // Remove other common AI response prefixes
+            // Clean up the response by removing common prefixes
             const prefixesToRemove = [
+                "Sure! Here's the corrected version:",
                 "Certainly! Here's the corrected text:",
                 "Here's the corrected version:",
                 "The corrected text is:",
-                "Corrected text:"
+                "Corrected text:",
+                "Here's the definition:",
+                "The definition is:",
+                "Here's the translation:",
+                "The translation is:"
             ];
             
             for (const prefix of prefixesToRemove) {
-                if (correctedText.startsWith(prefix)) {
-                    correctedText = correctedText.substring(prefix.length).trim();
+                if (processedText.startsWith(prefix)) {
+                    processedText = processedText.substring(prefix.length).trim();
                     break;
                 }
             }
@@ -571,49 +917,45 @@ document.addEventListener('DOMContentLoaded', function () {
             // Create JSON output
             const jsonOutput = {
                 originalText: text,
-                correctedText: correctedText,
+                processedText: processedText,
+                promptUsed: promptTemplate,
                 timestamp: new Date().toISOString(),
                 success: true
             };
             
-            inputText.value = correctedText;
+            inputText.value = processedText;
             updatePhoneticsDisplay();
             
             // Return the JSON object
             return jsonOutput;
             
         } catch (error) {
-            console.error('Error correcting text:', error);
+            console.error('Error processing text:', error);
             const errorOutput = {
                 originalText: text,
                 error: error.message,
                 timestamp: new Date().toISOString(),
                 success: false
             };
-            alert('Failed to correct text. Please try again.');
+            alert('Failed to process text. Please try again.');
             return errorOutput;
         } finally {
-            autoCorrectBtn.textContent = 'Auto Correct';
+            autoCorrectBtn.textContent = 'Apply Prompt';
             autoCorrectBtn.disabled = false;
         }
     }
-
 
     // Event listeners
     autoCorrectBtn.addEventListener('click', () => {
         const text = inputText.value.trim();
         if (text === '') {
-            alert('Please enter some text to correct.');
+            alert('Please enter some text to process.');
             return;
         }
         
-        correctText(text);
+        processTextWithPrompt(text);
     });
 
-
-
-
-    // Event listeners
     jumpButtons.forEach(button => {
         button.addEventListener('click', () => {
             const words = parseInt(button.getAttribute('data-words'));
@@ -639,6 +981,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const sampleText = inputText.value;
     words = sampleText.split(' ');
     updatePhoneticsDisplay();
+
+    // Initialize speech recognition and add event listener
+    if (microphoneBtn) {
+        initSpeechRecognition();
+        microphoneBtn.addEventListener('click', toggleRecognition);
+    }
 
     // Initialize button states
     updateButtonStates();
