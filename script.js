@@ -1,3 +1,258 @@
+
+=======
+// ===== FIREBASE INITIALIZATION =====
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAShFX424tWfaN3OEyu7fqT3IOOHPhGDJc",
+  authDomain: "phonetics-reader-int.firebaseapp.com",
+  projectId: "phonetics-reader-int",
+  storageBucket: "phonetics-reader-int.firebasestorage.app",
+  messagingSenderId: "588767398776",
+  appId: "1:588767398776:web:7d30c49ca375f2a314568d",
+  measurementId: "G-5F07315XRQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Firebase services
+const auth = firebase.auth();
+const db = firebase.firestore();
+const analytics = firebase.analytics();
+
+const usersRef = (uid) => db.collection("users").doc(uid);
+const communityRef = db.collection("community");
+
+// Enable persistence for offline capability
+db.enablePersistence()
+  .catch((err) => {
+    console.log("Firebase persistence error: ", err);
+  });
+
+// Auth state variable
+let currentUser = null;
+
+// Auth functions
+function initAuth() {
+    document.getElementById('signInButton').style.display = 'block';
+    document.getElementById('userInfo').style.display = 'none';
+    
+    // Listen for auth state changes
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            // User is signed in
+            currentUser = user;
+            document.getElementById('signInButton').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'flex';
+            document.getElementById('userPhoto').src = user.photoURL;
+            document.getElementById('userName').textContent = user.displayName;
+            
+            // Log login event to analytics
+            analytics.logEvent('login', {
+                method: 'Google'
+            });
+            
+            // DEBUG: Log that we're loading user data
+            console.log("User signed in, loading user data...");
+            
+            // Load user data
+            loadUserData();
+        } else {
+            // User is signed out
+            currentUser = null;
+            document.getElementById('signInButton').style.display = 'block';
+            document.getElementById('userInfo').style.display = 'none';
+            
+            // DEBUG: Clear history when signed out
+            document.getElementById("historyList").innerHTML = "<li>Please sign in to view your history</li>";
+        }
+    });
+    
+    // Add event listeners
+    document.getElementById('signInButton').addEventListener('click', signInWithGoogle);
+    document.getElementById('signOutButton').addEventListener('click', signOut);
+}
+
+function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            // Success - handled by auth state listener
+        })
+        .catch((error) => {
+            console.error("Sign in error: ", error);
+            alert("Sign in failed: " + error.message);
+        });
+}
+
+function signOut() {
+    auth.signOut()
+        .then(() => {
+            // Success - handled by auth state listener
+        })
+        .catch((error) => {
+            console.error("Sign out error: ", error);
+        });
+}
+
+// deleteHistoryItem 
+function deleteHistoryItem(id) {
+    if (!currentUser) {
+        alert("You must be logged in to delete history");
+        return;
+    }
+    
+    if (confirm("Are you sure you want to delete this history item?")) {
+        usersRef(currentUser.uid).collection("history").doc(id).delete()
+        .then(() => {
+            console.log("History item deleted");
+            // Refresh the history list after deletion
+            loadUserData();
+        })
+        .catch((error) => {
+            console.error("Error deleting history item: ", error);
+            alert("Error deleting history item: " + error.message);
+        });
+    }
+}
+
+// loadUserData function to display history items
+function loadUserData() {
+    if (!currentUser) {
+        console.log("No user logged in, cannot load history");
+        document.getElementById("historyList").innerHTML = "<li>Please sign in to view your history</li>";
+        return;
+    }
+
+    console.log("Loading history for user:", currentUser.uid);
+    
+    usersRef(currentUser.uid).collection("history")
+    .orderBy("createdAt", "desc")
+    .limit(20)
+    .get()
+    .then(snapshot => {
+        const list = document.getElementById("historyList");
+        console.log("Found", snapshot.size, "history items");
+        
+        list.innerHTML = "";
+        
+        if (snapshot.empty) {
+            list.innerHTML = "<li>No history yet. Process some text to see it here.</li>";
+            return;
+        }
+        
+        snapshot.forEach(doc => {
+            const item = doc.data();
+            console.log("History item:", item);
+            
+            const li = document.createElement("li");
+            
+            // Text content
+            const textContent = document.createElement("div");
+            textContent.textContent = item.text;
+            textContent.className = "history-text";
+            
+            // Button container
+            const buttonContainer = document.createElement("div");
+            buttonContainer.className = "history-buttons";
+            
+            // Delete button
+            const delBtn = document.createElement("button");
+            delBtn.textContent = "Delete";
+            delBtn.className = "text-btn delete-btn";
+            delBtn.addEventListener('click', function() {
+                deleteHistoryItem(doc.id);
+            });
+
+            // Publish button - FIXED
+            const pubBtn = document.createElement("button");
+            pubBtn.textContent = "Publish";
+            pubBtn.className = "text-btn publish-btn";
+            pubBtn.addEventListener('click', function() {
+                openPublishModal(doc.id, item.text);
+            });
+
+            buttonContainer.appendChild(pubBtn);
+            buttonContainer.appendChild(delBtn);
+            
+            li.appendChild(textContent);
+            li.appendChild(buttonContainer);
+            list.appendChild(li);
+        });
+    })
+    .catch(error => {
+        console.error("Error loading history: ", error);
+        document.getElementById("historyList").innerHTML = `<li>Error loading history: ${error.message}</li>`;
+    });
+}
+
+function openPublishModal(id, text) {
+    console.log("Opening publish modal for:", {id, text});
+    document.getElementById("publishModal").style.display = "block";
+    document.getElementById("publishTextPreview").textContent = text;
+    
+    // Store the text in a data attribute for later use
+    document.getElementById("publishModal").dataset.publishText = text;
+}
+
+// Add this separate function for the confirm button
+function setupPublishHandler() {
+    document.getElementById("confirmPublishBtn").onclick = function() {
+        const text = document.getElementById("publishModal").dataset.publishText;
+        const publishClass = document.getElementById("publishClass").value;
+        const tags = document.getElementById("publishTags").value.split(",").map(t => t.trim());
+        
+        console.log("Publishing:", {text, publishClass, tags});
+        
+        if (!text) {
+            alert("No text to publish!");
+            return;
+        }
+        
+        communityRef.add({
+            uid: currentUser.uid,
+            text: text,
+            class: publishClass,
+            tags: tags,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then((docRef) => {
+            console.log("Published successfully with ID:", docRef.id);
+            document.getElementById("publishModal").style.display = "none";
+            alert("Published successfully to community!");
+            loadCommunityReads();
+        })
+        .catch((error) => {
+            console.error("Error publishing:", error);
+            alert("Error publishing: " + error.message);
+        });
+    };
+}
+
+function loadCommunityReads() {
+    communityRef.orderBy("createdAt", "desc").onSnapshot(snapshot => {
+        const list = document.getElementById("communityList");
+        list.innerHTML = "";
+        
+        if (snapshot.empty) {
+            list.innerHTML = "<li>No community reads yet. Be the first to publish!</li>";
+            return;
+        }
+        
+        snapshot.forEach(doc => {
+            const item = doc.data();
+            const li = document.createElement("li");
+            li.textContent = `${item.text} [${item.class}] (${item.tags.join(", ")})`;
+            list.appendChild(li);
+        });
+    }, error => {
+        console.error("Error loading community reads: ", error);
+        document.getElementById("communityList").innerHTML = "<li>Error loading community reads</li>";
+    });
+}
+
+// ===== END FIREBASE INITIALIZATION =====
+
 document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
     const inputText = document.getElementById('inputText');
@@ -34,6 +289,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const addPromptBtn = document.getElementById('addPromptBtn');
     const customPromptsList = document.getElementById('customPromptsList');
 
+=======
+    const microphoneBtn = document.getElementById('microphoneBtn');
+    const signInButton = document.getElementById('signInButton');
+    const signOutButton = document.getElementById('signOutButton');
+
+
     // Check if Android device
     const isAndroid = /Android/i.test(navigator.userAgent);
     if (isAndroid) {
@@ -52,6 +313,19 @@ document.addEventListener('DOMContentLoaded', function () {
     let voices = [];
     let loopEnabled = false;
 
+
+=======
+    // Speech recognition variables
+    let recognition = null;
+    let isListening = false;
+    let recognizedWords = [];
+
+    // Create recognition status element
+    const recognitionStatus = document.createElement('div');
+    recognitionStatus.className = 'recognition-status';
+    document.body.appendChild(recognitionStatus);
+
+
     // Prompt system variables
     let customPrompts = {};
     const defaultPrompts = {
@@ -69,6 +343,29 @@ document.addEventListener('DOMContentLoaded', function () {
             renderCustomPromptsList();
         }
     }
+
+=======
+    
+    // Check for speech recognition support
+    function checkSpeechRecognitionSupport() {
+        if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
+            // Show a message to the user
+            const warning = document.createElement('div');
+            warning.className = 'android-warning';
+            warning.textContent = 'Speech recognition is not supported in your browser. Try using Chrome or Edge.';
+            warning.style.display = 'block';
+            warning.style.marginTop = '10px';
+            
+            // Insert after the microphone button
+            microphoneBtn.parentNode.insertBefore(warning, microphoneBtn.nextSibling);
+            
+            // Disable the microphone button
+            microphoneBtn.disabled = true;
+            return false;
+        }
+        return true;
+    }
+
 
     // Save prompts to localStorage
     function savePrompts() {
@@ -157,6 +454,158 @@ document.addEventListener('DOMContentLoaded', function () {
         
         return promptText;
     }
+
+
+=======
+    // Initialize speech recognition
+    function initSpeechRecognition() {
+        if (!checkSpeechRecognitionSupport()) {
+            return;
+        }
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = 'en-US';
+
+        // Recognition event handlers
+        recognition.onstart = function() {
+            isListening = true;
+            microphoneBtn.textContent = '🔴 Stop';
+            microphoneBtn.classList.add('listening');
+            recognitionStatus.textContent = 'Listening...';
+            recognitionStatus.classList.add('active');
+            recognizedWords = [];
+        };
+
+        recognition.onresult = function(event) {
+            let interimTranscript = '';
+            
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    // Store current text and selection
+                    const currentText = inputText.value;
+                    const startPos = inputText.selectionStart;
+                    const endPos = inputText.selectionEnd;
+                    
+                    // Add the recognized text
+                    const newText = currentText.substring(0, startPos) + 
+                                transcript + 
+                                currentText.substring(endPos, currentText.length);
+                    
+                    inputText.value = newText;
+                    
+                    // Highlight the newly added words in the input field
+                    highlightInputText(startPos, startPos + transcript.length);
+                    
+                    // Update phonetics display
+                    updatePhoneticsDisplay();
+                } else {
+                    interimTranscript += transcript;
+                }
+            }
+            
+            // Show interim results in status
+            if (interimTranscript) {
+                recognitionStatus.textContent = 'Listening: ' + interimTranscript;
+            }
+        };
+
+        recognition.onerror = function(event) {
+            console.error('Speech recognition error', event.error);
+            recognitionStatus.textContent = 'Error: ' + event.error;
+            stopRecognition();
+            
+            // Reset after a delay
+            setTimeout(() => {
+                recognitionStatus.classList.remove('active');
+            }, 2000);
+        };
+
+        recognition.onend = function() {
+            stopRecognition();
+            recognitionStatus.textContent = 'Speech recognition ended';
+            
+            // Hide status after a delay
+            setTimeout(() => {
+                recognitionStatus.classList.remove('active');
+            }, 2000);
+        };
+    }
+
+    // Start speech recognition
+    function startRecognition() {
+        if (recognition) {
+            try {
+                recognition.start();
+            } catch (error) {
+                console.error('Recognition start error:', error);
+                // Try again after a short delay if already started
+                setTimeout(() => {
+                    if (!isListening) {
+                        recognition.start();
+                    }
+                }, 100);
+            }
+        }
+    }
+
+    // Stop speech recognition
+    function stopRecognition() {
+        if (recognition && isListening) {
+            recognition.stop();
+            isListening = false;
+            microphoneBtn.textContent = '🎤 Speech Input';
+            microphoneBtn.classList.remove('listening');
+        }
+    }
+
+    // Toggle recognition
+    function toggleRecognition() {
+        if (isListening) {
+            stopRecognition();
+        } else {
+            startRecognition();
+        }
+    }
+
+    function highlightInputText(start, end) {
+        inputText.focus();
+        inputText.setSelectionRange(start, end);
+        
+        // Use a temporary marker to create a highlight effect
+        setTimeout(() => {
+            // Scroll to the highlighted area
+            inputText.scrollLeft = inputText.scrollWidth;
+            
+            // Remove selection after a delay to create highlight effect
+            setTimeout(() => {
+                inputText.setSelectionRange(end, end);
+            }, 500);
+        }, 10);
+    }
+
+    // Function to highlight a recognized word temporarily
+    function highlightRecognizedWord(wordIndex) {
+        // Wait a bit to ensure DOM is updated
+        setTimeout(() => {
+            const wordElement = document.getElementById(`word-${wordIndex}`);
+            if (wordElement) {
+                // Add recognition highlight class
+                wordElement.classList.add('recognized');
+                
+                // Remove highlight after a short delay
+                setTimeout(() => {
+                    if (wordElement) {
+                        wordElement.classList.remove('recognized');
+                    }
+                }, 1000);
+            }
+        }, 50);
+    }
+
 
     // Modal functionality
     managePromptsBtn.addEventListener('click', () => {
@@ -746,6 +1195,11 @@ document.addEventListener('DOMContentLoaded', function () {
             inputText.value = processedText;
             updatePhoneticsDisplay();
             
+            // ADD THIS LINE TO SAVE TO HISTORY
+            if (currentUser) {
+                saveReadToHistory(processedText);
+            }
+            
             // Return the JSON object
             return jsonOutput;
             
@@ -765,17 +1219,195 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+=======
+    function saveReadToHistory(text) {
+        if (!currentUser) {
+            console.log("User not logged in, cannot save history");
+            return;
+        }
+        
+        // Add a timestamp and trim very long texts
+        const historyItem = {
+            text: text.length > 500 ? text.substring(0, 500) + "..." : text,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            promptType: promptSelect.value
+        };
+        
+        usersRef(currentUser.uid).collection("history").add(historyItem)
+        .then((docRef) => {
+            console.log("History item saved with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error saving history: ", error);
+        });
+    }
+
+
+    document.getElementById("searchHistory").addEventListener("input", (e) => {
+        const term = e.target.value.toLowerCase();
+        document.querySelectorAll("#historyList li").forEach(li => {
+            // Get the text content from the first div (the history text)
+            const historyText = li.querySelector('div:first-child').textContent.toLowerCase();
+            li.style.display = historyText.includes(term) ? "" : "none";
+        });
+    });
+    
+    
+    // Set up modal close buttons
+    document.querySelectorAll('.modal .close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', function() {
+            this.closest('.modal').style.display = 'none';
+        });
+    });
+
+    // Close modals when clicking outside
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+    });
+    // Apply filters button
+    document.getElementById("applyFiltersBtn").onclick = () => {
+        console.log("Applying filters...");
+        
+        // Start with the base query
+        let query = communityRef;
+        
+        // Apply class filter
+        const cls = document.getElementById("filterClass").value;
+        if (cls) {
+            console.log("Filtering by class:", cls);
+            query = query.where("class", "==", cls);
+        }
+        
+        // Apply date range filter
+        const start = document.getElementById("filterStart").value;
+        const end = document.getElementById("filterEnd").value;
+        
+        if (start) {
+            const startDate = new Date(start);
+            startDate.setHours(0, 0, 0, 0); // Start of day
+            console.log("Filtering from date:", startDate);
+            query = query.where("createdAt", ">=", startDate);
+        }
+        
+        if (end) {
+            const endDate = new Date(end);
+            endDate.setHours(23, 59, 59, 999); // End of day
+            console.log("Filtering to date:", endDate);
+            query = query.where("createdAt", "<=", endDate);
+        }
+        
+        // Apply tags filter
+        const tagsInput = document.getElementById("filterTags").value;
+        const tags = tagsInput.split(",").map(t => t.trim()).filter(t => t);
+        
+        console.log("Applying filters with query:", query);
+        
+        // Execute the query
+        query.get().then(snapshot => {
+            const list = document.getElementById("communityList");
+            list.innerHTML = "";
+            
+            if (snapshot.empty) {
+                list.innerHTML = "<li>No community reads match your filters.</li>";
+                return;
+            }
+            
+            // If we have tags to filter by, we need to do client-side filtering
+            if (tags.length > 0) {
+                console.log("Filtering by tags:", tags);
+                snapshot.forEach(doc => {
+                    const item = doc.data();
+                    // Check if any of the filter tags match the item's tags
+                    if (tags.some(tag => item.tags && item.tags.includes(tag))) {
+                        const li = document.createElement("li");
+                        li.textContent = `${item.text} [${item.class}] (${item.tags ? item.tags.join(", ") : "no tags"})`;
+                        list.appendChild(li);
+                    }
+                });
+                
+                // Check if we found any matches after tag filtering
+                if (list.children.length === 0) {
+                    list.innerHTML = "<li>No community reads match your tags filter.</li>";
+                }
+            } else {
+                // No tags filter, just display all results
+                snapshot.forEach(doc => {
+                    const item = doc.data();
+                    const li = document.createElement("li");
+                    li.textContent = `${item.text} [${item.class}] (${item.tags ? item.tags.join(", ") : "no tags"})`;
+                    list.appendChild(li);
+                });
+            }
+        }).catch(error => {
+            console.error("Error applying filters:", error);
+            document.getElementById("communityList").innerHTML = "<li>Error applying filters. Please check your filter values.</li>";
+        });
+    };
+    // Add to your DOMContentLoaded function
+    document.getElementById("refreshHistoryBtn").addEventListener("click", () => {
+        console.log("Manual history refresh triggered");
+        loadUserData();
+    });
+
+    // Add this function if not already implemented
+    document.getElementById("clearHistoryBtn").onclick = () => {
+        if (!currentUser) {
+            alert("You must be logged in to clear history");
+            return;
+        }
+        
+        if (!confirm("Are you sure you want to clear all your history? This cannot be undone.")) {
+            return;
+        }
+        
+        usersRef(currentUser.uid).collection("history")
+        .get().then(snapshot => {
+            const batch = db.batch();
+            snapshot.forEach(doc => batch.delete(doc.ref));
+            return batch.commit();
+        })
+        .then(() => {
+            console.log("All history cleared");
+            document.getElementById("historyList").innerHTML = "<li>No history yet. Process some text to see it here.</li>";
+        })
+        .catch((error) => {
+            console.error("Error clearing history: ", error);
+            alert("Error clearing history");
+        });
+    };
+
+
+
     // Event listeners
-    autoCorrectBtn.addEventListener('click', () => {
+    autoCorrectBtn.addEventListener('click', async () => {
         const text = inputText.value.trim();
         if (text === '') {
             alert('Please enter some text to process.');
             return;
         }
+
         
         processTextWithPrompt(text);
     });
   
+=======
+
+        const result = await processTextWithPrompt(text);
+
+        // Optionally log or display the JSON result
+        console.log("Processed Result:", result);
+
+        // If you want to show the processed text in phonetics as well:
+        updatePhoneticsDisplay();
+    });
+
+    // Event listeners
+
     jumpButtons.forEach(button => {
         button.addEventListener('click', () => {
             const words = parseInt(button.getAttribute('data-words'));
@@ -802,6 +1434,21 @@ document.addEventListener('DOMContentLoaded', function () {
     words = sampleText.split(' ');
     updatePhoneticsDisplay();
 
+    // Initialize speech recognition and add event listener
+    if (microphoneBtn) {
+        initSpeechRecognition();
+        microphoneBtn.addEventListener('click', toggleRecognition);
+    }
+
+    // Initialize authentication
+    initAuth();
+
     // Initialize button states
     updateButtonStates();
+
+=======
+
+    setupPublishHandler(); 
+    loadCommunityReads();
+
 });
