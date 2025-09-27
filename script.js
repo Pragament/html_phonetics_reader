@@ -1,3 +1,5 @@
+
+=======
 // ===== FIREBASE INITIALIZATION =====
 // Firebase configuration
 const firebaseConfig = {
@@ -286,9 +288,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const newPromptText = document.getElementById('newPromptText');
     const addPromptBtn = document.getElementById('addPromptBtn');
     const customPromptsList = document.getElementById('customPromptsList');
+
+=======
     const microphoneBtn = document.getElementById('microphoneBtn');
     const signInButton = document.getElementById('signInButton');
     const signOutButton = document.getElementById('signOutButton');
+
 
     // Check if Android device
     const isAndroid = /Android/i.test(navigator.userAgent);
@@ -308,6 +313,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let voices = [];
     let loopEnabled = false;
 
+
+=======
     // Speech recognition variables
     let recognition = null;
     let isListening = false;
@@ -317,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const recognitionStatus = document.createElement('div');
     recognitionStatus.className = 'recognition-status';
     document.body.appendChild(recognitionStatus);
+
 
     // Prompt system variables
     let customPrompts = {};
@@ -335,6 +343,8 @@ document.addEventListener('DOMContentLoaded', function () {
             renderCustomPromptsList();
         }
     }
+
+=======
     
     // Check for speech recognition support
     function checkSpeechRecognitionSupport() {
@@ -355,6 +365,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return true;
     }
+
 
     // Save prompts to localStorage
     function savePrompts() {
@@ -444,6 +455,8 @@ document.addEventListener('DOMContentLoaded', function () {
         return promptText;
     }
 
+
+=======
     // Initialize speech recognition
     function initSpeechRecognition() {
         if (!checkSpeechRecognitionSupport()) {
@@ -592,6 +605,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, 50);
     }
+
 
     // Modal functionality
     managePromptsBtn.addEventListener('click', () => {
@@ -1205,6 +1219,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+=======
     function saveReadToHistory(text) {
         if (!currentUser) {
             console.log("User not logged in, cannot save history");
@@ -1375,6 +1391,12 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        
+        processTextWithPrompt(text);
+    });
+  
+=======
+
         const result = await processTextWithPrompt(text);
 
         // Optionally log or display the JSON result
@@ -1385,6 +1407,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Event listeners
+
     jumpButtons.forEach(button => {
         button.addEventListener('click', () => {
             const words = parseInt(button.getAttribute('data-words'));
@@ -1423,6 +1446,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize button states
     updateButtonStates();
 
+=======
+
     setupPublishHandler(); 
     loadCommunityReads();
+
 });

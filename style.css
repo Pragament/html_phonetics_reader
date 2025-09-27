@@ -704,6 +704,8 @@ select {
     .prompt-actions {
         flex-direction: column;
     }
+
+=======
 }
 
 
@@ -1130,4 +1132,5 @@ select {
 .filter-box,
 .btn {
     display: none;
+
 }
