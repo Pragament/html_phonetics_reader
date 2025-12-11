@@ -1,13 +1,13 @@
 // ===== FIREBASE INITIALIZATION =====
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAShFX424tWfaN3OEyu7fqT3IOOHPhGDJc",
-  authDomain: "phonetics-reader-int.firebaseapp.com",
-  projectId: "phonetics-reader-int",
-  storageBucket: "phonetics-reader-int.firebasestorage.app",
-  messagingSenderId: "588767398776",
-  appId: "1:588767398776:web:7d30c49ca375f2a314568d",
-  measurementId: "G-5F07315XRQ"
+    apiKey: "AIzaSyA_PpIK9ezs1xn2mSu4D1PotAZUwqrs6rU",
+    authDomain: "phonetics-reader-6231a.firebaseapp.com",
+    projectId: "phonetics-reader-6231a",
+    storageBucket: "phonetics-reader-6231a.firebasestorage.app",
+    messagingSenderId: "618745608588",
+    appId: "1:618745608588:web:768fc53ee02ccc06053ea9",
+    measurementId: "G-XQDD5SYK1J"
 };
 
 // Initialize Firebase
@@ -23,9 +23,9 @@ const communityRef = db.collection("community");
 
 // Enable persistence for offline capability
 db.enablePersistence()
-  .catch((err) => {
-    console.log("Firebase persistence error: ", err);
-  });
+    .catch((err) => {
+        console.log("Firebase persistence error: ", err);
+    });
 
 // Auth state variable
 let currentUser = null;
@@ -34,7 +34,7 @@ let currentUser = null;
 function initAuth() {
     document.getElementById('signInButton').style.display = 'block';
     document.getElementById('userInfo').style.display = 'none';
-    
+
     // Listen for auth state changes
     auth.onAuthStateChanged((user) => {
         if (user) {
@@ -44,15 +44,15 @@ function initAuth() {
             document.getElementById('userInfo').style.display = 'flex';
             document.getElementById('userPhoto').src = user.photoURL;
             document.getElementById('userName').textContent = user.displayName;
-            
+
             // Log login event to analytics
             analytics.logEvent('login', {
                 method: 'Google'
             });
-            
+
             // DEBUG: Log that we're loading user data
             console.log("User signed in, loading user data...");
-            
+
             // Load user data
             loadUserData();
         } else {
@@ -60,12 +60,12 @@ function initAuth() {
             currentUser = null;
             document.getElementById('signInButton').style.display = 'block';
             document.getElementById('userInfo').style.display = 'none';
-            
+
             // DEBUG: Clear history when signed out
             document.getElementById("historyList").innerHTML = "<li>Please sign in to view your history</li>";
         }
     });
-    
+
     // Add event listeners
     document.getElementById('signInButton').addEventListener('click', signInWithGoogle);
     document.getElementById('signOutButton').addEventListener('click', signOut);
@@ -99,18 +99,18 @@ function deleteHistoryItem(id) {
         alert("You must be logged in to delete history");
         return;
     }
-    
+
     if (confirm("Are you sure you want to delete this history item?")) {
         usersRef(currentUser.uid).collection("history").doc(id).delete()
-        .then(() => {
-            console.log("History item deleted");
-            // Refresh the history list after deletion
-            loadUserData();
-        })
-        .catch((error) => {
-            console.error("Error deleting history item: ", error);
-            alert("Error deleting history item: " + error.message);
-        });
+            .then(() => {
+                console.log("History item deleted");
+                // Refresh the history list after deletion
+                loadUserData();
+            })
+            .catch((error) => {
+                console.error("Error deleting history item: ", error);
+                alert("Error deleting history item: " + error.message);
+            });
     }
 }
 
@@ -123,90 +123,90 @@ function loadUserData() {
     }
 
     console.log("Loading history for user:", currentUser.uid);
-    
+
     usersRef(currentUser.uid).collection("history")
-    .orderBy("createdAt", "desc")
-    .limit(20)
-    .get()
-    .then(snapshot => {
-        const list = document.getElementById("historyList");
-        console.log("Found", snapshot.size, "history items");
-        
-        list.innerHTML = "";
-        
-        if (snapshot.empty) {
-            list.innerHTML = "<li>No history yet. Process some text to see it here.</li>";
-            return;
-        }
-        
-        snapshot.forEach(doc => {
-            const item = doc.data();
-            console.log("History item:", item);
-            
-            const li = document.createElement("li");
-            
-            // Text content
-            const textContent = document.createElement("div");
-            textContent.textContent = item.text;
-            textContent.className = "history-text";
-            
-            // Button container
-            const buttonContainer = document.createElement("div");
-            buttonContainer.className = "history-buttons";
-            
-            // Delete button
-            const delBtn = document.createElement("button");
-            delBtn.textContent = "Delete";
-            delBtn.className = "text-btn delete-btn";
-            delBtn.addEventListener('click', function() {
-                deleteHistoryItem(doc.id);
-            });
+        .orderBy("createdAt", "desc")
+        .limit(20)
+        .get()
+        .then(snapshot => {
+            const list = document.getElementById("historyList");
+            console.log("Found", snapshot.size, "history items");
 
-            // Publish button - FIXED
-            const pubBtn = document.createElement("button");
-            pubBtn.textContent = "Publish";
-            pubBtn.className = "text-btn publish-btn";
-            pubBtn.addEventListener('click', function() {
-                openPublishModal(doc.id, item.text);
-            });
+            list.innerHTML = "";
 
-            buttonContainer.appendChild(pubBtn);
-            buttonContainer.appendChild(delBtn);
-            
-            li.appendChild(textContent);
-            li.appendChild(buttonContainer);
-            list.appendChild(li);
+            if (snapshot.empty) {
+                list.innerHTML = "<li>No history yet. Process some text to see it here.</li>";
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const item = doc.data();
+                console.log("History item:", item);
+
+                const li = document.createElement("li");
+
+                // Text content
+                const textContent = document.createElement("div");
+                textContent.textContent = item.text;
+                textContent.className = "history-text";
+
+                // Button container
+                const buttonContainer = document.createElement("div");
+                buttonContainer.className = "history-buttons";
+
+                // Delete button
+                const delBtn = document.createElement("button");
+                delBtn.textContent = "Delete";
+                delBtn.className = "text-btn delete-btn";
+                delBtn.addEventListener('click', function () {
+                    deleteHistoryItem(doc.id);
+                });
+
+                // Publish button - FIXED
+                const pubBtn = document.createElement("button");
+                pubBtn.textContent = "Publish";
+                pubBtn.className = "text-btn publish-btn";
+                pubBtn.addEventListener('click', function () {
+                    openPublishModal(doc.id, item.text);
+                });
+
+                buttonContainer.appendChild(pubBtn);
+                buttonContainer.appendChild(delBtn);
+
+                li.appendChild(textContent);
+                li.appendChild(buttonContainer);
+                list.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error("Error loading history: ", error);
+            document.getElementById("historyList").innerHTML = `<li>Error loading history: ${error.message}</li>`;
         });
-    })
-    .catch(error => {
-        console.error("Error loading history: ", error);
-        document.getElementById("historyList").innerHTML = `<li>Error loading history: ${error.message}</li>`;
-    });
 }
 
 function openPublishModal(id, text) {
-    console.log("Opening publish modal for:", {id, text});
+    console.log("Opening publish modal for:", { id, text });
     document.getElementById("publishModal").style.display = "block";
     document.getElementById("publishTextPreview").textContent = text;
-    
+
     // Store the text in a data attribute for later use
     document.getElementById("publishModal").dataset.publishText = text;
 }
 
 // Add this separate function for the confirm button
 function setupPublishHandler() {
-    document.getElementById("confirmPublishBtn").onclick = function() {
+    document.getElementById("confirmPublishBtn").onclick = function () {
         const text = document.getElementById("publishModal").dataset.publishText;
         const publishClass = document.getElementById("publishClass").value;
         const tags = document.getElementById("publishTags").value.split(",").map(t => t.trim());
-        
-        console.log("Publishing:", {text, publishClass, tags});
-        
+
+        console.log("Publishing:", { text, publishClass, tags });
+
         if (!text) {
             alert("No text to publish!");
             return;
         }
-        
+
         communityRef.add({
             uid: currentUser.uid,
             text: text,
@@ -214,16 +214,16 @@ function setupPublishHandler() {
             tags: tags,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         })
-        .then((docRef) => {
-            console.log("Published successfully with ID:", docRef.id);
-            document.getElementById("publishModal").style.display = "none";
-            alert("Published successfully to community!");
-            loadCommunityReads();
-        })
-        .catch((error) => {
-            console.error("Error publishing:", error);
-            alert("Error publishing: " + error.message);
-        });
+            .then((docRef) => {
+                console.log("Published successfully with ID:", docRef.id);
+                document.getElementById("publishModal").style.display = "none";
+                alert("Published successfully to community!");
+                loadCommunityReads();
+            })
+            .catch((error) => {
+                console.error("Error publishing:", error);
+                alert("Error publishing: " + error.message);
+            });
     };
 }
 
@@ -231,12 +231,12 @@ function loadCommunityReads() {
     communityRef.orderBy("createdAt", "desc").onSnapshot(snapshot => {
         const list = document.getElementById("communityList");
         list.innerHTML = "";
-        
+
         if (snapshot.empty) {
             list.innerHTML = "<li>No community reads yet. Be the first to publish!</li>";
             return;
         }
-        
+
         snapshot.forEach(doc => {
             const item = doc.data();
             const li = document.createElement("li");
@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
             renderCustomPromptsList();
         }
     }
-    
+
     // Check for speech recognition support
     function checkSpeechRecognitionSupport() {
         if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
@@ -361,10 +361,10 @@ document.addEventListener('DOMContentLoaded', function () {
             warning.textContent = 'Speech recognition is not supported in your browser. Try using Chrome or Edge.';
             warning.style.display = 'block';
             warning.style.marginTop = '10px';
-            
+
             // Insert after the microphone button
             microphoneBtn.parentNode.insertBefore(warning, microphoneBtn.nextSibling);
-            
+
             // Disable the microphone button
             microphoneBtn.disabled = true;
             return false;
@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Clear existing custom options (if any)
         const customOptions = promptSelect.querySelectorAll('[data-custom]');
         customOptions.forEach(option => option.remove());
-        
+
         // Add custom prompts to dropdown
         Object.keys(customPrompts).forEach(key => {
             const option = document.createElement('option');
@@ -396,20 +396,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // Render custom prompts list in modal
     function renderCustomPromptsList() {
         customPromptsList.innerHTML = '';
-        
+
         Object.keys(customPrompts).forEach(key => {
             const li = document.createElement('li');
-            
+
             const promptItem = document.createElement('div');
             promptItem.className = 'prompt-item';
-            
+
             const nameSpan = document.createElement('span');
             nameSpan.className = 'prompt-name';
             nameSpan.textContent = key;
-            
+
             const actionsDiv = document.createElement('div');
             actionsDiv.className = 'prompt-actions';
-            
+
             const useButton = document.createElement('button');
             useButton.className = 'use-prompt';
             useButton.textContent = 'Use';
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 promptSelect.value = key;
                 promptsModal.style.display = 'none';
             });
-            
+
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-prompt';
             deleteButton.textContent = 'Delete';
@@ -427,13 +427,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 updatePromptSelect();
                 renderCustomPromptsList();
             });
-            
+
             actionsDiv.appendChild(useButton);
             actionsDiv.appendChild(deleteButton);
-            
+
             promptItem.appendChild(nameSpan);
             promptItem.appendChild(actionsDiv);
-            
+
             li.appendChild(promptItem);
             customPromptsList.appendChild(li);
         });
@@ -443,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function getCurrentPrompt() {
         const selectedValue = promptSelect.value;
         let promptText = '';
-        
+
         if (defaultPrompts[selectedValue]) {
             promptText = defaultPrompts[selectedValue];
         } else if (customPrompts[selectedValue]) {
@@ -451,12 +451,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             promptText = defaultPrompts['autocorrect']; // Fallback
         }
-        
+
         // Ensure the prompt contains {text} placeholder
         if (!promptText.includes('{text}')) {
             promptText += ' {text}';
         }
-        
+
         return promptText;
     }
 
@@ -465,7 +465,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!checkSpeechRecognitionSupport()) {
             return;
         }
-        
+
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         recognition = new SpeechRecognition();
         recognition.continuous = true;
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function () {
         recognition.lang = 'en-US';
 
         // Recognition event handlers
-        recognition.onstart = function() {
+        recognition.onstart = function () {
             isListening = true;
             microphoneBtn.textContent = '🔴 Stop';
             microphoneBtn.classList.add('listening');
@@ -482,9 +482,9 @@ document.addEventListener('DOMContentLoaded', function () {
             recognizedWords = [];
         };
 
-        recognition.onresult = function(event) {
+        recognition.onresult = function (event) {
             let interimTranscript = '';
-            
+
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 const transcript = event.results[i][0].transcript;
                 if (event.results[i].isFinal) {
@@ -492,45 +492,45 @@ document.addEventListener('DOMContentLoaded', function () {
                     const currentText = inputText.value;
                     const startPos = inputText.selectionStart;
                     const endPos = inputText.selectionEnd;
-                    
+
                     // Add the recognized text
-                    const newText = currentText.substring(0, startPos) + 
-                                transcript + 
-                                currentText.substring(endPos, currentText.length);
-                    
+                    const newText = currentText.substring(0, startPos) +
+                        transcript +
+                        currentText.substring(endPos, currentText.length);
+
                     inputText.value = newText;
-                    
+
                     // Highlight the newly added words in the input field
                     highlightInputText(startPos, startPos + transcript.length);
-                    
+
                     // Update phonetics display
                     updatePhoneticsDisplay();
                 } else {
                     interimTranscript += transcript;
                 }
             }
-            
+
             // Show interim results in status
             if (interimTranscript) {
                 recognitionStatus.textContent = 'Listening: ' + interimTranscript;
             }
         };
 
-        recognition.onerror = function(event) {
+        recognition.onerror = function (event) {
             console.error('Speech recognition error', event.error);
             recognitionStatus.textContent = 'Error: ' + event.error;
             stopRecognition();
-            
+
             // Reset after a delay
             setTimeout(() => {
                 recognitionStatus.classList.remove('active');
             }, 2000);
         };
 
-        recognition.onend = function() {
+        recognition.onend = function () {
             stopRecognition();
             recognitionStatus.textContent = 'Speech recognition ended';
-            
+
             // Hide status after a delay
             setTimeout(() => {
                 recognitionStatus.classList.remove('active');
@@ -577,12 +577,12 @@ document.addEventListener('DOMContentLoaded', function () {
     function highlightInputText(start, end) {
         inputText.focus();
         inputText.setSelectionRange(start, end);
-        
+
         // Use a temporary marker to create a highlight effect
         setTimeout(() => {
             // Scroll to the highlighted area
             inputText.scrollLeft = inputText.scrollWidth;
-            
+
             // Remove selection after a delay to create highlight effect
             setTimeout(() => {
                 inputText.setSelectionRange(end, end);
@@ -598,7 +598,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (wordElement) {
                 // Add recognition highlight class
                 wordElement.classList.add('recognized');
-                
+
                 // Remove highlight after a short delay
                 setTimeout(() => {
                     if (wordElement) {
@@ -627,30 +627,30 @@ document.addEventListener('DOMContentLoaded', function () {
     addPromptBtn.addEventListener('click', () => {
         const name = newPromptName.value.trim();
         let text = newPromptText.value.trim();
-        
+
         if (!name || !text) {
             alert('Please enter both a name and prompt text.');
             return;
         }
-        
+
         // Automatically add {text} placeholder if not included
         if (!text.includes('{text}')) {
             text += ' {text}';
         }
-        
+
         // Add or update custom prompt
         customPrompts[name] = text;
         savePrompts();
         updatePromptSelect();
         renderCustomPromptsList();
-        
+
         // Clear form
         newPromptName.value = '';
         newPromptText.value = '';
-        
+
         // Select the new prompt
         promptSelect.value = name;
-        
+
         // Show confirmation message
         alert(`Prompt "${name}" added successfully!`);
     });
@@ -939,7 +939,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             let phonetics;
-            
+
             if (currentTranscriptionMode === 'english') {
                 // Use the simple English phonetics (existing functionality)
                 phonetics = generatePhonetics(text, false);
@@ -949,7 +949,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 phonetics = await getTranscriptionFromAPI(text, currentTranscriptionMode);
                 displayPhonetics(phonetics);
             }
-            
+
         } catch (error) {
             console.error('Error getting transcription:', error);
             phoneticsOutput.innerHTML = '<div class="error">Error loading transcription. Please try again.</div>';
@@ -978,9 +978,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (transcriptionCache[mode][cacheKey]) {
             return transcriptionCache[mode][cacheKey];
         }
-        
+
         let prompt;
-        
+
         if (mode === 'ipa') {
             prompt = `Convert the following English text to International Phonetic Alphabet (IPA) transcription. Return only the transcription without any explanations: "${text}"`;
         } else if (mode === 'arpabet') {
@@ -999,19 +999,19 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             let transcribedText = await response.text();
-            
+
             // More aggressive cleaning for transcription responses
             transcribedText = transcribedText
                 .replace(/^(Sure!|Certainly!|Here's|The|IPA transcription|ARPAbet transcription)[:\s]+/i, '')
                 .replace(/^["'](.*)["']$/, '$1')
                 .replace(/\.$/, '')
                 .trim();
-            
+
             // Cache the result
             transcriptionCache[mode][cacheKey] = transcribedText;
-            
+
             return transcribedText;
-            
+
         } catch (error) {
             console.error('Error calling transcription API:', error);
             throw error;
@@ -1028,7 +1028,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // For IPA and ARPAbet, show the continuous text with appropriate class
             const className = currentTranscriptionMode === 'ipa' ? 'ipa' : 'arpabet';
             phoneticsOutput.innerHTML = `<span class="${className}">${phoneticsText}</span>`;
-            
+
             // Update words array for navigation (split the transcribed text by spaces)
             words = phoneticsText.split(' ');
         }
@@ -1246,10 +1246,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Get the current prompt template
             const promptTemplate = getCurrentPrompt();
-            
+
             // Replace the {text} placeholder with the actual text
             const prompt = promptTemplate.replace('{text}', text);
-            
+
             const response = await fetch(
                 `https://text.pollinations.ai/${encodeURIComponent(prompt)}`
             );
@@ -1259,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             let processedText = await response.text();
-            
+
             // EXTRACT ONLY THE MAIN RESPONSE
             // Remove everything after "Optional", "Alternatives", "Variants", etc.
             const stopPatterns = [
@@ -1272,14 +1272,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 ' Alternatives',
                 ' Variants'
             ];
-            
+
             for (const pattern of stopPatterns) {
                 const index = processedText.indexOf(pattern);
                 if (index > -1) {
                     processedText = processedText.substring(0, index);
                 }
             }
-            
+
             // Remove common prefixes like "Autocorrected:", "Corrected:", etc.
             const prefixes = [
                 "Autocorrected:",
@@ -1289,7 +1289,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "Sure!",
                 "Certainly!"
             ];
-            
+
             for (const prefix of prefixes) {
                 if (processedText.startsWith(prefix)) {
                     processedText = processedText.substring(prefix.length).trim();
@@ -1300,16 +1300,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 }
             }
-            
+
             // Extract the first sentence only
             const firstSentenceMatch = processedText.match(/^[^.!?]*[.!?]/);
             if (firstSentenceMatch) {
                 processedText = firstSentenceMatch[0].trim();
             }
-            
+
             // Final cleanup
             processedText = processedText.trim();
-            
+
             // Create JSON output
             const jsonOutput = {
                 originalText: text,
@@ -1318,18 +1318,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 timestamp: new Date().toISOString(),
                 success: true
             };
-            
+
             inputText.value = processedText;
             updatePhoneticsDisplay();
-            
+
             // Save to history
             if (currentUser) {
                 saveReadToHistory(processedText);
             }
-            
+
             // Return the JSON object
             return jsonOutput;
-            
+
         } catch (error) {
             console.error('Error processing text:', error);
             const errorOutput = {
@@ -1350,21 +1350,21 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("User not logged in, cannot save history");
             return;
         }
-        
+
         // Add a timestamp and trim very long texts
         const historyItem = {
             text: text.length > 500 ? text.substring(0, 500) + "..." : text,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             promptType: promptSelect.value
         };
-        
+
         usersRef(currentUser.uid).collection("history").add(historyItem)
-        .then((docRef) => {
-            console.log("History item saved with ID: ", docRef.id);
-        })
-        .catch((error) => {
-            console.error("Error saving history: ", error);
-        });
+            .then((docRef) => {
+                console.log("History item saved with ID: ", docRef.id);
+            })
+            .catch((error) => {
+                console.error("Error saving history: ", error);
+            });
     }
 
 
@@ -1376,18 +1376,18 @@ document.addEventListener('DOMContentLoaded', function () {
             li.style.display = historyText.includes(term) ? "" : "none";
         });
     });
-    
-    
+
+
     // Set up modal close buttons
     document.querySelectorAll('.modal .close').forEach(closeBtn => {
-        closeBtn.addEventListener('click', function() {
+        closeBtn.addEventListener('click', function () {
             this.closest('.modal').style.display = 'none';
         });
     });
 
     // Close modals when clicking outside
     document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('click', function(e) {
+        modal.addEventListener('click', function (e) {
             if (e.target === this) {
                 this.style.display = 'none';
             }
@@ -1396,51 +1396,51 @@ document.addEventListener('DOMContentLoaded', function () {
     // Apply filters button
     document.getElementById("applyFiltersBtn").onclick = () => {
         console.log("Applying filters...");
-        
+
         // Start with the base query
         let query = communityRef;
-        
+
         // Apply class filter
         const cls = document.getElementById("filterClass").value;
         if (cls) {
             console.log("Filtering by class:", cls);
             query = query.where("class", "==", cls);
         }
-        
+
         // Apply date range filter
         const start = document.getElementById("filterStart").value;
         const end = document.getElementById("filterEnd").value;
-        
+
         if (start) {
             const startDate = new Date(start);
             startDate.setHours(0, 0, 0, 0); // Start of day
             console.log("Filtering from date:", startDate);
             query = query.where("createdAt", ">=", startDate);
         }
-        
+
         if (end) {
             const endDate = new Date(end);
             endDate.setHours(23, 59, 59, 999); // End of day
             console.log("Filtering to date:", endDate);
             query = query.where("createdAt", "<=", endDate);
         }
-        
+
         // Apply tags filter
         const tagsInput = document.getElementById("filterTags").value;
         const tags = tagsInput.split(",").map(t => t.trim()).filter(t => t);
-        
+
         console.log("Applying filters with query:", query);
-        
+
         // Execute the query
         query.get().then(snapshot => {
             const list = document.getElementById("communityList");
             list.innerHTML = "";
-            
+
             if (snapshot.empty) {
                 list.innerHTML = "<li>No community reads match your filters.</li>";
                 return;
             }
-            
+
             // If we have tags to filter by, we need to do client-side filtering
             if (tags.length > 0) {
                 console.log("Filtering by tags:", tags);
@@ -1453,7 +1453,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         list.appendChild(li);
                     }
                 });
-                
+
                 // Check if we found any matches after tag filtering
                 if (list.children.length === 0) {
                     list.innerHTML = "<li>No community reads match your tags filter.</li>";
@@ -1484,25 +1484,25 @@ document.addEventListener('DOMContentLoaded', function () {
             alert("You must be logged in to clear history");
             return;
         }
-        
+
         if (!confirm("Are you sure you want to clear all your history? This cannot be undone.")) {
             return;
         }
-        
+
         usersRef(currentUser.uid).collection("history")
-        .get().then(snapshot => {
-            const batch = db.batch();
-            snapshot.forEach(doc => batch.delete(doc.ref));
-            return batch.commit();
-        })
-        .then(() => {
-            console.log("All history cleared");
-            document.getElementById("historyList").innerHTML = "<li>No history yet. Process some text to see it here.</li>";
-        })
-        .catch((error) => {
-            console.error("Error clearing history: ", error);
-            alert("Error clearing history");
-        });
+            .get().then(snapshot => {
+                const batch = db.batch();
+                snapshot.forEach(doc => batch.delete(doc.ref));
+                return batch.commit();
+            })
+            .then(() => {
+                console.log("All history cleared");
+                document.getElementById("historyList").innerHTML = "<li>No history yet. Process some text to see it here.</li>";
+            })
+            .catch((error) => {
+                console.error("Error clearing history: ", error);
+                alert("Error clearing history");
+            });
     };
 
 
@@ -1563,6 +1563,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize button states
     updateButtonStates();
 
-    setupPublishHandler(); 
+    setupPublishHandler();
     loadCommunityReads();
 });
