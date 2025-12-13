@@ -20,6 +20,11 @@ const analytics = firebase.analytics();
 
 const usersRef = (uid) => db.collection("users").doc(uid);
 const communityRef = db.collection("community");
+let pronunciationPosition = 0;  // Tracks which word we're expecting next during speech practice
+let expectedWords = [];  // Will hold normalized words from current transcription
+function normalizeWord(word) {
+    return word.toLowerCase().replace(/[^\w]/g, '');  // Remove punctuation, lowercase
+}
 
 // Enable persistence for offline capability
 db.enablePersistence()
@@ -487,25 +492,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 const transcript = event.results[i][0].transcript;
+
                 if (event.results[i].isFinal) {
-                    // Store current text and selection
-                    const currentText = inputText.value;
-                    const startPos = inputText.selectionStart;
-                    const endPos = inputText.selectionEnd;
+                    // ONLY use FINAL results for reliable feedback
+                    const finalWords = transcript.trim().split(/\s+/);
 
-                    // Add the recognized text
-                    const newText = currentText.substring(0, startPos) +
-                        transcript +
-                        currentText.substring(endPos, currentText.length);
+                    // Process each word in the final phrase sequentially
+                    finalWords.forEach(word => {
+                        if (word && pronunciationPosition < expectedWords.length) {
+                            highlightPronunciationFeedback(word);
+                        }
+                    });
 
-                    inputText.value = newText;
+                    // Show what was finally recognized
+                    recognitionStatus.textContent = 'Recognized: ' + transcript;
+                    recognitionStatus.classList.add('active');
+                    setTimeout(() => recognitionStatus.classList.remove('active'), 2000);
 
-                    // Highlight the newly added words in the input field
-                    highlightInputText(startPos, startPos + transcript.length);
-
-                    // Update phonetics display
-                    updatePhoneticsDisplay();
                 } else {
+                    // Only use interim for live display (no feedback logic here)
                     interimTranscript += transcript;
                 }
             }
@@ -513,6 +518,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Show interim results in status
             if (interimTranscript) {
                 recognitionStatus.textContent = 'Listening: ' + interimTranscript;
+                recognitionStatus.classList.add('active');
             }
         };
 
@@ -542,10 +548,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function startRecognition() {
         if (recognition) {
             try {
+                // Optional: clear old highlights for clean start
+                document.querySelectorAll('.pronunciation-match, .pronunciation-mismatch').forEach(el => {
+                    el.classList.remove('pronunciation-match', 'pronunciation-mismatch');
+                });
+
                 recognition.start();
             } catch (error) {
                 console.error('Recognition start error:', error);
-                // Try again after a short delay if already started
                 setTimeout(() => {
                     if (!isListening) {
                         recognition.start();
@@ -562,6 +572,16 @@ document.addEventListener('DOMContentLoaded', function () {
             isListening = false;
             microphoneBtn.textContent = '🎤 Speech Input';
             microphoneBtn.classList.remove('listening');
+            document.querySelectorAll('.pronunciation-match, .pronunciation-mismatch').forEach(el => {
+                el.classList.remove('pronunciation-match', 'pronunciation-mismatch');
+            });
+
+            // Hide status message
+            recognitionStatus.classList.remove('active');
+
+            // === THIS IS WHAT YOU WANT ===
+            // Reset position to start from the beginning next time
+            pronunciationPosition = 0;
         }
     }
 
@@ -971,6 +991,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentWordIndex >= 0) {
             highlightWord(currentWordIndex);
         }
+        pronunciationPosition = 0;  // Reset progress when text changes
     }
     async function getTranscriptionFromAPI(text, mode) {
         // Check cache first
@@ -1018,6 +1039,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     function displayPhonetics(phoneticsText) {
+        // Clear any previous pronunciation highlights
+        document.querySelectorAll('.pronunciation-match, .pronunciation-mismatch').forEach(el => {
+            el.classList.remove('pronunciation-match', 'pronunciation-mismatch');
+        });
+
+        // CRITICAL: Always use original words for comparison
+        expectedWords = words.map(w => normalizeWord(w));
+
         if (currentTranscriptionMode === 'english') {
             // For English mode, show word-by-word highlighting
             phoneticsOutput.innerHTML = words.map((word, index) => {
@@ -1025,14 +1054,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 return `<span id="word-${index}" class="english">${phoneticWord}</span>`;
             }).join(' ');
         } else {
-            // For IPA and ARPAbet, show the continuous text with appropriate class
-            const className = currentTranscriptionMode === 'ipa' ? 'ipa' : 'arpabet';
-            phoneticsOutput.innerHTML = `<span class="${className}">${phoneticsText}</span>`;
-
-            // Update words array for navigation (split the transcribed text by spaces)
-            words = phoneticsText.split(' ');
+            // For IPA/ARPAbet: show transcription, but wrap each word in span for highlighting
+            const transcribedWords = phoneticsText.trim().split(/\s+/);
+            phoneticsOutput.innerHTML = transcribedWords.map((word, index) => {
+                return `<span id="word-${index}" class="${currentTranscriptionMode}">${word}</span>`;
+            }).join(' ');
         }
     }
+    function highlightPronunciationFeedback(recognizedWord) {
+    const normalizedRec = normalizeWord(recognizedWord);
+
+    if (pronunciationPosition >= expectedWords.length) {
+        recognitionStatus.textContent = 'Well done! End of text reached. 🎉';
+        recognitionStatus.classList.add('active');
+        return;
+    }
+
+    const expected = expectedWords[pronunciationPosition];
+    const wordElement = document.getElementById(`word-${pronunciationPosition}`);
+
+    if (wordElement) {
+        wordElement.classList.remove('pronunciation-match', 'pronunciation-mismatch');
+
+        if (normalizedRec === expected) {
+            wordElement.classList.add('pronunciation-match');
+            recognitionStatus.textContent = `Correct: "${recognizedWord}" ✓`;
+        } else {
+            wordElement.classList.add('pronunciation-mismatch');
+            recognitionStatus.textContent = `Try: "${words[pronunciationPosition]}" (heard "${recognizedWord}")`;
+        }
+
+        wordElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        recognitionStatus.classList.add('active');
+    }
+
+    // ALWAYS advance immediately after feedback
+    pronunciationPosition++;
+
+    // Optional: If wrong, give extra time before next word is expected
+    // But position already advanced, so next spoken word will match next expected
+}
 
     // Highlight the current word being spoken
     function highlightWord(index) {
