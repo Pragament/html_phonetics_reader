@@ -26,6 +26,9 @@
 
     <title>Phonetics Reader</title>
 
+    <meta name="theme-color" content="#0a84ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="style.css">
 
     
@@ -197,6 +200,13 @@
                 <span id="llmProgressText">Choose a model and load it to start live practice.</span>
                 <div class="progress-track" aria-hidden="true">
                     <div id="llmProgressBar" class="progress-fill"></div>
+                </div>
+                <div id="pwaPrompt" class="pwa-prompt" hidden>
+                    <div>
+                        <strong id="pwaPromptTitle">Install app</strong>
+                        <p id="pwaPromptText">Install this site as a desktop app for faster access and a distraction-free practice window.</p>
+                    </div>
+                    <button id="pwaActionBtn" class="practice-action ghost" type="button">Install App</button>
                 </div>
             </div>
         </div>
