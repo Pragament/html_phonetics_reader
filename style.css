@@ -1275,6 +1275,67 @@ select {
     gap: 12px;
 }
 
+.group-mode-grid,
+.group-turnbar,
+.student-roster {
+    display: grid;
+    gap: 10px;
+}
+
+.group-mode-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+}
+
+.field-stack {
+    display: grid;
+    gap: 6px;
+    color: #35506a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.student-roster {
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.student-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    background: #eff6fc;
+    color: #163556;
+}
+
+.student-chip.active {
+    background: linear-gradient(135deg, #0a84ff, #00a6a6);
+    color: white;
+}
+
+.student-chip-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.student-mini-btn {
+    background: rgba(255, 255, 255, 0.85);
+    color: #0c4662;
+    border: 1px solid rgba(12, 70, 98, 0.1);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+.student-chip.active .student-mini-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
 .practice-action {
     background: linear-gradient(135deg, #0a84ff, #00a6a6);
     border: none;
@@ -1433,6 +1494,22 @@ select {
     opacity: 0.75;
 }
 
+.chat-student {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+}
+
+.chat-message.assistant .chat-student {
+    background: rgba(10, 132, 255, 0.1);
+    color: #0a5c6f;
+}
+
 .chat-message p {
     margin: 0;
 }
@@ -1518,6 +1595,10 @@ select {
 .metric-chip strong {
     font-size: 22px;
     color: #11385e;
+}
+
+.team-skills-grid {
+    margin-top: 12px;
 }
 
 .diff-legend {
@@ -1615,7 +1696,8 @@ select {
 @media (max-width: 980px) {
     .practice-grid,
     .feedback-grid,
-    .hint-columns {
+    .hint-columns,
+    .group-mode-grid {
         grid-template-columns: 1fr;
     }
 }

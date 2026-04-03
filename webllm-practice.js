@@ -181,6 +181,11 @@ document.addEventListener("DOMContentLoaded", () => {
         pwaPromptTitle: document.getElementById("pwaPromptTitle"),
         pwaPromptText: document.getElementById("pwaPromptText"),
         pwaActionBtn: document.getElementById("pwaActionBtn"),
+        studentNameInput: document.getElementById("studentNameInput"),
+        addStudentBtn: document.getElementById("addStudentBtn"),
+        studentRoster: document.getElementById("studentRoster"),
+        activeStudentLabel: document.getElementById("activeStudentLabel"),
+        nextSpeakerBtn: document.getElementById("nextSpeakerBtn"),
         cbseGradeFilter: document.getElementById("cbseGradeFilter"),
         subjectFilter: document.getElementById("subjectFilter"),
         topicSearchInput: document.getElementById("topicSearchInput"),
@@ -201,7 +206,12 @@ document.addEventListener("DOMContentLoaded", () => {
         feedbackDiff: document.getElementById("feedbackDiff"),
         grammarScore: document.getElementById("grammarScore"),
         coverageScore: document.getElementById("coverageScore"),
-        turnCount: document.getElementById("turnCount")
+        turnCount: document.getElementById("turnCount"),
+        problemSolvingScore: document.getElementById("problemSolvingScore"),
+        teamBuildingScore: document.getElementById("teamBuildingScore"),
+        softSkillsScore: document.getElementById("softSkillsScore"),
+        analyticalSkillsScore: document.getElementById("analyticalSkillsScore"),
+        criticalThinkingScore: document.getElementById("criticalThinkingScore")
     };
 
     const state = {
@@ -216,6 +226,15 @@ document.addEventListener("DOMContentLoaded", () => {
         recognition: null,
         deferredInstallPrompt: null,
         hasInstalledPwa: localStorage.getItem("practicePwaInstalled") === "true",
+        students: [],
+        activeStudentId: null,
+        collaborationScores: {
+            problemSolving: 0,
+            teamBuilding: 0,
+            softSkills: 0,
+            analyticalSkills: 0,
+            criticalThinking: 0
+        },
         messages: [
             {
                 role: "system",
@@ -228,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     hydrateModelOptions(ui.modelSelect);
     hydrateFilters(ui);
+    renderStudentRoster(ui, state);
     renderTopicList(ui, state);
     setSpeechSupportNote(ui, state);
     attachEvents(ui, state);
@@ -300,6 +320,21 @@ function attachEvents(ui, state) {
             ui.loadModelBtn.textContent = "Load Selected Model";
             ui.loadModelBtn.disabled = false;
         }
+    });
+
+    ui.addStudentBtn.addEventListener("click", () => {
+        addStudent(ui, state);
+    });
+
+    ui.studentNameInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            addStudent(ui, state);
+        }
+    });
+
+    ui.nextSpeakerBtn.addEventListener("click", () => {
+        rotateActiveStudent(ui, state);
     });
 
     ui.cbseGradeFilter.addEventListener("change", () => renderTopicList(ui, state));
@@ -493,6 +528,7 @@ function selectTopic(ui, state, topic) {
     ui.chatMessages.innerHTML = "";
     ui.turnCount.textContent = "0";
     ui.grammarScore.textContent = "0%";
+    resetCollaborationScores(ui, state);
     ui.selectedTopicTitle.textContent = topic.title;
     ui.selectedTopicSummary.textContent = topic.summary;
     ui.selectedTopicMeta.innerHTML = `
@@ -509,7 +545,7 @@ function selectTopic(ui, state, topic) {
     appendMessage(
         ui.chatMessages,
         "assistant",
-        `Topic selected: ${topic.title}. Start by explaining it in 2 to 4 sentences in simple English.`
+        `Topic selected: ${topic.title}. ${state.students.length > 1 ? "Take turns as a group, build on one another's ideas, and explain it in simple English." : "Start by explaining it in 2 to 4 sentences in simple English."}`
     );
 }
 
@@ -587,11 +623,13 @@ function setSpeechSupportNote(ui, state) {
     };
 
     state.recognition = recognition;
-    ui.speechSupportNote.textContent = "Speech-to-text is ready. Use the mic for live speaking, then send your answer to the tutor.";
+    ui.speechSupportNote.textContent = "Speech-to-text is ready. On a shared computer, let one student speak at a time, then send the turn to the tutor.";
 }
 
 async function submitPracticeTurn(ui, state) {
     const studentText = ui.practiceInput.value.trim();
+    const activeSpeaker = getActiveStudent(state);
+    const studentName = activeSpeaker ? activeSpeaker.name : "Student";
 
     if (!studentText) {
         ui.feedbackSummary.textContent = "Say or type a response first so the tutor has something to review.";
@@ -608,8 +646,8 @@ async function submitPracticeTurn(ui, state) {
         return;
     }
 
-    appendMessage(ui.chatMessages, "user", studentText);
-    state.messages.push({ role: "user", content: studentText });
+    appendMessage(ui.chatMessages, "user", studentText, studentName);
+    state.messages.push({ role: "user", content: buildUserTurnPrompt(studentName, studentText, state) });
     ui.practiceInput.value = "";
     ui.sendPracticeBtn.disabled = true;
     ui.sendPracticeBtn.textContent = "Thinking...";
@@ -633,10 +671,9 @@ async function submitPracticeTurn(ui, state) {
         renderBulletProgress(ui, state);
         updateCoverageScore(ui, state);
         updateGrammarScore(ui, studentText, parsed.correctedSentence);
-
-        ui.feedbackSummary.textContent = `${parsed.conciseFeedback} Pronunciation tip: ${parsed.pronunciationTip}`;
+        updateCollaborationScores(ui, state, parsed);
         renderDiff(ui.feedbackDiff, studentText, parsed.correctedSentence);
-        appendMessage(ui.chatMessages, "assistant", parsed.tutorReply);
+        appendMessage(ui.chatMessages, "assistant", parsed.tutorReply, studentName);
         speakText(parsed.tutorReply);
         updateTutorState(ui, state, "Feedback ready.");
     } catch (error) {
@@ -660,6 +697,8 @@ function parseTutorPayload(rawReply, studentText) {
                 conciseFeedback: parsed.conciseFeedback || "Your answer is understandable, but it can be made smoother and more precise.",
                 correctedSentence: parsed.correctedSentence || improveFallbackSentence(studentText),
                 pronunciationTip: parsed.pronunciationTip || "Slow down slightly and stress your key science words clearly.",
+                collaborationFeedback: parsed.collaborationFeedback || "Build on another student's idea and invite a teammate to contribute.",
+                skillScores: normalizeSkillScores(parsed.skillScores),
                 rawForHistory: jsonMatch[0]
             };
         } catch (error) {
@@ -672,6 +711,8 @@ function parseTutorPayload(rawReply, studentText) {
         conciseFeedback: "The tutor returned plain text, so a basic correction was generated locally.",
         correctedSentence: improveFallbackSentence(studentText),
         pronunciationTip: "Pause at commas and say key terms more clearly.",
+        collaborationFeedback: "Work as a team by adding one reason, one example, and one response to a peer's idea.",
+        skillScores: normalizeSkillScores(null),
         rawForHistory: rawReply
     };
 }
@@ -684,6 +725,24 @@ function improveFallbackSentence(text) {
 
     const capitalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
     return /[.!?]$/.test(capitalized) ? capitalized : `${capitalized}.`;
+}
+
+function normalizeSkillScores(skillScores) {
+    return {
+        problemSolving: clampScore(skillScores?.problemSolving ?? 0),
+        teamBuilding: clampScore(skillScores?.teamBuilding ?? 0),
+        softSkills: clampScore(skillScores?.softSkills ?? 0),
+        analyticalSkills: clampScore(skillScores?.analyticalSkills ?? 0),
+        criticalThinking: clampScore(skillScores?.criticalThinking ?? 0)
+    };
+}
+
+function clampScore(value) {
+    const numeric = Number(value);
+    if (Number.isNaN(numeric)) {
+        return 0;
+    }
+    return Math.max(0, Math.min(100, Math.round(numeric)));
 }
 
 function markCompletedBullets(state, studentText, correctedSentence) {
@@ -719,6 +778,25 @@ function updateCoverageScore(ui, state) {
     const total = state.selectedTopic.bullets.length || 1;
     const score = Math.round((state.completedBullets.size / total) * 100);
     ui.coverageScore.textContent = `${score}%`;
+}
+
+function updateCollaborationScores(ui, state, parsed) {
+    state.collaborationScores = parsed.skillScores;
+    ui.problemSolvingScore.textContent = `${parsed.skillScores.problemSolving}%`;
+    ui.teamBuildingScore.textContent = `${parsed.skillScores.teamBuilding}%`;
+    ui.softSkillsScore.textContent = `${parsed.skillScores.softSkills}%`;
+    ui.analyticalSkillsScore.textContent = `${parsed.skillScores.analyticalSkills}%`;
+    ui.criticalThinkingScore.textContent = `${parsed.skillScores.criticalThinking}%`;
+    ui.feedbackSummary.textContent = `${parsed.conciseFeedback} Collaboration: ${parsed.collaborationFeedback} Pronunciation tip: ${parsed.pronunciationTip}`;
+}
+
+function resetCollaborationScores(ui, state) {
+    state.collaborationScores = normalizeSkillScores(null);
+    ui.problemSolvingScore.textContent = "0%";
+    ui.teamBuildingScore.textContent = "0%";
+    ui.softSkillsScore.textContent = "0%";
+    ui.analyticalSkillsScore.textContent = "0%";
+    ui.criticalThinkingScore.textContent = "0%";
 }
 
 function renderDiff(container, original, corrected) {
@@ -800,12 +878,13 @@ function escapeHtml(value) {
         .replaceAll("'", "&#39;");
 }
 
-function appendMessage(container, role, text) {
+function appendMessage(container, role, text, speakerName = "") {
     const item = document.createElement("div");
     item.className = `chat-message ${role}`;
     const content = role === "assistant" ? renderMarkdown(text) : `<p>${escapeHtml(text)}</p>`;
+    const speakerTag = speakerName ? `<span class="chat-student">${escapeHtml(speakerName)}</span>` : "";
     item.innerHTML = `
-        <span class="chat-role">${role === "assistant" ? "Tutor" : "Student"}</span>
+        <span class="chat-role">${role === "assistant" ? "Tutor" : "Student"}${speakerTag}</span>
         ${content}
     `;
     container.appendChild(item);
@@ -862,7 +941,7 @@ function buildWelcomeMessage(topic) {
         return "The model is ready. Choose a STEM topic and explain it in your own English sentences.";
     }
 
-    return `The model is ready. Let's practice ${topic.title}. Explain it in simple English first, then I will ask follow-up questions.`;
+    return `The model is ready. Let's practice ${topic.title}. Explain it in simple English first, then I will ask follow-up questions that strengthen both English and teamwork.`;
 }
 
 function buildSystemPrompt(topic) {
@@ -880,12 +959,103 @@ Reply in warm, concise English.
 Always evaluate the student's latest answer for spoken-English clarity, grammar, and topic accuracy.
 Give coaching that is encouraging and specific.
 ${topicContext}
+You may be teaching one learner or a small group sharing one keyboard and microphone.
+Coach turn-taking, respectful listening, team building, problem solving, analytical thinking, and critical thinking.
 
 Return JSON only with exactly these keys:
 {
   "tutorReply": "2-4 sentence tutor response that continues the conversation",
   "conciseFeedback": "one short paragraph with instant feedback",
   "correctedSentence": "a corrected version of the student's answer in natural English",
-  "pronunciationTip": "one short pronunciation or fluency tip"
+  "pronunciationTip": "one short pronunciation or fluency tip",
+  "collaborationFeedback": "one short sentence about teamwork and discussion quality",
+  "skillScores": {
+    "problemSolving": 0,
+    "teamBuilding": 0,
+    "softSkills": 0,
+    "analyticalSkills": 0,
+    "criticalThinking": 0
+  }
 }`;
+}
+
+function addStudent(ui, state) {
+    const name = ui.studentNameInput.value.trim();
+    if (!name) {
+        return;
+    }
+
+    state.students.push({
+        id: `student-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+        name
+    });
+
+    if (!state.activeStudentId) {
+        state.activeStudentId = state.students[0].id;
+    }
+
+    ui.studentNameInput.value = "";
+    renderStudentRoster(ui, state);
+}
+
+function renderStudentRoster(ui, state) {
+    if (!state.students.length) {
+        ui.studentRoster.innerHTML = `<div class="empty-topics">No students added yet. Add names for shared-device group chat, or continue in individual mode.</div>`;
+        ui.activeStudentLabel.textContent = "Individual mode";
+        return;
+    }
+
+    ui.studentRoster.innerHTML = state.students.map((student) => `
+        <div class="student-chip ${student.id === state.activeStudentId ? "active" : ""}">
+            <strong>${escapeHtml(student.name)}</strong>
+            <div class="student-chip-actions">
+                <button class="student-mini-btn" type="button" data-student-set="${student.id}">Set Active</button>
+                <button class="student-mini-btn" type="button" data-student-remove="${student.id}">Remove</button>
+            </div>
+        </div>
+    `).join("");
+
+    const activeStudent = getActiveStudent(state);
+    ui.activeStudentLabel.textContent = activeStudent ? activeStudent.name : "Individual mode";
+
+    ui.studentRoster.querySelectorAll("[data-student-set]").forEach((button) => {
+        button.addEventListener("click", () => {
+            state.activeStudentId = button.dataset.studentSet;
+            renderStudentRoster(ui, state);
+        });
+    });
+
+    ui.studentRoster.querySelectorAll("[data-student-remove]").forEach((button) => {
+        button.addEventListener("click", () => {
+            state.students = state.students.filter((student) => student.id !== button.dataset.studentRemove);
+            if (!state.students.some((student) => student.id === state.activeStudentId)) {
+                state.activeStudentId = state.students[0]?.id || null;
+            }
+            renderStudentRoster(ui, state);
+        });
+    });
+}
+
+function rotateActiveStudent(ui, state) {
+    if (!state.students.length) {
+        return;
+    }
+
+    const currentIndex = state.students.findIndex((student) => student.id === state.activeStudentId);
+    const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % state.students.length : 0;
+    state.activeStudentId = state.students[nextIndex].id;
+    renderStudentRoster(ui, state);
+}
+
+function getActiveStudent(state) {
+    return state.students.find((student) => student.id === state.activeStudentId) || null;
+}
+
+function buildUserTurnPrompt(studentName, studentText, state) {
+    if (state.students.length > 1) {
+        const peers = state.students.filter((student) => student.name !== studentName).map((student) => student.name).join(", ") || "none";
+        return `Shared-device group discussion. Current speaker: ${studentName}. Other students: ${peers}. Coach the group on teamwork and conversation quality.\nStudent response from ${studentName}: ${studentText}`;
+    }
+
+    return `Individual response from ${studentName}: ${studentText}`;
 }
