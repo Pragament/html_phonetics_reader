@@ -24,148 +24,1506 @@ const MODEL_OPTIONS = [
 ];
 
 const STEM_TOPICS = [
+    // Grade 4 Science
     {
-        id: "bio-photosynthesis",
+        id: "g4-sci-plants",
+        grade: "Grade 4",
+        subject: "Science",
+        title: "Plants: Parts and Functions",
+        summary: "Describe the different parts of plants and their functions like roots, stem, leaves, and flowers.",
+        hints: ["Start with the main parts of a plant.", "Explain what roots do for the plant.", "Mention how leaves help plants make food."],
+        bullets: [
+            { text: "Name the main parts of a plant.", keywords: ["roots", "stem", "leaves", "flowers"] },
+            { text: "Explain the function of roots.", keywords: ["roots", "water", "soil", "anchor"] },
+            { text: "Describe what leaves do.", keywords: ["leaves", "photosynthesis", "food", "sunlight"] },
+            { text: "Mention the role of flowers.", keywords: ["flowers", "seeds", "fruits", "reproduction"] }
+        ]
+    },
+    {
+        id: "g4-sci-animals",
+        grade: "Grade 4",
+        subject: "Science",
+        title: "Animals: Habitats and Adaptations",
+        summary: "Explain how animals adapt to different habitats like land, water, and air.",
+        hints: ["Give examples of animals in different habitats.", "Explain how fish breathe underwater.", "Describe how birds are adapted for flying."],
+        bullets: [
+            { text: "Name different animal habitats.", keywords: ["land", "water", "air", "forest", "desert"] },
+            { text: "Explain aquatic animal adaptations.", keywords: ["fish", "gills", "fins", "swim"] },
+            { text: "Describe land animal features.", keywords: ["legs", "run", "walk", "land"] },
+            { text: "Mention bird adaptations.", keywords: ["wings", "feathers", "fly", "beak"] }
+        ]
+    },
+    {
+        id: "g4-sci-food",
+        grade: "Grade 4",
+        subject: "Science",
+        title: "Food and Nutrition",
+        summary: "Discuss different types of food and why we need a balanced diet.",
+        hints: ["Name the main food groups.", "Explain why proteins are important.", "Mention why we need vitamins and minerals."],
+        bullets: [
+            { text: "Name the food groups.", keywords: ["carbohydrates", "proteins", "fats", "vitamins", "minerals"] },
+            { text: "Explain energy-giving foods.", keywords: ["carbohydrates", "energy", "rice", "wheat"] },
+            { text: "Describe body-building foods.", keywords: ["proteins", "muscles", "milk", "eggs", "dal"] },
+            { text: "Mention protective foods.", keywords: ["vitamins", "minerals", "fruits", "vegetables", "healthy"] }
+        ]
+    },
+    {
+        id: "g4-sci-water",
+        grade: "Grade 4",
+        subject: "Science",
+        title: "Water: Importance and Conservation",
+        summary: "Explain why water is essential for life and how we can conserve it.",
+        hints: ["List uses of water in daily life.", "Explain the water cycle briefly.", "Give tips for saving water."],
+        bullets: [
+            { text: "State importance of water.", keywords: ["water", "life", "drink", "essential"] },
+            { text: "List uses of water.", keywords: ["drinking", "cooking", "cleaning", "bathing", "plants"] },
+            { text: "Explain water cycle basics.", keywords: ["evaporation", "condensation", "rain", "clouds"] },
+            { text: "Mention conservation methods.", keywords: ["save", "waste", "tap", "reuse", "harvest"] }
+        ]
+    },
+    // Grade 4 Math
+    {
+        id: "g4-math-numbers",
+        grade: "Grade 4",
+        subject: "Mathematics",
+        title: "Large Numbers and Place Value",
+        summary: "Understand large numbers up to lakhs and their place values.",
+        hints: ["Explain place value positions.", "Give examples of numbers in lakhs.", "Show how to compare large numbers."],
+        bullets: [
+            { text: "Explain place value system.", keywords: ["ones", "tens", "hundreds", "thousands", "lakhs"] },
+            { text: "Read and write large numbers.", keywords: ["digits", "value", "place", "number"] },
+            { text: "Compare numbers.", keywords: ["greater", "smaller", "equal", "compare"] },
+            { text: "Form largest and smallest numbers.", keywords: ["largest", "smallest", "digits", "arrange"] }
+        ]
+    },
+    {
+        id: "g4-math-operations",
+        grade: "Grade 4",
+        subject: "Mathematics",
+        title: "Addition and Subtraction",
+        summary: "Practice addition and subtraction of large numbers with carrying and borrowing.",
+        hints: ["Explain the steps for addition.", "Show how borrowing works in subtraction.", "Give real-life examples like money."],
+        bullets: [
+            { text: "Add large numbers.", keywords: ["add", "sum", "carry", "total"] },
+            { text: "Subtract with borrowing.", keywords: ["subtract", "borrow", "difference", "minus"] },
+            { text: "Solve word problems.", keywords: ["problem", "story", "find", "answer"] },
+            { text: "Check answers.", keywords: ["verify", "check", "correct", "answer"] }
+        ]
+    },
+    // Grade 5 Science
+    {
+        id: "g5-sci-plants",
+        grade: "Grade 5",
+        subject: "Science",
+        title: "Plant Life: Growth and Reproduction",
+        summary: "Explain how plants grow and reproduce through seeds and other methods.",
+        hints: ["Describe seed germination process.", "Explain different ways plants reproduce.", "Mention what plants need to grow."],
+        bullets: [
+            { text: "Explain seed germination.", keywords: ["seed", "germinate", "sprout", "roots", "shoot"] },
+            { text: "List factors for plant growth.", keywords: ["water", "sunlight", "air", "soil", "nutrients"] },
+            { text: "Describe reproduction methods.", keywords: ["seeds", "spores", "cutting", "runner", "bulb"] },
+            { text: "Explain seed dispersal.", keywords: ["dispersal", "wind", "water", "animals", "explosion"] }
+        ]
+    },
+    {
+        id: "g5-sci-human-body",
+        grade: "Grade 5",
+        subject: "Science",
+        title: "Human Body: Bones and Muscles",
+        summary: "Describe the skeletal and muscular systems and their functions.",
+        hints: ["Count the bones in human body.", "Explain how muscles help us move.", "Mention the importance of joints."],
+        bullets: [
+            { text: "Describe the skeletal system.", keywords: ["bones", "skeleton", "skull", "ribcage", "206"] },
+            { text: "Explain muscle function.", keywords: ["muscles", "move", "contract", "relax", "movement"] },
+            { text: "Describe types of joints.", keywords: ["joints", "hinge", "ball", "socket", "pivot"] },
+            { text: "Explain bone and muscle coordination.", keywords: ["coordinate", "work", "together", "movement"] }
+        ]
+    },
+    {
+        id: "g5-sci-health",
+        grade: "Grade 5",
+        subject: "Science",
+        title: "Health and Diseases",
+        summary: "Discuss how to stay healthy and prevent common diseases.",
+        hints: ["List ways to maintain good health.", "Explain how diseases spread.", "Mention importance of hygiene."],
+        bullets: [
+            { text: "List healthy habits.", keywords: ["exercise", "sleep", "balanced", "diet", "clean"] },
+            { text: "Explain disease transmission.", keywords: ["spread", "germs", "virus", "bacteria", "contagious"] },
+            { text: "Describe hygiene practices.", keywords: ["handwash", "clean", "sanitize", "hygiene"] },
+            { text: "Mention vaccination importance.", keywords: ["vaccine", "immunization", "prevent", "disease"] }
+        ]
+    },
+    // Grade 5 Math
+    {
+        id: "g5-math-factors",
+        grade: "Grade 5",
+        subject: "Mathematics",
+        title: "Factors and Multiples",
+        summary: "Understand factors, multiples, prime and composite numbers.",
+        hints: ["Define what a factor is.", "Explain difference between prime and composite.", "Show how to find LCM and HCF."],
+        bullets: [
+            { text: "Define factors and multiples.", keywords: ["factor", "multiple", "divide", "product"] },
+            { text: "Identify prime numbers.", keywords: ["prime", "two", "factors", "one", "itself"] },
+            { text: "Identify composite numbers.", keywords: ["composite", "more", "factors", "divisible"] },
+            { text: "Find LCM and HCF.", keywords: ["LCM", "HCF", "common", "least", "greatest"] }
+        ]
+    },
+    {
+        id: "g5-math-fractions",
+        grade: "Grade 5",
+        subject: "Mathematics",
+        title: "Fractions: Types and Operations",
+        summary: "Learn about proper, improper, and mixed fractions with basic operations.",
+        hints: ["Define proper and improper fractions.", "Explain how to add fractions with same denominator.", "Show how to convert mixed to improper."],
+        bullets: [
+            { text: "Classify fractions.", keywords: ["proper", "improper", "mixed", "numerator", "denominator"] },
+            { text: "Convert fraction types.", keywords: ["convert", "mixed", "improper", "whole", "part"] },
+            { text: "Add and subtract fractions.", keywords: ["add", "subtract", "denominator", "same", "numerator"] },
+            { text: "Solve fraction word problems.", keywords: ["fraction", "part", "whole", "problem"] }
+        ]
+    },
+    {
+        id: "g5-math-decimals",
+        grade: "Grade 5",
+        subject: "Mathematics",
+        title: "Introduction to Decimals",
+        summary: "Understand decimal numbers and their relationship with fractions.",
+        hints: ["Explain decimal place values.", "Show how to convert fractions to decimals.", "Practice decimal addition."],
+        bullets: [
+            { text: "Explain decimal notation.", keywords: ["decimal", "point", "tenths", "hundredths", "place"] },
+            { text: "Convert fractions to decimals.", keywords: ["convert", "fraction", "decimal", "divide", "tenth"] },
+            { text: "Add and subtract decimals.", keywords: ["add", "subtract", "decimal", "align", "point"] },
+            { text: "Compare decimal numbers.", keywords: ["compare", "greater", "smaller", "decimal", "value"] }
+        ]
+    },
+    // Grade 6 Science
+    {
+        id: "g6-sci-food",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Food: Where Does It Come From",
+        summary: "Explore sources of food and different food varieties.",
+        hints: ["Classify food sources as plant and animal.", "Explain food chain basics.", "Mention importance of agriculture."],
+        bullets: [
+            { text: "Identify plant food sources.", keywords: ["plants", "fruits", "vegetables", "grains", "pulses"] },
+            { text: "Identify animal food sources.", keywords: ["animals", "milk", "meat", "eggs", "honey"] },
+            { text: "Explain food variety.", keywords: ["variety", "ingredients", "cuisine", "regional"] },
+            { text: "Mention food production.", keywords: ["farming", "agriculture", "cultivation", "harvest"] }
+        ]
+    },
+    {
+        id: "g6-sci-living",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Living Organisms and Habitat",
+        summary: "Explore the characteristics of living things and their habitats.",
+        hints: ["List characteristics of living things.", "Explain what a habitat provides.", "Give examples of terrestrial and aquatic habitats."],
+        bullets: [
+            { text: "State characteristics of life.", keywords: ["growth", "reproduce", "move", "respire", "respond"] },
+            { text: "Explain habitat concept.", keywords: ["habitat", "home", "environment", "shelter", "food"] },
+            { text: "Describe terrestrial habitats.", keywords: ["forest", "grassland", "desert", "mountain", "polar"] },
+            { text: "Describe aquatic habitats.", keywords: ["pond", "lake", "river", "ocean", "water"] }
+        ]
+    },
+    {
+        id: "g6-sci-motion",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Motion and Measurement",
+        summary: "Learn about different types of motion and how to measure distance.",
+        hints: ["Define motion and give examples.", "Explain how to measure length accurately.", "Describe circular and periodic motion."],
+        bullets: [
+            { text: "Define motion types.", keywords: ["linear", "circular", "periodic", "random", "motion"] },
+            { text: "Explain measurement units.", keywords: ["meter", "centimeter", "kilometer", "millimeter", "unit"] },
+            { text: "Use measuring instruments.", keywords: ["scale", "ruler", "tape", "measure", "length"] },
+            { text: "Describe motion examples.", keywords: ["walking", "rotating", "swinging", "vibrating"] }
+        ]
+    },
+    {
+        id: "g6-sci-light",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Light: Shadows and Reflections",
+        summary: "Understand how light travels and creates shadows and reflections.",
+        hints: ["Explain that light travels in straight lines.", "Describe how shadows form.", "Explain mirror reflections."],
+        bullets: [
+            { text: "Describe light properties.", keywords: ["light", "straight", "line", "travel", "speed"] },
+            { text: "Explain shadow formation.", keywords: ["shadow", "opaque", "block", "light", "dark"] },
+            { text: "Classify objects by transparency.", keywords: ["transparent", "translucent", "opaque", "light", "pass"] },
+            { text: "Describe reflection.", keywords: ["reflection", "mirror", "image", "bounce", "light"] }
+        ]
+    },
+    {
+        id: "g6-sci-water",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Water: Sources and Conservation",
+        summary: "Explore sources of water and the importance of water conservation.",
+        hints: ["List sources of fresh water.", "Explain the water cycle steps.", "Give practical water-saving tips."],
+        bullets: [
+            { text: "Identify water sources.", keywords: ["river", "lake", "groundwater", "rain", "well"] },
+            { text: "Explain water cycle.", keywords: ["evaporation", "condensation", "precipitation", "collection", "cycle"] },
+            { text: "Describe water scarcity.", keywords: ["scarcity", "shortage", "drought", "waste", "save"] },
+            { text: "List conservation methods.", keywords: ["rainwater", "harvesting", "recycle", "reuse", "conserve"] }
+        ]
+    },
+    // Grade 6 Math
+    {
+        id: "g6-math-knowing",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Knowing Our Numbers",
+        summary: "Work with large numbers, estimation, and comparison.",
+        hints: ["Read and write numbers beyond lakhs.", "Explain rounding and estimation.", "Use commas in Indian number system."],
+        bullets: [
+            { text: "Read large numbers.", keywords: ["lakh", "crore", "ten", "hundred", "thousand"] },
+            { text: "Use Indian number system.", keywords: ["Indian", "system", "comma", "place", "value"] },
+            { text: "Estimate numbers.", keywords: ["estimate", "round", "approximate", "nearest", "roughly"] },
+            { text: "Compare and order numbers.", keywords: ["compare", "ascending", "descending", "greater", "lesser"] }
+        ]
+    },
+    {
+        id: "g6-math-integers",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Introduction to Integers",
+        summary: "Learn about positive and negative numbers on a number line.",
+        hints: ["Explain what negative numbers represent.", "Show addition and subtraction on number line.", "Give real-life examples of integers."],
+        bullets: [
+            { text: "Define integers.", keywords: ["integer", "positive", "negative", "zero", "whole"] },
+            { text: "Use number line.", keywords: ["number", "line", "left", "right", "position"] },
+            { text: "Compare integers.", keywords: ["compare", "greater", "smaller", "negative", "positive"] },
+            { text: "Add and subtract integers.", keywords: ["add", "subtract", "integer", "sum", "difference"] }
+        ]
+    },
+    {
+        id: "g6-math-fractions",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Fractions and Operations",
+        summary: "Master fraction concepts and operations with unlike denominators.",
+        hints: ["Explain equivalent fractions.", "Show how to find common denominators.", "Multiply and divide fractions."],
+        bullets: [
+            { text: "Explain equivalent fractions.", keywords: ["equivalent", "same", "value", "multiply", "divide"] },
+            { text: "Simplify fractions.", keywords: ["simplify", "reduce", "lowest", "terms", "common"] },
+            { text: "Add unlike fractions.", keywords: ["unlike", "different", "denominator", "LCM", "common"] },
+            { text: "Multiply fractions.", keywords: ["multiply", "numerator", "denominator", "product", "fraction"] }
+        ]
+    },
+    {
+        id: "g6-math-algebra",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Introduction to Algebra",
+        summary: "Learn basic algebraic concepts using variables and expressions.",
+        hints: ["Explain what a variable is.", "Write simple algebraic expressions.", "Solve basic equations by inspection."],
+        bullets: [
+            { text: "Define variables.", keywords: ["variable", "letter", "unknown", "value", "change"] },
+            { text: "Form expressions.", keywords: ["expression", "term", "variable", "constant", "algebraic"] },
+            { text: "Evaluate expressions.", keywords: ["evaluate", "substitute", "value", "find", "result"] },
+            { text: "Solve simple equations.", keywords: ["equation", "solve", "balance", "both", "sides"] }
+        ]
+    },
+    {
+        id: "g6-math-symmetry",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Symmetry",
+        summary: "Explore lines of symmetry in different shapes and figures.",
+        hints: ["Define line symmetry.", "Find symmetry in letters and shapes.", "Explain rotational symmetry concept."],
+        bullets: [
+            { text: "Define symmetry.", keywords: ["symmetry", "line", "mirror", "equal", "halves"] },
+            { text: "Identify symmetrical shapes.", keywords: ["square", "rectangle", "circle", "symmetrical", "line"] },
+            { text: "Find lines of symmetry.", keywords: ["count", "lines", "axis", "symmetry", "fold"] },
+            { text: "Explain reflection symmetry.", keywords: ["reflection", "mirror", "image", "flip", "symmetry"] }
+        ]
+    },
+    // Grade 7 Science
+    {
+        id: "g7-sci-nutrition",
         grade: "Grade 7",
         subject: "Science",
-        title: "Photosynthesis in green plants",
-        summary: "Explain how plants prepare food and why sunlight, chlorophyll, carbon dioxide, and water matter.",
-        hints: [
-            "Start with a simple definition in one sentence.",
-            "Mention the raw materials and the product.",
-            "Use cause-and-effect words such as because, so, and therefore."
-        ],
+        title: "Nutrition in Plants",
+        summary: "Explain how plants obtain their nutrition through photosynthesis and other modes.",
+        hints: ["Describe photosynthesis process.", "Explain how fungi and parasites get food.", "Mention nitrogen fixation."],
         bullets: [
-            { text: "Define photosynthesis clearly.", keywords: ["photosynthesis", "process", "plants", "food"] },
-            { text: "Mention sunlight and chlorophyll.", keywords: ["sunlight", "chlorophyll"] },
-            { text: "Mention carbon dioxide and water.", keywords: ["carbon", "dioxide", "water"] },
-            { text: "Mention glucose or food and oxygen.", keywords: ["glucose", "food", "oxygen"] }
+            { text: "Explain photosynthesis.", keywords: ["photosynthesis", "chlorophyll", "sunlight", "glucose", "oxygen"] },
+            { text: "Describe plant nutrition modes.", keywords: ["autotrophic", "heterotrophic", "saprotrophic", "parasitic", "symbiotic"] },
+            { text: "Explain nitrogen cycle.", keywords: ["nitrogen", "fixation", "bacteria", "legumes", "soil"] },
+            { text: "Mention plant nutrients.", keywords: ["nutrient", "mineral", "nitrogen", "phosphorus", "potassium"] }
         ]
     },
     {
-        id: "physics-force-pressure",
+        id: "g7-sci-nutrition-animals",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Nutrition in Animals",
+        summary: "Learn about different modes of nutrition in animals and the human digestive system.",
+        hints: ["Explain digestion in simple animals like amoeba.", "Describe the human digestive organs.", "Mention how grass-eating animals digest."],
+        bullets: [
+            { text: "Describe amoeba nutrition.", keywords: ["amoeba", "pseudopodia", "ingest", "digest", "vacuole"] },
+            { text: "Explain human digestion.", keywords: ["mouth", "stomach", "intestine", "digest", "absorb"] },
+            { text: "Describe ruminant digestion.", keywords: ["ruminant", "cud", "chew", "cellulose", "stomach"] },
+            { text: "Explain nutrition modes.", keywords: ["herbivore", "carnivore", "omnivore", "scavenger", "parasite"] }
+        ]
+    },
+    {
+        id: "g7-sci-heat",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Heat and Temperature",
+        summary: "Learn about heat transfer, temperature measurement, and heat effects.",
+        hints: ["Define heat and temperature difference.", "Explain conduction, convection, radiation.", "Describe how thermometers work."],
+        bullets: [
+            { text: "Distinguish heat and temperature.", keywords: ["heat", "temperature", "energy", "degree", "measure"] },
+            { text: "Explain heat transfer.", keywords: ["conduction", "convection", "radiation", "transfer", "modes"] },
+            { text: "Use thermometers.", keywords: ["thermometer", "Celsius", "clinical", "laboratory", "measure"] },
+            { text: "Describe heat effects.", keywords: ["expansion", "contraction", "change", "state", "temperature"] }
+        ]
+    },
+    {
+        id: "g7-sci-acids",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Acids, Bases and Salts",
+        summary: "Understand properties of acids, bases, indicators, and neutralization.",
+        hints: ["Describe properties of acids and bases.", "Explain natural and synthetic indicators.", "Describe neutralization reaction."],
+        bullets: [
+            { text: "State acid properties.", keywords: ["acid", "sour", "hydrogen", "corrosive", "taste"] },
+            { text: "State base properties.", keywords: ["base", "bitter", "soapy", "hydroxide", "slippery"] },
+            { text: "Use indicators.", keywords: ["litmus", "phenolphthalein", "turmeric", "indicator", "color"] },
+            { text: "Explain neutralization.", keywords: ["neutralization", "salt", "water", "acid", "base"] }
+        ]
+    },
+    {
+        id: "g7-sci-weather",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Weather, Climate and Adaptations",
+        summary: "Learn about weather elements, climate zones, and animal adaptations.",
+        hints: ["Define weather and climate difference.", "Describe polar, tropical, and desert climates.", "Explain how animals adapt to extreme climates."],
+        bullets: [
+            { text: "Define weather elements.", keywords: ["temperature", "rainfall", "humidity", "wind", "weather"] },
+            { text: "Distinguish climate.", keywords: ["climate", "average", "year", "pattern", "region"] },
+            { text: "Describe climate zones.", keywords: ["polar", "tropical", "desert", "temperate", "zone"] },
+            { text: "Explain adaptations.", keywords: ["adaptation", "survive", "extreme", "cold", "hot"] }
+        ]
+    },
+    {
+        id: "g7-sci-soil",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Soil: Types and Conservation",
+        summary: "Learn about soil formation, types, and the importance of soil conservation.",
+        hints: ["Describe soil formation process.", "Classify soil types by particle size.", "Explain methods of soil conservation."],
+        bullets: [
+            { text: "Explain soil formation.", keywords: ["weathering", "rock", "organic", "horizon", "profile"] },
+            { text: "Classify soil types.", keywords: ["clay", "silt", "sand", "loam", "particles"] },
+            { text: "Describe soil properties.", keywords: ["percolation", "water", "retention", "texture", "color"] },
+            { text: "Explain conservation.", keywords: ["conservation", "crop", "rotation", "mulching", "terracing"] }
+        ]
+    },
+    {
+        id: "g7-sci-respiration",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Respiration in Organisms",
+        summary: "Understand the process of respiration and different respiratory organs.",
+        hints: ["Define cellular respiration.", "Compare aerobic and anaerobic respiration.", "Describe breathing mechanisms in animals."],
+        bullets: [
+            { text: "Explain respiration.", keywords: ["respiration", "breathing", "oxygen", "carbon", "energy"] },
+            { text: "Compare respiration types.", keywords: ["aerobic", "anaerobic", "oxygen", "glucose", "ATP"] },
+            { text: "Describe human breathing.", keywords: ["lungs", "diaphragm", "inhale", "exhale", "ribcage"] },
+            { text: "Explain other adaptations.", keywords: ["gills", "skin", "trachea", "insects", "plants"] }
+        ]
+    },
+    {
+        id: "g7-sci-transport",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Transportation in Animals and Plants",
+        summary: "Learn about circulatory system in animals and vascular tissues in plants.",
+        hints: ["Describe components of blood.", "Explain the human heart and blood vessels.", "Describe xylem and phloem in plants."],
+        bullets: [
+            { text: "Describe blood components.", keywords: ["plasma", "RBC", "WBC", "platelets", "blood"] },
+            { text: "Explain heart function.", keywords: ["heart", "pump", "atrium", "ventricle", "chamber"] },
+            { text: "Describe blood vessels.", keywords: ["artery", "vein", "capillary", "vessel", "flow"] },
+            { text: "Explain plant transport.", keywords: ["xylem", "phloem", "transport", "water", "food"] }
+        ]
+    },
+    {
+        id: "g7-sci-reproduction",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Reproduction in Plants",
+        summary: "Understand different modes of reproduction in plants.",
+        hints: ["Describe sexual reproduction in flowering plants.", "Explain asexual reproduction methods.", "Mention vegetative propagation."],
+        bullets: [
+            { text: "Explain sexual reproduction.", keywords: ["flower", "pollen", "ovary", "seed", "fertilization"] },
+            { text: "Describe pollination.", keywords: ["pollination", "self", "cross", "agent", "insect"] },
+            { text: "Explain asexual methods.", keywords: ["spore", "fragmentation", "regeneration", "budding", "binary"] },
+            { text: "Describe vegetative propagation.", keywords: ["cutting", "grafting", "layering", "root", "stem"] }
+        ]
+    },
+    // Grade 7 Math
+    {
+        id: "g7-math-integers",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Integers: Operations and Properties",
+        summary: "Master integer operations including multiplication and division.",
+        hints: ["Explain multiplication rules for integers.", "Show division of negative numbers.", "Apply integers in real-life situations."],
+        bullets: [
+            { text: "Multiply integers.", keywords: ["multiply", "positive", "negative", "product", "sign"] },
+            { text: "Divide integers.", keywords: ["divide", "quotient", "divisor", "dividend", "sign"] },
+            { text: "Use properties.", keywords: ["commutative", "associative", "distributive", "closure", "identity"] },
+            { text: "Solve integer problems.", keywords: ["problem", "real", "life", "elevator", "temperature"] }
+        ]
+    },
+    {
+        id: "g7-math-fractions",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Fractions and Decimals: Advanced",
+        summary: "Solve complex problems involving fractions and decimals.",
+        hints: ["Multiply and divide fractions.", "Convert repeating decimals to fractions.", "Solve multi-step word problems."],
+        bullets: [
+            { text: "Multiply mixed fractions.", keywords: ["mixed", "fraction", "multiply", "convert", "improper"] },
+            { text: "Divide fractions.", keywords: ["reciprocal", "divide", "multiply", "inverse", "fraction"] },
+            { text: "Work with decimals.", keywords: ["decimal", "multiply", "divide", "by", "powers"] },
+            { text: "Solve application problems.", keywords: ["word", "problem", "fraction", "decimal", "real"] }
+        ]
+    },
+    {
+        id: "g7-math-datahandling",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Data Handling",
+        summary: "Learn about data collection, representation, and analysis.",
+        hints: ["Create and interpret bar graphs.", "Calculate mean, median, and mode.", "Understand probability basics."],
+        bullets: [
+            { text: "Collect and organize data.", keywords: ["data", "collect", "organize", "tally", "frequency"] },
+            { text: "Create bar graphs.", keywords: ["bar", "graph", "scale", "represent", "visual"] },
+            { text: "Calculate averages.", keywords: ["mean", "median", "mode", "average", "central"] },
+            { text: "Understand probability.", keywords: ["probability", "chance", "likely", "unlikely", "certain"] }
+        ]
+    },
+    {
+        id: "g7-math-algebra",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Simple Equations",
+        summary: "Solve simple linear equations and apply them to practical problems.",
+        hints: ["Set up equations from word problems.", "Solve equations systematically.", "Check solutions by substitution."],
+        bullets: [
+            { text: "Form equations.", keywords: ["equation", "variable", "form", "word", "problem"] },
+            { text: "Solve linear equations.", keywords: ["solve", "transpose", "balance", "both", "sides"] },
+            { text: "Check solutions.", keywords: ["check", "substitute", "verify", "LHS", "RHS"] },
+            { text: "Apply to real problems.", keywords: ["application", "age", "money", "number", "problem"] }
+        ]
+    },
+    {
+        id: "g7-math-triangles",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Triangles and Their Properties",
+        summary: "Study different types of triangles and their angle and side properties.",
+        hints: ["Classify triangles by sides and angles.", "Prove angle sum property.", "Apply Pythagoras theorem."],
+        bullets: [
+            { text: "Classify triangles.", keywords: ["scalene", "isosceles", "equilateral", "acute", "obtuse"] },
+            { text: "Use angle sum property.", keywords: ["angle", "sum", "180", "triangle", "degrees"] },
+            { text: "Apply exterior angle theorem.", keywords: ["exterior", "angle", "remote", "interior", "opposite"] },
+            { text: "Use Pythagoras theorem.", keywords: ["Pythagoras", "hypotenuse", "right", "triangle", "square"] }
+        ]
+    },
+    {
+        id: "g7-math-congruence",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Congruence of Triangles",
+        summary: "Understand congruence criteria for triangles and their applications.",
+        hints: ["Define congruence.", "Explain SSS, SAS, ASA, RHS criteria.", "Apply congruence to prove properties."],
+        bullets: [
+            { text: "Define congruence.", keywords: ["congruent", "same", "size", "shape", "equal"] },
+            { text: "Apply SSS criterion.", keywords: ["SSS", "side", "three", "equal", "congruent"] },
+            { text: "Apply SAS criterion.", keywords: ["SAS", "side", "angle", "included", "congruent"] },
+            { text: "Apply ASA and RHS.", keywords: ["ASA", "RHS", "hypotenuse", "right", "angle"] }
+        ]
+    },
+    {
+        id: "g7-math-rational",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Rational Numbers",
+        summary: "Understand rational numbers and operations on them.",
+        hints: ["Define rational numbers.", "Find rational numbers between two numbers.", "Perform operations on rational numbers."],
+        bullets: [
+            { text: "Define rational numbers.", keywords: ["rational", "number", "fraction", "p/q", "integer"] },
+            { text: "Represent on number line.", keywords: ["number", "line", "represent", "plot", "point"] },
+            { text: "Compare rational numbers.", keywords: ["compare", "greater", "lesser", "equal", "rational"] },
+            { text: "Perform operations.", keywords: ["add", "subtract", "multiply", "divide", "rational"] }
+        ]
+    },
+    // Grade 8 Science
+    {
+        id: "g8-sci-crops",
         grade: "Grade 8",
         subject: "Science",
-        title: "Force and pressure in daily life",
-        summary: "Talk about how force acts on objects and how pressure changes with area.",
-        hints: [
-            "Give one everyday example such as a sharp knife or school bag straps.",
-            "Contrast force with pressure.",
-            "Explain why smaller area can create larger pressure."
-        ],
+        title: "Crop Production and Management",
+        summary: "Learn about agricultural practices and crop management techniques.",
+        hints: ["Define Kharif and Rabi crops.", "Explain basic agricultural practices.", "Describe irrigation methods."],
         bullets: [
-            { text: "Define force as a push or pull.", keywords: ["force", "push", "pull"] },
-            { text: "Define pressure using force and area.", keywords: ["pressure", "area"] },
-            { text: "Give a real-life example.", keywords: ["example", "knife", "pin", "bag", "heels"] },
-            { text: "Explain why pressure changes with area.", keywords: ["smaller", "larger", "area", "more", "less"] }
+            { text: "Classify crops.", keywords: ["Kharif", "Rabi", "season", "monsoon", "winter"] },
+            { text: "Describe soil preparation.", keywords: ["tilling", "ploughing", "leveling", "soil", "prepare"] },
+            { text: "Explain sowing methods.", keywords: ["sowing", "seed", "drill", "transplantation", "broadcasting"] },
+            { text: "Describe crop protection.", keywords: ["irrigation", "weeding", "pesticide", "fertilizer", "harvest"] }
         ]
     },
     {
-        id: "chem-acids-bases",
-        grade: "Grade 9",
+        id: "g8-sci-microorganisms",
+        grade: "Grade 8",
         subject: "Science",
-        title: "Acids, bases and indicators",
-        summary: "Describe the properties of acids and bases and explain how indicators help identify them.",
-        hints: [
-            "Compare acids and bases in a short contrast sentence.",
-            "Name at least one indicator.",
-            "Mention a classroom or home example."
-        ],
+        title: "Microorganisms: Friends and Foes",
+        summary: "Understand the role of microorganisms in our lives.",
+        hints: ["Classify different types of microorganisms.", "Explain useful roles of microbes.", "Describe harmful effects and prevention."],
         bullets: [
-            { text: "State one property of acids.", keywords: ["acid", "sour", "hydrogen"] },
-            { text: "State one property of bases.", keywords: ["base", "bitter", "soapy"] },
-            { text: "Mention an indicator.", keywords: ["litmus", "indicator", "phenolphthalein", "turmeric"] },
-            { text: "Give an example substance.", keywords: ["lemon", "vinegar", "soap", "baking"] }
+            { text: "Classify microorganisms.", keywords: ["bacteria", "fungi", "virus", "protozoa", "algae"] },
+            { text: "Explain beneficial uses.", keywords: ["fermentation", "nitrogen", "fixation", "vaccine", "antibiotic"] },
+            { text: "Describe harmful effects.", keywords: ["disease", "decay", "spoilage", "pathogen", "infection"] },
+            { text: "Explain food preservation.", keywords: ["preserve", "pickle", "refrigeration", "pasteurization", "drying"] }
         ]
     },
     {
-        id: "physics-electricity",
-        grade: "Grade 10",
+        id: "g8-sci-combustion",
+        grade: "Grade 8",
         subject: "Science",
-        title: "Current, voltage and resistance",
-        summary: "Practice explaining basic electricity terms and how they work in a circuit.",
-        hints: [
-            "Use a compare-and-contrast structure.",
-            "Name the unit for each quantity if you can.",
-            "Connect the concepts to a bulb or battery example."
-        ],
+        title: "Combustion and Flame",
+        summary: "Learn about combustion, types of flames, and fuel efficiency.",
+        hints: ["Define combustion and its requirements.", "Compare luminous and non-luminous flames.", "Calculate calorific value."],
         bullets: [
-            { text: "Define electric current.", keywords: ["current", "charge", "flow"] },
-            { text: "Define voltage or potential difference.", keywords: ["voltage", "potential", "difference"] },
-            { text: "Define resistance.", keywords: ["resistance", "oppose"] },
-            { text: "Mention a circuit example.", keywords: ["battery", "bulb", "circuit", "wire"] }
+            { text: "Explain combustion.", keywords: ["combustion", "burn", "fuel", "oxygen", "heat"] },
+            { text: "Describe flame zones.", keywords: ["flame", "zone", "dark", "luminous", "non-luminous"] },
+            { text: "Explain fuel types.", keywords: ["fuel", "solid", "liquid", "gas", "calorific"] },
+            { text: "Discuss fuel efficiency.", keywords: ["efficient", "pollution", "complete", "incomplete", "combustion"] }
         ]
     },
     {
-        id: "math-linear-equations",
+        id: "g8-sci-conservation",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Conservation of Plants and Animals",
+        summary: "Understand biodiversity, ecosystems, and conservation efforts.",
+        hints: ["Define biodiversity and its importance.", "Explain deforestation effects.", "Describe wildlife conservation methods."],
+        bullets: [
+            { text: "Explain biodiversity.", keywords: ["biodiversity", "variety", "species", "ecosystem", "genetic"] },
+            { text: "Describe deforestation.", keywords: ["deforestation", "forest", "cut", "habitat", "loss"] },
+            { text: "Explain conservation.", keywords: ["conservation", "reserve", "sanctuary", "biosphere", "protect"] },
+            { text: "Mention endangered species.", keywords: ["endangered", "extinct", "threatened", "rare", "species"] }
+        ]
+    },
+    {
+        id: "g8-sci-cell",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Cell: Structure and Function",
+        summary: "Learn about cell structure, types, and functions of cell organelles.",
+        hints: ["Compare plant and animal cells.", "Describe functions of cell organelles.", "Explain cell division basics."],
+        bullets: [
+            { text: "Describe cell structure.", keywords: ["cell", "membrane", "nucleus", "cytoplasm", "organelle"] },
+            { text: "Compare cell types.", keywords: ["plant", "animal", "cell", "wall", "chloroplast", "vacuole"] },
+            { text: "Explain organelle functions.", keywords: ["mitochondria", "ribosome", "Golgi", "ER", "function"] },
+            { text: "Describe cell division.", keywords: ["mitosis", "meiosis", "division", "growth", "repair"] }
+        ]
+    },
+    {
+        id: "g8-sci-reproduction",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Reproduction in Animals",
+        summary: "Understand sexual and asexual reproduction in animals and human reproductive system.",
+        hints: ["Compare sexual and asexual reproduction.", "Describe human male and female reproductive organs.", "Explain fertilization process."],
+        bullets: [
+            { text: "Compare reproduction types.", keywords: ["sexual", "asexual", "gamete", "fertilization", "offspring"] },
+            { text: "Describe male system.", keywords: ["testes", "sperm", "male", "reproductive", "organ"] },
+            { text: "Describe female system.", keywords: ["ovary", "egg", "uterus", "female", "reproductive"] },
+            { text: "Explain development.", keywords: ["fertilization", "zygote", "embryo", "fetus", "pregnancy"] }
+        ]
+    },
+    {
+        id: "g8-sci-force",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Force and Pressure",
+        summary: "Learn about force, its effects, and the concept of pressure.",
+        hints: ["Define force and its effects.", "Explain contact and non-contact forces.", "Calculate pressure and understand its applications."],
+        bullets: [
+            { text: "Define force.", keywords: ["force", "push", "pull", "newton", "interaction"] },
+            { text: "Classify forces.", keywords: ["contact", "non-contact", "friction", "gravity", "magnetic"] },
+            { text: "Explain pressure.", keywords: ["pressure", "force", "area", "unit", "Pascal"] },
+            { text: "Apply pressure concepts.", keywords: ["sharp", "knife", "wide", "shoe", "atmospheric"] }
+        ]
+    },
+    {
+        id: "g8-sci-friction",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Friction",
+        summary: "Understand the types of friction and its effects on motion.",
+        hints: ["Define friction and its causes.", "Compare static, sliding, and rolling friction.", "Explain how to increase or decrease friction."],
+        bullets: [
+            { text: "Explain friction.", keywords: ["friction", "resistance", "motion", "surface", "irregularities"] },
+            { text: "Classify friction types.", keywords: ["static", "sliding", "rolling", "fluid", "friction"] },
+            { text: "Describe advantages.", keywords: ["advantage", "walk", "write", "grip", "brake"] },
+            { text: "Describe disadvantages.", keywords: ["disadvantage", "wear", "tear", "heat", "energy", "loss"] }
+        ]
+    },
+    {
+        id: "g8-sci-sound",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Sound",
+        summary: "Learn how sound is produced, transmitted, and characterized.",
+        hints: ["Explain sound production through vibrations.", "Describe how sound travels in different media.", "Define amplitude, frequency, and pitch."],
+        bullets: [
+            { text: "Explain sound production.", keywords: ["sound", "vibration", "produce", "medium", "travel"] },
+            { text: "Describe sound travel.", keywords: ["longitudinal", "wave", "compression", "rarefaction", "medium"] },
+            { text: "Define sound properties.", keywords: ["amplitude", "frequency", "pitch", "loudness", "hertz"] },
+            { text: "Explain human ear.", keywords: ["ear", "eardrum", "cochlea", "hear", "audible"] }
+        ]
+    },
+    {
+        id: "g8-sci-electricity",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Chemical Effects of Electric Current",
+        summary: "Understand how electricity affects chemical solutions and applications.",
+        hints: ["Test conduction in liquids.", "Explain electrolysis process.", "Describe electroplating application."],
+        bullets: [
+            { text: "Test liquid conduction.", keywords: ["conduct", "liquid", "solution", "acid", "base", "salt"] },
+            { text: "Explain electrolysis.", keywords: ["electrolysis", "electrode", "anode", "cathode", "decomposition"] },
+            { text: "Describe electroplating.", keywords: ["electroplate", "coat", "metal", "chrome", "nickel"] },
+            { text: "Explain LED conductivity.", keywords: ["LED", "test", "conduction", "direction", "current"] }
+        ]
+    },
+    // Grade 8 Math
+    {
+        id: "g8-math-rational",
         grade: "Grade 8",
         subject: "Mathematics",
-        title: "Solving linear equations",
-        summary: "Explain what a linear equation is and how to solve it step by step.",
-        hints: [
-            "Describe the goal before giving the steps.",
-            "Use sequence words like first, next, then, finally.",
-            "Give a tiny example with x."
-        ],
+        title: "Rational Numbers",
+        summary: "Understand properties and operations with rational numbers.",
+        hints: ["Represent rational numbers on number line.", "Find rational numbers between two numbers.", "Apply closure and commutative properties."],
         bullets: [
-            { text: "State what a linear equation is.", keywords: ["linear", "equation", "variable"] },
-            { text: "Mention balancing both sides.", keywords: ["both", "sides", "balance"] },
-            { text: "Describe inverse operations.", keywords: ["add", "subtract", "multiply", "divide"] },
-            { text: "Give a short example.", keywords: ["example", "x"] }
+            { text: "Define rational numbers.", keywords: ["rational", "p/q", "integer", "fraction", "number"] },
+            { text: "Plot on number line.", keywords: ["plot", "represent", "number", "line", "between"] },
+            { text: "Find middle rational.", keywords: ["between", "two", "rational", "average", "mean"] },
+            { text: "Apply properties.", keywords: ["closure", "commutative", "associative", "identity", "inverse"] }
         ]
     },
     {
-        id: "math-quadratic",
+        id: "g8-math-powers",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Powers and Exponents",
+        summary: "Master laws of exponents and their applications with large and small numbers.",
+        hints: ["Apply all laws of exponents.", "Express numbers in standard form.", "Work with negative exponents."],
+        bullets: [
+            { text: "Apply exponent laws.", keywords: ["multiply", "divide", "power", "zero", "negative"] },
+            { text: "Use scientific notation.", keywords: ["standard", "form", "scientific", "notation", "decimal"] },
+            { text: "Work with large numbers.", keywords: ["large", "small", "express", "compact", "exponent"] },
+            { text: "Simplify expressions.", keywords: ["simplify", "evaluate", "exponential", "term", "base"] }
+        ]
+    },
+    {
+        id: "g8-math-squares",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Squares and Square Roots",
+        summary: "Learn to find squares, square roots, and their properties.",
+        hints: ["Identify perfect squares.", "Find square roots by factorization and division methods.", "Apply Pythagorean triplets."],
+        bullets: [
+            { text: "Find perfect squares.", keywords: ["square", "perfect", "ending", "digit", "pattern"] },
+            { text: "Find square roots.", keywords: ["square", "root", "factor", "division", "method"] },
+            { text: "Use square root applications.", keywords: ["area", "side", "diagonal", "hypotenuse", "Pythagoras"] },
+            { text: "Estimate square roots.", keywords: ["estimate", "approximate", "nearest", "integer", "root"] }
+        ]
+    },
+    {
+        id: "g8-math-cubes",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Cubes and Cube Roots",
+        summary: "Understand cubes, cube roots, and their applications.",
+        hints: ["Identify perfect cubes.", "Find cube roots by factorization method.", "Apply cube root to volume problems."],
+        bullets: [
+            { text: "Find perfect cubes.", keywords: ["cube", "perfect", "ones", "digit", "pattern"] },
+            { text: "Find cube roots.", keywords: ["cube", "root", "prime", "factor", "method"] },
+            { text: "Use cube applications.", keywords: ["volume", "side", "cube", "cuboid", "container"] },
+            { text: "Estimate cube roots.", keywords: ["estimate", "approximate", "nearest", "integer", "cube"] }
+        ]
+    },
+    {
+        id: "g8-math-factorization",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Algebraic Factorization",
+        summary: "Factorize algebraic expressions using various methods.",
+        hints: ["Factor out common terms.", "Use identities for factorization.", "Factorize quadratic expressions."],
+        bullets: [
+            { text: "Factor common terms.", keywords: ["factor", "common", "monomial", "expression", "HCF"] },
+            { text: "Use identities.", keywords: ["identity", "square", "difference", "product", "factor"] },
+            { text: "Factor quadratics.", keywords: ["quadratic", "split", "middle", "term", "factorize"] },
+            { text: "Verify factors.", keywords: ["verify", "multiply", "check", "correct", "factor"] }
+        ]
+    },
+    {
+        id: "g8-math-geometry",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Visualizing Solid Shapes",
+        summary: "Understand 3D shapes, their views, and properties.",
+        hints: ["Draw top, front, and side views.", "Count faces, edges, and vertices.", "Apply Euler's formula."],
+        bullets: [
+            { text: "Draw different views.", keywords: ["top", "front", "side", "view", "perspective"] },
+            { text: "Count elements.", keywords: ["faces", "edges", "vertices", "solid", "count"] },
+            { text: "Apply Euler formula.", keywords: ["Euler", "formula", "F", "plus", "V", "E", "plus", "2"] },
+            { text: "Identify 3D shapes.", keywords: ["cube", "cuboid", "cylinder", "cone", "sphere", "prism"] }
+        ]
+    },
+    // Grade 9 Science (Physics)
+    {
+        id: "g9-phy-motion",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Motion: Distance, Displacement, Velocity",
+        summary: "Understand the concepts of motion including scalar and vector quantities.",
+        hints: ["Distinguish distance and displacement.", "Calculate speed and velocity.", "Interpret distance-time graphs."],
+        bullets: [
+            { text: "Define motion terms.", keywords: ["distance", "displacement", "scalar", "vector", "magnitude"] },
+            { text: "Calculate speed.", keywords: ["speed", "distance", "time", "uniform", "non-uniform"] },
+            { text: "Calculate velocity.", keywords: ["velocity", "displacement", "time", "direction", "vector"] },
+            { text: "Interpret graphs.", keywords: ["graph", "slope", "distance-time", "speed-time", "area"] }
+        ]
+    },
+    {
+        id: "g9-phy-force",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Force and Laws of Motion",
+        summary: "Learn Newton's laws of motion and their applications.",
+        hints: ["State Newton's three laws.", "Explain inertia and momentum.", "Apply laws to real-life situations."],
+        bullets: [
+            { text: "State Newton's first law.", keywords: ["Newton", "first", "inertia", "rest", "motion"] },
+            { text: "State Newton's second law.", keywords: ["Newton", "second", "force", "mass", "acceleration", "F=ma"] },
+            { text: "State Newton's third law.", keywords: ["Newton", "third", "action", "reaction", "equal"] },
+            { text: "Explain momentum.", keywords: ["momentum", "mass", "velocity", "conservation", "impulse"] }
+        ]
+    },
+    {
+        id: "g9-phy-gravitation",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Gravitation",
+        summary: "Understand gravitational force, free fall, and weight concepts.",
+        hints: ["Explain Universal Law of Gravitation.", "Distinguish mass and weight.", "Calculate acceleration due to gravity."],
+        bullets: [
+            { text: "Explain gravitation law.", keywords: ["gravity", "universal", "law", "mass", "distance", "G"] },
+            { text: "Distinguish mass and weight.", keywords: ["mass", "weight", "kg", "newton", "gravity"] },
+            { text: "Describe free fall.", keywords: ["free", "fall", "acceleration", "g", "9.8", "velocity"] },
+            { text: "Explain buoyancy.", keywords: ["buoyancy", "Archimedes", "upthrust", "float", "sink"] }
+        ]
+    },
+    {
+        id: "g9-phy-work",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Work, Energy and Power",
+        summary: "Learn about work done, different forms of energy, and power.",
+        hints: ["Define work and its conditions.", "Explain kinetic and potential energy.", "Calculate power and efficiency."],
+        bullets: [
+            { text: "Define work.", keywords: ["work", "force", "displacement", "product", "joule"] },
+            { text: "Explain kinetic energy.", keywords: ["kinetic", "energy", "motion", "velocity", "half", "mv2"] },
+            { text: "Explain potential energy.", keywords: ["potential", "energy", "position", "height", "mgh"] },
+            { text: "Calculate power.", keywords: ["power", "work", "time", "watt", "rate"] }
+        ]
+    },
+    {
+        id: "g9-phy-sound",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Sound: Production and Properties",
+        summary: "Understand sound production, characteristics, and applications.",
+        hints: ["Explain sound production by vibrations.", "Describe characteristics of sound waves.", "Calculate speed of sound."],
+        bullets: [
+            { text: "Explain sound production.", keywords: ["sound", "vibration", "medium", "mechanical", "wave"] },
+            { text: "Describe wave properties.", keywords: ["wavelength", "frequency", "amplitude", "time", "period"] },
+            { text: "Calculate sound speed.", keywords: ["speed", "distance", "time", "echo", "velocity"] },
+            { text: "Explain sound range.", keywords: ["audible", "infrasonic", "ultrasonic", "range", "frequency"] }
+        ]
+    },
+    // Grade 9 Science (Chemistry)
+    {
+        id: "g9-chem-matter",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Matter in Our Surroundings",
+        summary: "Understand states of matter and their properties.",
+        hints: ["Compare solid, liquid, and gas states.", "Explain diffusion and Brownian motion.", "Describe phase changes."],
+        bullets: [
+            { text: "Describe matter states.", keywords: ["solid", "liquid", "gas", "state", "matter", "shape"] },
+            { text: "Explain particle theory.", keywords: ["particle", "arrangement", "motion", "force", "attraction"] },
+            { text: "Describe changes of state.", keywords: ["melting", "boiling", "evaporation", "condensation", "sublimation"] },
+            { text: "Explain diffusion.", keywords: ["diffusion", "mixing", "particle", "random", "motion"] }
+        ]
+    },
+    {
+        id: "g9-chem-pure",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Is Matter Around Us Pure",
+        summary: "Learn about pure substances, mixtures, and separation techniques.",
+        hints: ["Distinguish pure substances and mixtures.", "Explain homogeneous and heterogeneous mixtures.", "Describe separation methods."],
+        bullets: [
+            { text: "Classify matter.", keywords: ["pure", "substance", "element", "compound", "mixture"] },
+            { text: "Describe mixtures.", keywords: ["homogeneous", "heterogeneous", "solution", "suspension", "colloid"] },
+            { text: "Explain separation.", keywords: ["filtration", "evaporation", "distillation", "chromatography", "centrifugation"] },
+            { text: "Describe physical changes.", keywords: ["physical", "change", "reversible", "state", "shape"] }
+        ]
+    },
+    {
+        id: "g9-chem-atoms",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Atoms and Molecules",
+        summary: "Understand atomic structure, molecules, and chemical formulas.",
+        hints: ["Explain Dalton's atomic theory.", "Describe atomic and molecular masses.", "Write chemical formulas."],
+        bullets: [
+            { text: "Explain atomic theory.", keywords: ["Dalton", "atom", "indivisible", "element", "combine"] },
+            { text: "Describe atomic structure.", keywords: ["proton", "neutron", "electron", "nucleus", "orbit"] },
+            { text: "Calculate molecular mass.", keywords: ["molecular", "mass", "formula", "unit", "amu"] },
+            { text: "Write chemical formulas.", keywords: ["formula", "chemical", "symbol", "valency", "compound"] }
+        ]
+    },
+    {
+        id: "g9-chem-structure",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Structure of the Atom",
+        summary: "Learn about atomic models and electron distribution.",
+        hints: ["Compare Thomson, Rutherford, and Bohr models.", "Describe atomic number and mass number.", "Explain electron shells."],
+        bullets: [
+            { text: "Explain Thomson model.", keywords: ["Thomson", "plum", "pudding", "positive", "sphere"] },
+            { text: "Explain Rutherford model.", keywords: ["Rutherford", "nucleus", "gold", "foil", "experiment"] },
+            { text: "Explain Bohr model.", keywords: ["Bohr", "orbit", "shell", "energy", "level"] },
+            { text: "Describe electron configuration.", keywords: ["configuration", "K", "L", "M", "shell", "electron"] }
+        ]
+    },
+    // Grade 9 Science (Biology)
+    {
+        id: "g9-bio-cell",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "The Fundamental Unit of Life: Cell",
+        summary: "Understand cell structure, cell organelles, and cell functions.",
+        hints: ["Compare prokaryotic and eukaryotic cells.", "Describe structure and function of organelles.", "Explain plasma membrane and cell wall."],
+        bullets: [
+            { text: "Compare cell types.", keywords: ["prokaryotic", "eukaryotic", "nucleus", "membrane", "bound"] },
+            { text: "Describe cell membrane.", keywords: ["plasma", "membrane", "selectively", "permeable", "transport"] },
+            { text: "Explain nucleus function.", keywords: ["nucleus", "control", "center", "chromosome", "DNA"] },
+            { text: "Describe organelles.", keywords: ["mitochondria", "ribosome", "lysosome", "Golgi", "apparatus"] }
+        ]
+    },
+    {
+        id: "g9-bio-tissues",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Tissues",
+        summary: "Learn about plant and animal tissues and their types.",
+        hints: ["Classify plant tissues.", "Describe different animal tissues.", "Explain functions of various tissues."],
+        bullets: [
+            { text: "Classify plant tissues.", keywords: ["meristematic", "permanent", "simple", "complex", "tissue"] },
+            { text: "Describe plant tissues.", keywords: ["parenchyma", "collenchyma", "sclerenchyma", "xylem", "phloem"] },
+            { text: "Describe animal tissues.", keywords: ["epithelial", "connective", "muscular", "nervous", "tissue"] },
+            { text: "Explain tissue functions.", keywords: ["protection", "support", "conduction", "contraction", "transmission"] }
+        ]
+    },
+    {
+        id: "g9-bio-diseases",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Why Do We Fall Ill",
+        summary: "Understand diseases, their causes, and prevention methods.",
+        hints: ["Distinguish between infectious and non-infectious diseases.", "Explain modes of disease transmission.", "Describe principles of treatment and prevention."],
+        bullets: [
+            { text: "Classify diseases.", keywords: ["infectious", "non-infectious", "communicable", "chronic", "acute"] },
+            { text: "Explain causes.", keywords: ["pathogen", "virus", "bacteria", "fungi", "protozoa", "worm"] },
+            { text: "Describe transmission.", keywords: ["air", "water", "food", "contact", "vector", "sexual"] },
+            { text: "Explain prevention.", keywords: ["vaccination", "hygiene", "sanitation", "immunity", "prevent"] }
+        ]
+    },
+    {
+        id: "g9-bio-resources",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Natural Resources",
+        summary: "Learn about natural resources and their sustainable use.",
+        hints: ["Classify biotic and abiotic resources.", "Explain the water and nitrogen cycles.", "Describe sustainable management."],
+        bullets: [
+            { text: "Classify resources.", keywords: ["biotic", "abiotic", "renewable", "non-renewable", "natural"] },
+            { text: "Explain water cycle.", keywords: ["evaporation", "transpiration", "condensation", "precipitation", "runoff"] },
+            { text: "Describe nitrogen cycle.", keywords: ["nitrogen", "fixation", "nitrification", "denitrification", "ammonification"] },
+            { text: "Explain conservation.", keywords: ["sustainable", "conserve", "preserve", "manage", "resource"] }
+        ]
+    },
+    {
+        id: "g9-bio-improvement",
+        grade: "Grade 9",
+        subject: "Science",
+        title: "Improvement in Food Resources",
+        summary: "Understand agricultural practices and animal husbandry.",
+        hints: ["Explain crop variety improvement.", "Describe animal husbandry practices.", "Discuss sustainable agriculture."],
+        bullets: [
+            { text: "Explain crop improvement.", keywords: ["hybridization", "yield", "resistance", "disease", "pest"] },
+            { text: "Describe farming practices.", keywords: ["irrigation", "fertilizer", "pesticide", "organic", "farming"] },
+            { text: "Explain animal husbandry.", keywords: ["cattle", "poultry", "fishery", "beekeeping", "livestock"] },
+            { text: "Discuss food security.", keywords: ["security", "production", "storage", "distribution", "nutrition"] }
+        ]
+    },
+    // Grade 9 Math
+    {
+        id: "g9-math-number",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Number Systems",
+        summary: "Understand real numbers, rational and irrational numbers.",
+        hints: ["Define rational and irrational numbers.", "Prove irrationality of sqrt 2 and sqrt 3.", "Represent numbers on number line."],
+        bullets: [
+            { text: "Classify numbers.", keywords: ["natural", "whole", "integer", "rational", "irrational", "real"] },
+            { text: "Prove irrationality.", keywords: ["prove", "root", "irrational", "contradiction", "sqrt"] },
+            { text: "Represent on line.", keywords: ["represent", "number", "line", "construct", "root"] },
+            { text: "Rationalize denominators.", keywords: ["rationalize", "denominator", "conjugate", "simplify", "root"] }
+        ]
+    },
+    {
+        id: "g9-math-polynomials",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Polynomials",
+        summary: "Learn about polynomial expressions, degrees, and factorization.",
+        hints: ["Identify polynomial types by degree.", "Apply Remainder and Factor theorems.", "Factorize polynomials."],
+        bullets: [
+            { text: "Define polynomials.", keywords: ["polynomial", "degree", "term", "coefficient", "variable"] },
+            { text: "Classify polynomials.", keywords: ["linear", "quadratic", "cubic", "constant", "binomial"] },
+            { text: "Use Remainder Theorem.", keywords: ["remainder", "theorem", "factor", "zero", "p(a)", "equal", "zero"] },
+            { text: "Factorize polynomials.", keywords: ["factor", "split", "middle", "term", "identity"] }
+        ]
+    },
+    {
+        id: "g9-math-geometry",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Coordinate Geometry",
+        summary: "Understand the coordinate system and distance formula.",
+        hints: ["Plot points on coordinate plane.", "Find distance between two points.", "Apply section formula."],
+        bullets: [
+            { text: "Describe coordinate system.", keywords: ["Cartesian", "plane", "x-axis", "y-axis", "origin"] },
+            { text: "Plot coordinates.", keywords: ["abscissa", "ordinate", "quadrant", "point", "coordinate"] },
+            { text: "Calculate distance.", keywords: ["distance", "formula", "root", "square", "sum", "difference"] },
+            { text: "Apply section formula.", keywords: ["section", "midpoint", "ratio", "internal", "external"] }
+        ]
+    },
+    {
+        id: "g9-math-euclid",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Introduction to Euclid's Geometry",
+        summary: "Learn about Euclid's postulates and geometric concepts.",
+        hints: ["State Euclid's definitions and postulates.", "Understand the parallel line postulate.", "Apply axioms to prove statements."],
+        bullets: [
+            { text: "State Euclid's definitions.", keywords: ["point", "line", "plane", "surface", "boundary"] },
+            { text: "Explain axioms.", keywords: ["axiom", "common", "notion", "equal", "whole", "part"] },
+            { text: "Apply postulates.", keywords: ["postulate", "draw", "straight", "circle", "angle", "right"] },
+            { text: "Understand fifth postulate.", keywords: ["parallel", "intersect", "unique", "same", "side"] }
+        ]
+    },
+    {
+        id: "g9-math-lines",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Lines and Angles",
+        summary: "Understand properties of lines and angles.",
+        hints: ["Prove angle sum properties.", "Apply parallel line properties.", "Solve angle relationship problems."],
+        bullets: [
+            { text: "Describe angle types.", keywords: ["acute", "obtuse", "right", "straight", "reflex"] },
+            { text: "Explain linear pair.", keywords: ["linear", "pair", "adjacent", "supplementary", "sum", "180"] },
+            { text: "Apply parallel lines.", keywords: ["corresponding", "alternate", "interior", "exterior", "equal"] },
+            { text: "Use angle sum property.", keywords: ["triangle", "angle", "sum", "180", "quadrilateral", "360"] }
+        ]
+    },
+    {
+        id: "g9-math-triangles",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Triangles",
+        summary: "Learn about triangle congruence and inequality theorems.",
+        hints: ["Prove triangle congruence rules.", "Apply inequality theorem.", "Prove properties of special triangles."],
+        bullets: [
+            { text: "Prove congruence.", keywords: ["SAS", "ASA", "SSS", "RHS", "congruent"] },
+            { text: "Apply inequalities.", keywords: ["inequality", "side", "angle", "sum", "greater", "third"] },
+            { text: "Prove properties.", keywords: ["isosceles", "equilateral", "property", "base", "angle"] },
+            { text: "Solve problems.", keywords: ["prove", "triangle", "application", "real", "life"] }
+        ]
+    },
+    {
+        id: "g9-math-heron",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Heron's Formula",
+        summary: "Calculate area of triangles using Heron's formula.",
+        hints: ["State Heron's formula.", "Apply to find area of triangles.", "Calculate area of quadrilaterals."],
+        bullets: [
+            { text: "State Heron's formula.", keywords: ["Heron", "formula", "root", "s", "s-a", "s-b", "s-c"] },
+            { text: "Find triangle area.", keywords: ["area", "triangle", "semi-perimeter", "sides", "calculate"] },
+            { text: "Calculate quadrilateral area.", keywords: ["quadrilateral", "diagonal", "triangle", "sum", "area"] },
+            { text: "Solve real problems.", keywords: ["application", "real", "life", "practical", "measure"] }
+        ]
+    },
+    {
+        id: "g9-math-stats",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Statistics",
+        summary: "Learn data collection, presentation, and analysis.",
+        hints: ["Create frequency distribution tables.", "Calculate mean, median, and mode.", "Draw histograms and frequency polygons."],
+        bullets: [
+            { text: "Collect data.", keywords: ["primary", "secondary", "data", "raw", "grouped"] },
+            { text: "Calculate mean.", keywords: ["mean", "average", "sum", "frequency", "divide", "n"] },
+            { text: "Find median.", keywords: ["median", "middle", "ascending", "order", "position"] },
+            { text: "Determine mode.", keywords: ["mode", "frequency", "maximum", "repeated", "value"] }
+        ]
+    },
+    {
+        id: "g9-math-probability",
+        grade: "Grade 9",
+        subject: "Mathematics",
+        title: "Probability",
+        summary: "Understand basic probability concepts and calculations.",
+        hints: ["Define experimental and theoretical probability.", "Calculate probability of simple events.", "Understand sum of probabilities."],
+        bullets: [
+            { text: "Define probability.", keywords: ["probability", "chance", "likelihood", "event", "outcome"] },
+            { text: "Calculate simple probability.", keywords: ["favorable", "total", "outcomes", "ratio", "fraction"] },
+            { text: "Apply to experiments.", keywords: ["coin", "die", "card", "experiment", "trial"] },
+            { text: "Understand range.", keywords: ["range", "zero", "one", "impossible", "certain", "sure"] }
+        ]
+    },
+    // Grade 10 Science (Physics)
+    {
+        id: "g10-phy-electricity",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Electricity",
+        summary: "Understand electric current, circuits, and resistance.",
+        hints: ["Define electric current and potential difference.", "Explain Ohm's Law.", "Calculate resistance in series and parallel."],
+        bullets: [
+            { text: "Define electric terms.", keywords: ["current", "potential", "difference", "resistance", "charge"] },
+            { text: "State Ohm's Law.", keywords: ["Ohm", "law", "V", "IR", "voltage", "proportional"] },
+            { text: "Calculate resistance.", keywords: ["series", "parallel", "R1", "R2", "equivalent", "combine"] },
+            { text: "Calculate power.", keywords: ["power", "energy", "heat", "Joule", "watt", "P", "VI"] }
+        ]
+    },
+    {
+        id: "g10-phy-magnetic",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Magnetic Effects of Electric Current",
+        summary: "Learn about electromagnetism and its applications.",
+        hints: ["Describe magnetic field due to current.", "Explain electromagnets and solenoids.", "Describe electric motor and generator."],
+        bullets: [
+            { text: "Describe magnetic field.", keywords: ["magnetic", "field", "current", "wire", "concentric", "circle"] },
+            { text: "Explain electromagnets.", keywords: ["electromagnet", "solenoid", "coil", "core", "strength"] },
+            { text: "Describe electric motor.", keywords: ["motor", "force", "coil", "commutator", "split", "ring"] },
+            { text: "Explain generator.", keywords: ["generator", "dynamo", "induced", "current", "electromagnetic", "induction"] }
+        ]
+    },
+    {
+        id: "g10-phy-optics",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Light: Reflection and Refraction",
+        summary: "Understand reflection, refraction, and lens properties.",
+        hints: ["Explain laws of reflection.", "Describe spherical mirrors and lens formula.", "Calculate magnification and power."],
+        bullets: [
+            { text: "State reflection laws.", keywords: ["incident", "reflected", "normal", "angle", "equal"] },
+            { text: "Describe mirrors.", keywords: ["concave", "convex", "mirror", "focus", "center", "curvature"] },
+            { text: "Explain refraction.", keywords: ["refraction", "bending", "medium", "speed", "index", "refractive"] },
+            { text: "Use lens formula.", keywords: ["lens", "formula", "1/f", "1/v", "1/u", "magnification"] }
+        ]
+    },
+    {
+        id: "g10-phy-human",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Human Eye and Colorful World",
+        summary: "Understand the human eye structure and defects of vision.",
+        hints: ["Describe parts of the eye and their functions.", "Explain common vision defects.", "Understand dispersion of light."],
+        bullets: [
+            { text: "Describe eye parts.", keywords: ["cornea", "iris", "lens", "retina", "pupil", "ciliary"] },
+            { text: "Explain accommodation.", keywords: ["accommodation", "ciliary", "muscles", "suspensory", "ligaments"] },
+            { text: "Describe vision defects.", keywords: ["myopia", "hypermetropia", "presbyopia", "astigmatism", "correction"] },
+            { text: "Explain dispersion.", keywords: ["dispersion", "spectrum", "rainbow", "prism", "color"] }
+        ]
+    },
+    {
+        id: "g10-phy-sources",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Sources of Energy",
+        summary: "Learn about different sources of energy and their sustainability.",
+        hints: ["Classify renewable and non-renewable sources.", "Explain solar, wind, and hydro energy.", "Discuss nuclear and geothermal energy."],
+        bullets: [
+            { text: "Classify sources.", keywords: ["renewable", "non-renewable", "conventional", "non-conventional", "fossil"] },
+            { text: "Explain solar energy.", keywords: ["solar", "cell", "panel", "radiation", "photovoltaic"] },
+            { text: "Describe other sources.", keywords: ["wind", "hydro", "tidal", "geothermal", "biomass"] },
+            { text: "Discuss nuclear energy.", keywords: ["nuclear", "fission", "fusion", "reactor", "uranium"] }
+        ]
+    },
+    // Grade 10 Science (Chemistry)
+    {
+        id: "g10-chem-reactions",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Chemical Reactions and Equations",
+        summary: "Understand types of chemical reactions and balancing equations.",
+        hints: ["Write and balance chemical equations.", "Identify types of chemical reactions.", "Understand oxidation and reduction."],
+        bullets: [
+            { text: "Write equations.", keywords: ["chemical", "equation", "reactant", "product", "symbol"] },
+            { text: "Balance equations.", keywords: ["balance", "atom", "both", "sides", "stoichiometry"] },
+            { text: "Classify reactions.", keywords: ["combination", "decomposition", "displacement", "double", "redox"] },
+            { text: "Explain redox.", keywords: ["oxidation", "reduction", "electron", "gain", "loss"] }
+        ]
+    },
+    {
+        id: "g10-chem-acids",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Acids, Bases and Salts",
+        summary: "Learn properties of acids, bases, salts and their reactions.",
+        hints: ["Describe properties and uses of acids and bases.", "Explain pH scale and indicators.", "Describe salt preparation methods."],
+        bullets: [
+            { text: "Describe acid properties.", keywords: ["acid", "sour", "pH", "less", "than", "7", "hydrogen"] },
+            { text: "Describe base properties.", keywords: ["base", "alkali", "bitter", "pH", "greater", "than", "7"] },
+            { text: "Explain pH scale.", keywords: ["pH", "scale", "neutral", "acidic", "basic", "indicator"] },
+            { text: "Describe salt types.", keywords: ["normal", "acidic", "basic", "salt", "reaction", "neutralization"] }
+        ]
+    },
+    {
+        id: "g10-chem-metals",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Metals and Non-metals",
+        summary: "Understand properties and uses of metals and non-metals.",
+        hints: ["Compare physical properties of metals and non-metals.", "Explain chemical reactivity.", "Describe extraction of metals."],
+        bullets: [
+            { text: "Compare physical properties.", keywords: ["lustrous", "malleable", "ductile", "conductor", "solid"] },
+            { text: "Explain reactivity.", keywords: ["reactive", "reaction", "water", "acid", "oxygen", "corrosion"] },
+            { text: "Describe extraction.", keywords: ["ore", "mineral", "extraction", "roasting", "calcination", "smelting"] },
+            { text: "List uses.", keywords: ["aluminum", "iron", "copper", "gold", "application", "use"] }
+        ]
+    },
+    {
+        id: "g10-chem-carbon",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Carbon and Its Compounds",
+        summary: "Learn about carbon chemistry and organic compounds.",
+        hints: ["Explain catenation and tetravalency of carbon.", "Describe hydrocarbons and functional groups.", "Name common organic compounds."],
+        bullets: [
+            { text: "Explain carbon properties.", keywords: ["catenation", "tetravalent", "covalent", "bond", "carbon"] },
+            { text: "Describe hydrocarbons.", keywords: ["alkane", "alkene", "alkyne", "saturated", "unsaturated"] },
+            { text: "Explain functional groups.", keywords: ["alcohol", "carboxylic", "acid", "aldehyde", "ketone", "ether"] },
+            { text: "Describe nomenclature.", keywords: ["IUPAC", "naming", "prefix", "suffix", "root"] }
+        ]
+    },
+    {
+        id: "g10-chem-periodic",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Periodic Classification of Elements",
+        summary: "Understand the modern periodic table and element properties.",
+        hints: ["Explain development of periodic table.", "Describe modern periodic law.", "Understand periodic trends."],
+        bullets: [
+            { text: "Explain early attempts.", keywords: ["Dobereiner", "triad", "Newland", "octave", "Mendeleev"] },
+            { text: "State modern law.", keywords: ["modern", "periodic", "law", "atomic", "number", "property"] },
+            { text: "Describe table structure.", keywords: ["group", "period", "valence", "electron", "shell"] },
+            { text: "Explain trends.", keywords: ["trend", "atomic", "radius", "valency", "metallic", "character"] }
+        ]
+    },
+    // Grade 10 Science (Biology)
+    {
+        id: "g10-bio-life",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Life Processes",
+        summary: "Understand essential life processes in plants and animals.",
+        hints: ["Explain nutrition types.", "Describe respiratory systems.", "Understand transport mechanisms."],
+        bullets: [
+            { text: "Explain nutrition.", keywords: ["autotrophic", "heterotrophic", "holozoic", "saprophytic", "parasitic"] },
+            { text: "Describe respiration.", keywords: ["aerobic", "anaerobic", "glucose", "ATP", "energy"] },
+            { text: "Explain transport.", keywords: ["xylem", "phloem", "blood", "vessels", "heart", "circulation"] },
+            { text: "Describe excretion.", keywords: ["excretion", "kidney", "nephron", "urine", "urea"] }
+        ]
+    },
+    {
+        id: "g10-bio-control",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Control and Coordination",
+        summary: "Learn about nervous and hormonal control in organisms.",
+        hints: ["Describe nervous system structure.", "Explain reflex actions.", "Understand endocrine system and hormones."],
+        bullets: [
+            { text: "Explain nervous system.", keywords: ["neuron", "nerve", "impulse", "brain", "spinal", "cord"] },
+            { text: "Describe reflex action.", keywords: ["reflex", "arc", "spinal", "involuntary", "quick"] },
+            { text: "Explain human brain.", keywords: ["cerebrum", "cerebellum", "medulla", "forebrain", "hindbrain"] },
+            { text: "Describe hormones.", keywords: ["hormone", "endocrine", "gland", "pituitary", "thyroid", "adrenal"] }
+        ]
+    },
+    {
+        id: "g10-bio-reproduction",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "How Do Organisms Reproduce",
+        summary: "Understand various modes of reproduction in organisms.",
+        hints: ["Compare asexual and sexual reproduction.", "Describe human reproductive system.", "Explain reproductive health."],
+        bullets: [
+            { text: "Explain asexual modes.", keywords: ["fission", "budding", "fragmentation", "regeneration", "spore"] },
+            { text: "Describe sexual reproduction.", keywords: ["gamete", "fertilization", "zygote", "embryo", "development"] },
+            { text: "Explain human reproduction.", keywords: ["testes", "ovary", "sperm", "egg", "implantation"] },
+            { text: "Describe health.", keywords: ["contraception", "STD", "reproductive", "health", "hygiene"] }
+        ]
+    },
+    {
+        id: "g10-bio-heredity",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Heredity and Evolution",
+        summary: "Learn about inheritance of traits and evolutionary concepts.",
+        hints: ["Explain Mendel's laws of inheritance.", "Describe sex determination.", "Understand evolution and speciation."],
+        bullets: [
+            { text: "Explain Mendel's experiments.", keywords: ["Mendel", "dominant", "recessive", "trait", "hybrid"] },
+            { text: "Describe inheritance.", keywords: ["gene", "allele", "genotype", "phenotype", "homozygous"] },
+            { text: "Explain sex determination.", keywords: ["sex", "chromosome", "XX", "XY", "male", "female"] },
+            { text: "Describe evolution.", keywords: ["evolution", "natural", "selection", "speciation", "variation"] }
+        ]
+    },
+    {
+        id: "g10-bio-environment",
+        grade: "Grade 10",
+        subject: "Science",
+        title: "Our Environment",
+        summary: "Understand ecosystems and environmental issues.",
+        hints: ["Describe food chains and webs.", "Explain trophic levels.", "Discuss environmental problems and solutions."],
+        bullets: [
+            { text: "Explain ecosystem.", keywords: ["biotic", "abiotic", "ecosystem", "habitat", "niche"] },
+            { text: "Describe food chain.", keywords: ["producer", "consumer", "decomposer", "trophic", "level"] },
+            { text: "Explain energy flow.", keywords: ["energy", "flow", "pyramid", "10", "percent", "law"] },
+            { text: "Discuss issues.", keywords: ["pollution", "ozone", "depletion", "biodegradable", "management"] }
+        ]
+    },
+    // Grade 10 Math
+    {
+        id: "g10-math-reals",
         grade: "Grade 10",
         subject: "Mathematics",
-        title: "Quadratic equations and their roots",
-        summary: "Talk about the form of a quadratic equation and common ways to solve it.",
-        hints: [
-            "Start with the standard form ax squared plus bx plus c.",
-            "Mention factorization or quadratic formula.",
-            "Explain what the roots represent."
-        ],
+        title: "Real Numbers",
+        summary: "Understand Euclid's division algorithm and fundamental theorem of arithmetic.",
+        hints: ["Apply Euclid's division lemma.", "Use fundamental theorem of arithmetic.", "Prove irrationality of numbers."],
         bullets: [
-            { text: "State the standard form.", keywords: ["ax", "bx", "c", "quadratic"] },
-            { text: "Mention one solving method.", keywords: ["factorization", "formula", "completing"] },
-            { text: "Explain what roots are.", keywords: ["roots", "solutions", "zero"] },
-            { text: "Use one mathematical example.", keywords: ["example", "x", "squared"] }
+            { text: "Apply division lemma.", keywords: ["Euclid", "division", "lemma", "quotient", "remainder"] },
+            { text: "Use fundamental theorem.", keywords: ["fundamental", "unique", "factorization", "prime", "composite"] },
+            { text: "Find HCF and LCM.", keywords: ["HCF", "LCM", "prime", "factorization", "product"] },
+            { text: "Prove irrationality.", keywords: ["prove", "irrational", "contradiction", "root", "prime"] }
         ]
     },
     {
-        id: "cs-ai-basics",
-        grade: "Grade 9",
-        subject: "Technology",
-        title: "Artificial intelligence in everyday life",
-        summary: "Describe what AI is and where students may already use it around them.",
-        hints: [
-            "Explain AI in simple classroom-friendly English.",
-            "Mention one benefit and one limitation.",
-            "Use examples like maps, recommendations, or voice assistants."
-        ],
+        id: "g10-math-polynomials",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Polynomials",
+        summary: "Learn about polynomial zeros and their graphical representation.",
+        hints: ["Find zeros of polynomials.", "Understand relationship between zeros and coefficients.", "Apply division algorithm."],
         bullets: [
-            { text: "Define AI simply.", keywords: ["artificial", "intelligence", "machines", "learn"] },
-            { text: "Give a familiar example.", keywords: ["maps", "assistant", "recommendation", "camera"] },
-            { text: "Mention one advantage.", keywords: ["helps", "fast", "efficient", "accurate"] },
-            { text: "Mention one limitation or concern.", keywords: ["bias", "privacy", "mistake", "limit"] }
+            { text: "Find zeros.", keywords: ["zero", "root", "polynomial", "factor", "value", "zero"] },
+            { text: "Use coefficient relations.", keywords: ["sum", "product", "zero", "coefficient", "quadratic", "cubic"] },
+            { text: "Apply division algorithm.", keywords: ["division", "algorithm", "quotient", "remainder", "dividend"] },
+            { text: "Graph polynomials.", keywords: ["graph", "parabola", "intersect", "x-axis", "shape"] }
         ]
     },
     {
-        id: "eng-bridge-design",
-        grade: "Grade 11",
-        subject: "Engineering",
-        title: "How bridge design balances strength and load",
-        summary: "Practice explaining how engineers choose shapes and materials to keep bridges safe.",
-        hints: [
-            "Talk about load, material, and safety together.",
-            "Mention tension and compression if possible.",
-            "Use one real-world bridge idea or example."
-        ],
+        id: "g10-math-pairs",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Pair of Linear Equations",
+        summary: "Solve linear equations in two variables using graphical and algebraic methods.",
+        hints: ["Solve graphically.", "Apply substitution and elimination methods.", "Solve cross-multiplication problems."],
         bullets: [
-            { text: "Mention load and support.", keywords: ["load", "support"] },
-            { text: "Mention material choice.", keywords: ["steel", "concrete", "material"] },
-            { text: "Mention tension or compression.", keywords: ["tension", "compression"] },
-            { text: "Explain why design affects safety.", keywords: ["safe", "safety", "design", "shape"] }
+            { text: "Solve graphically.", keywords: ["graph", "intersect", "parallel", "coincident", "unique"] },
+            { text: "Use substitution.", keywords: ["substitute", "express", "variable", "equation", "solve"] },
+            { text: "Use elimination.", keywords: ["eliminate", "coefficient", "equal", "add", "subtract"] },
+            { text: "Apply cross-multiplication.", keywords: ["cross", "multiply", "formula", "x", "y", "determinant"] }
+        ]
+    },
+    {
+        id: "g10-math-quadratic",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Quadratic Equations",
+        summary: "Solve quadratic equations using factorization and formula methods.",
+        hints: ["Solve by factorization.", "Use quadratic formula.", "Analyze nature of roots."],
+        bullets: [
+            { text: "Define quadratic.", keywords: ["quadratic", "degree", "two", "parabola", "curve"] },
+            { text: "Solve by factorization.", keywords: ["factorize", "split", "middle", "term", "zero"] },
+            { text: "Use quadratic formula.", keywords: ["formula", "minus", "b", "plus", "minus", "root"] },
+            { text: "Find discriminant.", keywords: ["discriminant", "b2", "4ac", "nature", "real", "equal"] }
+        ]
+    },
+    {
+        id: "g10-math-progressions",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Arithmetic Progressions",
+        summary: "Understand AP concepts and calculate sum of terms.",
+        hints: ["Identify arithmetic progressions.", "Find nth term of AP.", "Calculate sum of n terms."],
+        bullets: [
+            { text: "Define AP.", keywords: ["arithmetic", "progression", "common", "difference", "consecutive"] },
+            { text: "Find nth term.", keywords: ["nth", "term", "a", "plus", "n-1", "d", "formula"] },
+            { text: "Calculate sum.", keywords: ["sum", "n", "terms", "n/2", "2a", "plus", "n-1", "d"] },
+            { text: "Solve real problems.", keywords: ["application", "real", "life", "money", "installment"] }
+        ]
+    },
+    {
+        id: "g10-math-triangles",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Triangles: Similarity",
+        summary: "Learn about similar triangles and their properties.",
+        hints: ["Understand similar figures.", "Prove triangles similar using criteria.", "Apply area theorem and Pythagoras."],
+        bullets: [
+            { text: "Define similarity.", keywords: ["similar", "same", "shape", "proportional", "corresponding"] },
+            { text: "Prove similarity.", keywords: ["AA", "SAS", "SSS", "similar", "corresponding", "angle", "side"] },
+            { text: "Apply area theorem.", keywords: ["area", "ratio", "square", "side", "ratio", "similar"] },
+            { text: "Prove Pythagoras.", keywords: ["Pythagoras", "right", "hypotenuse", "square", "sum", "leg"] }
+        ]
+    },
+    {
+        id: "g10-math-coordinate",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Coordinate Geometry",
+        summary: "Understand section formula and area of triangles.",
+        hints: ["Use section formula for internal and external division.", "Find area of triangles and quadrilaterals.", "Apply to geometric problems."],
+        bullets: [
+            { text: "Apply section formula.", keywords: ["section", "ratio", "m1", "m2", "coordinate"] },
+            { text: "Find midpoint.", keywords: ["midpoint", "average", "x", "y", "coordinate", "half"] },
+            { text: "Calculate area.", keywords: ["area", "triangle", "formula", "1/2", "determinant", "absolute"] },
+            { text: "Solve problems.", keywords: ["collinear", "quadrilateral", "centroid", "geometric", "application"] }
+        ]
+    },
+    {
+        id: "g10-math-trigonometry",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Introduction to Trigonometry",
+        summary: "Learn trigonometric ratios and identities.",
+        hints: ["Define trigonometric ratios.", "Prove trigonometric identities.", "Solve height and distance problems."],
+        bullets: [
+            { text: "Define ratios.", keywords: ["sine", "cosine", "tangent", "opposite", "adjacent", "hypotenuse"] },
+            { text: "Find ratios.", keywords: ["sin", "cos", "tan", "cot", "sec", "cosec", "complementary"] },
+            { text: "Prove identities.", keywords: ["identity", "sin2", "plus", "cos2", "equal", "one"] },
+            { text: "Solve applications.", keywords: ["height", "distance", "angle", "elevation", "depression"] }
+        ]
+    },
+    {
+        id: "g10-math-circles",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Circles",
+        summary: "Understand tangents and properties of circles.",
+        hints: ["Define tangent and secant.", "Prove tangent theorems.", "Solve problems involving circles."],
+        bullets: [
+            { text: "Define tangent.", keywords: ["tangent", "secant", "circle", "point", "contact"] },
+            { text: "Prove theorems.", keywords: ["theorem", "tangent", "perpendicular", "radius", "point"] },
+            { text: "Use tangent properties.", keywords: ["length", "tangent", "external", "point", "equal"] },
+            { text: "Solve problems.", keywords: ["theorem", "application", "circle", "chord", "arc"] }
+        ]
+    },
+    {
+        id: "g10-math-constructions",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Geometric Constructions",
+        summary: "Learn to divide line segments and construct tangents to circles.",
+        hints: ["Divide line segment in given ratio.", "Construct similar triangles.", "Draw tangents to circles."],
+        bullets: [
+            { text: "Divide segment.", keywords: ["divide", "line", "segment", "ratio", "construction"] },
+            { text: "Construct triangles.", keywords: ["similar", "triangle", "scale", "factor", "construct"] },
+            { text: "Draw tangents.", keywords: ["tangent", "circle", "point", "center", "construct"] },
+            { text: "Verify constructions.", keywords: ["verify", "measure", "justify", "construction", "proof"] }
+        ]
+    },
+    {
+        id: "g10-math-areas",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Areas Related to Circles",
+        summary: "Calculate areas of circle sectors and segments.",
+        hints: ["Find area and circumference of circles.", "Calculate sector areas.", "Find area of segments and combinations."],
+        bullets: [
+            { text: "Calculate circle area.", keywords: ["area", "pi", "r", "square", "circumference", "2", "pi", "r"] },
+            { text: "Find sector area.", keywords: ["sector", "angle", "360", "pi", "r", "square", "proportion"] },
+            { text: "Calculate segment.", keywords: ["segment", "sector", "minus", "triangle", "area"] },
+            { text: "Solve combinations.", keywords: ["combination", "shaded", "region", "circle", "polygon"] }
+        ]
+    },
+    {
+        id: "g10-math-surface",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Surface Areas and Volumes",
+        summary: "Calculate surface areas and volumes of 3D shapes.",
+        hints: ["Find surface area of cubes and cuboids.", "Calculate cylinder and cone properties.", "Find sphere surface area and volume."],
+        bullets: [
+            { text: "Calculate cube cuboid.", keywords: ["surface", "area", "volume", "cube", "cuboid", "formula"] },
+            { text: "Find cylinder properties.", keywords: ["cylinder", "curved", "surface", "total", "volume", "pi", "r", "h"] },
+            { text: "Calculate cone sphere.", keywords: ["cone", "slant", "height", "sphere", "4/3", "pi", "r", "cube"] },
+            { text: "Solve combination problems.", keywords: ["combination", "solid", "frustum", "volume", "surface"] }
+        ]
+    },
+    {
+        id: "g10-math-stats",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Statistics",
+        summary: "Learn mean, median, mode of grouped data.",
+        hints: ["Calculate mean using different methods.", "Find median of grouped data.", "Determine mode graphically."],
+        bullets: [
+            { text: "Calculate mean.", keywords: ["mean", "direct", "assumed", "step", "deviation", "method"] },
+            { text: "Find median.", keywords: ["median", "cumulative", "frequency", "class", "n/2"] },
+            { text: "Determine mode.", keywords: ["mode", "modal", "class", "maximum", "frequency", "formula"] },
+            { text: "Draw ogive.", keywords: ["ogive", "cumulative", "frequency", "curve", "less", "than"] }
+        ]
+    },
+    {
+        id: "g10-math-probability",
+        grade: "Grade 10",
+        subject: "Mathematics",
+        title: "Probability",
+        summary: "Understand theoretical probability and its applications.",
+        hints: ["Define theoretical probability.", "Calculate probability of events.", "Understand sum and complement rules."],
+        bullets: [
+            { text: "Define probability.", keywords: ["theoretical", "probability", "expected", "outcome", "ratio"] },
+            { text: "Calculate event probability.", keywords: ["event", "favorable", "total", "possible", "calculate"] },
+            { text: "Apply addition rule.", keywords: ["addition", "mutually", "exclusive", "OR", "union"] },
+            { text: "Solve real problems.", keywords: ["deck", "card", "coin", "die", "marble", "ball"] }
         ]
     }
 ];
