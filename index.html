@@ -215,6 +215,27 @@
             <aside class="practice-sidebar">
                 <div class="practice-card">
                     <div class="section-label">
+                        <span>Group Mode</span>
+                    </div>
+                    <div class="group-mode-grid">
+                        <label class="field-stack" for="studentNameInput">
+                            <span>Student name</span>
+                            <input type="text" id="studentNameInput" placeholder="Add student name">
+                        </label>
+                        <button id="addStudentBtn" class="practice-action" type="button">Add Student</button>
+                    </div>
+                    <div id="studentRoster" class="student-roster"></div>
+                    <div class="group-turnbar">
+                        <div>
+                            <span class="status-kicker">Current speaker</span>
+                            <strong id="activeStudentLabel">Individual mode</strong>
+                        </div>
+                        <button id="nextSpeakerBtn" class="practice-action ghost" type="button">Next Speaker</button>
+                    </div>
+                </div>
+
+                <div class="practice-card">
+                    <div class="section-label">
                         <span>Model</span>
                     </div>
                     <select id="llmModelSelect"></select>
@@ -304,6 +325,28 @@
                             <div class="metric-chip">
                                 <span>Turns</span>
                                 <strong id="turnCount">0</strong>
+                            </div>
+                        </div>
+                        <div class="feedback-metrics team-skills-grid">
+                            <div class="metric-chip">
+                                <span>Problem Solving</span>
+                                <strong id="problemSolvingScore">0%</strong>
+                            </div>
+                            <div class="metric-chip">
+                                <span>Team Building</span>
+                                <strong id="teamBuildingScore">0%</strong>
+                            </div>
+                            <div class="metric-chip">
+                                <span>Soft Skills</span>
+                                <strong id="softSkillsScore">0%</strong>
+                            </div>
+                            <div class="metric-chip">
+                                <span>Analytical Skills</span>
+                                <strong id="analyticalSkillsScore">0%</strong>
+                            </div>
+                            <div class="metric-chip">
+                                <span>Critical Thinking</span>
+                                <strong id="criticalThinkingScore">0%</strong>
                             </div>
                         </div>
                     </div>
