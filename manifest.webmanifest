@@ -1,0 +1,23 @@
+{
+  "name": "Phonetics Reader STEM Practice",
+  "short_name": "STEM Practice",
+  "description": "Practice spoken English on CBSE STEM topics with on-device AI feedback.",
+  "id": "./",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef7ff",
+  "theme_color": "#0a84ff",
+  "orientation": "portrait-primary",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "icons": [
+    {
+      "src": "icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

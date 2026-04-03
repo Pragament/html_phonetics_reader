@@ -177,6 +177,10 @@ document.addEventListener("DOMContentLoaded", () => {
         llmStatusLabel: document.getElementById("llmStatusLabel"),
         llmProgressText: document.getElementById("llmProgressText"),
         llmProgressBar: document.getElementById("llmProgressBar"),
+        pwaPrompt: document.getElementById("pwaPrompt"),
+        pwaPromptTitle: document.getElementById("pwaPromptTitle"),
+        pwaPromptText: document.getElementById("pwaPromptText"),
+        pwaActionBtn: document.getElementById("pwaActionBtn"),
         cbseGradeFilter: document.getElementById("cbseGradeFilter"),
         subjectFilter: document.getElementById("subjectFilter"),
         topicSearchInput: document.getElementById("topicSearchInput"),
@@ -210,6 +214,8 @@ document.addEventListener("DOMContentLoaded", () => {
         practiceTurns: 0,
         isRecognizing: false,
         recognition: null,
+        deferredInstallPrompt: null,
+        hasInstalledPwa: localStorage.getItem("practicePwaInstalled") === "true",
         messages: [
             {
                 role: "system",
@@ -226,6 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setSpeechSupportNote(ui, state);
     attachEvents(ui, state);
     attachLegacyToggle(legacyToggle);
+    registerServiceWorker();
+    setupPwaPrompt(ui, state);
     updateTutorState(ui, state, "Choose a topic and load a model to begin.");
     appendMessage(ui.chatMessages, "assistant", "Choose a STEM topic, load a WebLLM model, and then start speaking in English. I will respond like a patient tutor and give you instant corrections.");
 });
@@ -338,6 +346,99 @@ function attachLegacyToggle(button) {
         const showingLegacy = document.body.classList.contains("show-legacy");
         button.textContent = showingLegacy ? "Hide Phonetics Reader" : "Show Phonetics Reader";
     });
+}
+
+function registerServiceWorker() {
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("./sw.js").catch((error) => {
+                console.error("Service worker registration failed:", error);
+            });
+        });
+    }
+}
+
+function setupPwaPrompt(ui, state) {
+    if (!ui.pwaPrompt || !ui.pwaActionBtn) {
+        return;
+    }
+
+    if (!isWindowsChrome() || isStandaloneMode()) {
+        ui.pwaPrompt.hidden = true;
+        return;
+    }
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+        state.deferredInstallPrompt = event;
+        updatePwaPrompt(ui, state, "install");
+    });
+
+    window.addEventListener("appinstalled", () => {
+        state.hasInstalledPwa = true;
+        state.deferredInstallPrompt = null;
+        localStorage.setItem("practicePwaInstalled", "true");
+        updatePwaPrompt(ui, state, "open");
+    });
+
+    ui.pwaActionBtn.addEventListener("click", async () => {
+        if (state.deferredInstallPrompt) {
+            state.deferredInstallPrompt.prompt();
+            const choice = await state.deferredInstallPrompt.userChoice;
+            if (choice.outcome === "accepted") {
+                state.hasInstalledPwa = true;
+                localStorage.setItem("practicePwaInstalled", "true");
+            }
+            state.deferredInstallPrompt = null;
+            updatePwaPrompt(ui, state, state.hasInstalledPwa ? "open" : "hidden");
+            return;
+        }
+
+        if (state.hasInstalledPwa) {
+            openInstalledApp();
+        }
+    });
+
+    if (state.hasInstalledPwa) {
+        updatePwaPrompt(ui, state, "open");
+    }
+}
+
+function updatePwaPrompt(ui, state, mode) {
+    if (mode === "install") {
+        ui.pwaPrompt.hidden = false;
+        ui.pwaPromptTitle.textContent = "Install app";
+        ui.pwaPromptText.textContent = "Install this site as a desktop app for faster access and a distraction-free practice window.";
+        ui.pwaActionBtn.textContent = "Install App";
+        return;
+    }
+
+    if (mode === "open") {
+        ui.pwaPrompt.hidden = false;
+        ui.pwaPromptTitle.textContent = "Open in app";
+        ui.pwaPromptText.textContent = "This site looks installed already. Open the standalone app for a cleaner Chrome app window.";
+        ui.pwaActionBtn.textContent = "Open in App";
+        return;
+    }
+
+    ui.pwaPrompt.hidden = true;
+}
+
+function isWindowsChrome() {
+    const userAgent = navigator.userAgent;
+    const isWindows = /Windows/i.test(userAgent);
+    const isChrome = /Chrome\/\d+/i.test(userAgent) && !/Edg\/|OPR\/|Brave/i.test(userAgent);
+    return isWindows && isChrome;
+}
+
+function isStandaloneMode() {
+    return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+}
+
+function openInstalledApp() {
+    const url = new URL(window.location.href);
+    url.searchParams.set("source", "browser-open-app");
+    window.open(url.toString(), "_blank", "noopener");
 }
 
 function renderTopicList(ui, state) {

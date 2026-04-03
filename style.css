@@ -1588,6 +1588,23 @@ select {
     background: #f0fbfb;
 }
 
+.pwa-prompt {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(19, 92, 103, 0.12);
+}
+
+.pwa-prompt p {
+    margin: 4px 0 0;
+    color: #55718d;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
 .empty-topics {
     padding: 16px;
     border-radius: 16px;
@@ -1618,7 +1635,8 @@ select {
     }
 
     .composer-actions,
-    .conversation-toolbar {
+    .conversation-toolbar,
+    .pwa-prompt {
         align-items: stretch;
     }
 }
