@@ -1525,6 +1525,450 @@ const STEM_TOPICS = [
             { text: "Apply addition rule.", keywords: ["addition", "mutually", "exclusive", "OR", "union"] },
             { text: "Solve real problems.", keywords: ["deck", "card", "coin", "die", "marble", "ball"] }
         ]
+    },
+    // CBSE Grade 10 Social Science - Debatable Topics (Group Chat: 2 Teams, 4 Students)
+    // Political Science - Democracy & Governance
+    {
+        id: "g10-socsci-democracy-best",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is democracy always the best form of government?",
+        summary: "A group debate exploring the merits and limitations of democracy as a governing system. Team A argues FOR, Team B argues AGAINST.",
+        hints: ["Team A: Discuss citizen participation, protection of rights, peaceful transitions.", "Team B: Discuss efficiency in decision-making, economic growth under authoritarian regimes.", "Consider examples from different countries."],
+        bullets: [
+            { text: "Team A: Arguments FOR democracy.", keywords: ["people", "rule", "vote", "rights", "freedom", "participation", "accountability"] },
+            { text: "Team B: Arguments AGAINST democracy.", keywords: ["slow", "decisions", "corruption", "populism", "majority", "tyranny", "inefficient"] },
+            { text: "Provide historical examples.", keywords: ["India", "Singapore", "China", "economic", "growth", "development"] },
+            { text: "Conclude with balanced view.", keywords: ["balance", "context", "suitable", "mature", "institutions"] }
+        ]
+    },
+    {
+        id: "g10-socsci-compulsory-voting",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should voting be made compulsory in India?",
+        summary: "Debate on mandatory voting laws. Team A supports compulsory voting, Team B opposes it.",
+        hints: ["Team A: Discuss civic duty, true representation, reducing vote bank politics.", "Team B: Discuss right to not vote, practical challenges, uninformed voters.", "Consider examples from Australia and other countries."],
+        bullets: [
+            { text: "Team A: Arguments FOR compulsory voting.", keywords: ["civic", "duty", "democracy", "participation", "representative", "legitimate"] },
+            { text: "Team B: Arguments AGAINST compulsory voting.", keywords: ["freedom", "choice", "right", "not", "vote", "forced", "uninformed"] },
+            { text: "Discuss implementation challenges.", keywords: ["Australia", "penalty", "turnout", "enforcement", "accessibility"] },
+            { text: "Propose alternatives.", keywords: ["awareness", "education", "NOTA", "reform", "voluntary"] }
+        ]
+    },
+    {
+        id: "g10-socsci-social-media",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Does social media strengthen or weaken democracy?",
+        summary: "Debate on the impact of social media on democratic processes. Team A argues it strengthens, Team B argues it weakens.",
+        hints: ["Team A: Discuss citizen engagement, transparency, grassroots movements, awareness.", "Team B: Discuss fake news, polarization, manipulation, echo chambers.", "Use recent examples from India and globally."],
+        bullets: [
+            { text: "Team A: Social media STRENGTHENS democracy.", keywords: ["transparency", "engagement", "voice", "activism", "accountability", "information"] },
+            { text: "Team B: Social media WEAKENS democracy.", keywords: ["fake", "news", "misinformation", "polarization", "algorithms", "manipulation"] },
+            { text: "Give specific examples.", keywords: ["Arab", "Spring", "elections", "hate", "speech", "viral"] },
+            { text: "Suggest solutions.", keywords: ["regulation", "digital", "literacy", "fact", "checking", "responsible"] }
+        ]
+    },
+    {
+        id: "g10-socsci-coalition",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is coalition government good for India?",
+        summary: "Debate on the effectiveness of coalition governments. Team A supports coalition system, Team B prefers majority governments.",
+        hints: ["Team A: Discuss diverse representation, consensus building, regional interests.", "Team B: Discuss instability, policy paralysis, corruption, horse-trading.", "Use examples from Indian political history."],
+        bullets: [
+            { text: "Team A: Coalition is GOOD for India.", keywords: ["diversity", "consensus", "inclusive", "federal", "regional", "representation"] },
+            { text: "Team B: Coalition is BAD for India.", keywords: ["instability", "blackmail", "policy", "paralysis", "corruption", "compromise"] },
+            { text: "Analyze historical examples.", keywords: ["UPA", "NDA", "1990s", "stable", "unstable", "era"] },
+            { text: "Compare with majority governments.", keywords: ["decisive", "dictatorial", "accountability", "balance", "efficiency"] }
+        ]
+    },
+    {
+        id: "g10-socsci-election-spending",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should there be a limit on election spending?",
+        summary: "Debate on campaign finance reform. Team A supports spending limits, Team B opposes them as restriction on political speech.",
+        hints: ["Team A: Discuss level playing field, reducing corruption, wealthy influence.", "Team B: Discuss freedom of expression, reaching voters, legitimate expenses.", "Consider current EC rules and their effectiveness."],
+        bullets: [
+            { text: "Team A: Arguments FOR spending limits.", keywords: ["fair", "level", "corruption", "money", "power", "rich", "candidates"] },
+            { text: "Team B: Arguments AGAINST spending limits.", keywords: ["free", "speech", "reach", "voters", "communication", "democracy"] },
+            { text: "Examine current rules.", keywords: ["Election", "Commission", "cap", "expenditure", "violation", "enforcement"] },
+            { text: "Suggest reforms.", keywords: ["transparency", "state", "funding", "RTI", "disclosure", "accountability"] }
+        ]
+    },
+    // Political Science - Rights & Equality
+    {
+        id: "g10-socsci-free-speech",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is freedom of speech being misused today?",
+        summary: "Debate on the boundaries of free speech. Team A argues it is being misused, Team B defends absolute free expression.",
+        hints: ["Team A: Discuss hate speech, misinformation, defamation, incitement to violence.", "Team B: Discuss marketplace of ideas, dissent, artistic freedom, slippery slope.", "Reference Article 19 and reasonable restrictions."],
+        bullets: [
+            { text: "Team A: Free speech IS misused.", keywords: ["hate", "speech", "fake", "news", "defamation", "incitement", "harm"] },
+            { text: "Team B: Free speech is NOT misused.", keywords: ["dissent", "criticism", "expression", "essential", "democracy", "check"] },
+            { text: "Discuss constitutional limits.", keywords: ["Article", "19", "reasonable", "restrictions", "sovereignty", "public", "order"] },
+            { text: "Propose balanced approach.", keywords: ["responsible", "speech", "accountability", "without", "censorship", "balance"] }
+        ]
+    },
+    {
+        id: "g10-socsci-reservation",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should reservation policies continue in India?",
+        summary: "Debate on affirmative action. Team A supports continuation of reservations, Team B argues for merit-based system.",
+        hints: ["Team A: Discuss historical injustice, representation, social equality, Constitution mandate.", "Team B: Discuss merit, efficiency, creamy layer, division, economic criteria.", "Consider current debates on EWS and economic reservations."],
+        bullets: [
+            { text: "Team A: Reservations SHOULD continue.", keywords: ["social", "justice", "historical", "inequality", "representation", "Constitution", "Mandal"] },
+            { text: "Team B: Reservations should NOT continue.", keywords: ["merit", "efficiency", "creamy", "layer", "economy", "criteria", "competence"] },
+            { text: "Analyze impact data.", keywords: ["representation", "education", "jobs", "empowerment", "statistics", "OBC", "SC", "ST"] },
+            { text: "Suggest alternatives/improvements.", keywords: ["EWS", "economic", "criteria", "private", "sector", "education", "reform"] }
+        ]
+    },
+    {
+        id: "g10-socsci-rights-vs-duties",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Are fundamental rights more important than fundamental duties?",
+        summary: "Debate on the balance between rights and duties. Team A prioritizes rights, Team B emphasizes duties.",
+        hints: ["Team A: Discuss individual liberty, constitutional supremacy, protection from state.", "Team B: Discuss social responsibility, civic virtue, national interest, moral obligation.", "Reference Part III and IVA of Constitution."],
+        bullets: [
+            { text: "Team A: Rights are MORE important.", keywords: ["liberty", "individual", "Constitution", "protection", "democracy", "freedom", "justice"] },
+            { text: "Team B: Duties are EQUALLY/MORE important.", keywords: ["responsibility", "society", "nation", "citizenship", "morality", "unity", "integrity"] },
+            { text: "Examine constitutional provisions.", keywords: ["Article", "12-35", "51A", "Part", "III", "IVA", "enforceable", "moral"] },
+            { text: "Find synthesis.", keywords: ["balance", "correlative", "both", "essential", "responsible", "citizenship"] }
+        ]
+    },
+    {
+        id: "g10-socsci-uniform-civil-code",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should uniform civil code be implemented in India?",
+        summary: "Debate on Article 44. Team A supports UCC for national integration, Team B opposes citing religious freedom and diversity.",
+        hints: ["Team A: Discuss equality, gender justice, national integration, constitutional directive.", "Team B: Discuss religious freedom, diversity, minority rights, personal laws, Article 25.", "Reference Goa and other countries' experiences."],
+        bullets: [
+            { text: "Team A: UCC SHOULD be implemented.", keywords: ["equality", "gender", "justice", "uniform", "Article", "44", "integration"] },
+            { text: "Team B: UCC should NOT be forced.", keywords: ["diversity", "religious", "freedom", "minority", "rights", "personal", "laws"] },
+            { text: "Analyze constitutional aspects.", keywords: ["Directive", "Principles", "Fundamental", "Rights", "Article", "25", "harmony"] },
+            { text: "Learn from examples.", keywords: ["Goa", "Hindu", "Code", "minorities", "women", "reform", "gradual"] }
+        ]
+    },
+    // History - Nationalism & Freedom Movement
+    {
+        id: "g10-socsci-non-violence",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Was non-violence the most effective strategy in India's freedom struggle?",
+        summary: "Debate on Gandhian strategy. Team A supports non-violence as most effective, Team B argues for revolutionary/armed struggle.",
+        hints: ["Team A: Discuss mass participation, moral superiority, international sympathy, unity.", "Team B: Discuss slow progress, British intransigence, INA, revolutionary contributions.", "Compare with other independence movements."],
+        bullets: [
+            { text: "Team A: Non-violence WAS most effective.", keywords: ["Gandhi", "mass", "satyagraha", "moral", "unity", "international", "support"] },
+            { text: "Team B: Armed struggle ALSO contributed.", keywords: ["Bhagat", "Singh", "INA", "Bose", "revolutionary", "pressure", "alternative"] },
+            { text: "Analyze historical impact.", keywords: ["Quit", "India", "Dandi", "March", "independence", "1947", "contributions"] },
+            { text: "Evaluate combined effect.", keywords: ["both", "complementary", "holistic", "freedom", "strategy", "together"] }
+        ]
+    },
+    {
+        id: "g10-socsci-partition",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Did the partition of India have any unavoidable causes?",
+        summary: "Debate on inevitability of Partition. Team A argues it was unavoidable, Team B believes it could have been prevented.",
+        hints: ["Team A: Discuss Two-Nation theory, communal violence, British divide and rule, irreconcilable differences.", "Team B: Discuss failed negotiations, Mountbatten Plan haste, lack of leadership consensus, alternatives.", "Consider Cabinet Mission Plan and other options."],
+        bullets: [
+            { text: "Team A: Partition WAS unavoidable.", keywords: ["Two-Nation", "communal", "violence", "Hindu", "Muslim", "divide", "British"] },
+            { text: "Team B: Partition was AVOIDABLE.", keywords: ["negotiation", "Cabinet", "Mission", "unity", "haste", "leadership", "failure"] },
+            { text: "Examine causes.", keywords: ["Jinnah", "Nehru", "Gandhi", "League", "Congress", "direct", "action"] },
+            { text: "Assess consequences.", keywords: ["violence", "migration", "Kashmir", "legacy", "could", "have", "been", "different"] }
+        ]
+    },
+    {
+        id: "g10-socsci-colonial-history",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should colonial history be taught in the same depth today?",
+        summary: "Debate on curriculum priorities. Team A supports detailed colonial history, Team B argues for reduced focus on past.",
+        hints: ["Team A: Discuss understanding present, post-colonial impact, learning from mistakes, identity.", "Team B: Discuss future-oriented education, nationalism, practical skills, moving forward.", "Consider current curriculum debates in India."],
+        bullets: [
+            { text: "Team A: Colonial history MUST be taught deeply.", keywords: ["understand", "present", "post-colonial", "exploitation", "lessons", "identity"] },
+            { text: "Team B: Focus should be REDUCED.", keywords: ["future", "positive", "history", "skills", "development", "modern", "India"] },
+            { text: "Debate content balance.", keywords: ["British", "Raj", "freedom", "struggle", "achievements", "glorification", "balance"] },
+            { text: "Propose curriculum approach.", keywords: ["critical", "thinking", "multiple", "perspectives", "context", "relevance"] }
+        ]
+    },
+    // History - Global Events
+    {
+        id: "g10-socsci-ww2-inevitable",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Was World War II inevitable?",
+        summary: "Debate on causes of WWII. Team A argues Treaty of Versailles and conditions made it unavoidable, Team B suggests diplomatic alternatives.",
+        hints: ["Team A: Discuss Treaty of Versailles, rise of fascism, economic depression, appeasement failure.", "Team B: Discuss diplomatic alternatives, League of Nations potential, earlier intervention.", "Consider interwar period decisions."],
+        bullets: [
+            { text: "Team A: WWII WAS inevitable.", keywords: ["Versailles", "Hitler", "fascism", "depression", "appeasement", "unstable", "conditions"] },
+            { text: "Team B: WWII was AVOIDABLE.", keywords: ["League", "diplomacy", "containment", "earlier", "action", "alternative", "history"] },
+            { text: "Analyze Treaty of Versailles.", keywords: ["reparations", "humiliation", "Germany", "unfair", "seeds", "conflict"] },
+            { text: "Learn lessons.", keywords: ["United", "Nations", "peace", "prevention", "international", "cooperation"] }
+        ]
+    },
+    {
+        id: "g10-socsci-industrialization",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Did industrialization do more harm than good?",
+        summary: "Debate on Industrial Revolution impact. Team A argues harm (exploitation, environment), Team B argues good (progress, technology).",
+        hints: ["Team A: Discuss child labor, worker exploitation, environmental damage, inequality, urban slums.", "Team B: Discuss economic growth, technology, medicine, standard of living, connectivity.", "Consider long-term historical perspective."],
+        bullets: [
+            { text: "Team A: Industrialization did MORE HARM.", keywords: ["exploitation", "labor", "pollution", "inequality", "colonialism", "slums", "greed"] },
+            { text: "Team B: Industrialization did MORE GOOD.", keywords: ["progress", "technology", "medicine", "transport", "communication", "living", "standard"] },
+            { text: "Weigh evidence.", keywords: ["GDP", "longevity", "conditions", "wages", "data", "analysis", "context"] },
+            { text: "Modern relevance.", keywords: ["Industry", "4.0", "automation", "future", "learning", "lessons", "sustainability"] }
+        ]
+    },
+    {
+        id: "g10-socsci-revolutions",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should revolutions be justified to bring change?",
+        summary: "Debate on revolutionary vs. evolutionary change. Team A supports revolutionary change, Team B favors peaceful reform.",
+        hints: ["Team A: Discuss French Revolution, Russian Revolution, structural change, urgency.", "Team B: Discuss violence, instability, evolutionary democracy, reform movements.", "Compare different paths to change in history."],
+        bullets: [
+            { text: "Team A: Revolutions ARE justified.", keywords: ["oppression", "structural", "change", "French", "Russian", "freedom", "justice"] },
+            { text: "Team B: Revolutions are NOT justified.", keywords: ["violence", "chaos", "reform", "peaceful", "gradual", "stable", "democracy"] },
+            { text: "Examine case studies.", keywords: ["France", "Russia", "China", "Cuba", "outcomes", "human", "cost"] },
+            { text: "Evaluate alternatives.", keywords: ["Gandhi", "Mandela", "reform", "evolution", "peaceful", "effective"] }
+        ]
+    },
+    // Geography - Resources & Development
+    {
+        id: "g10-socsci-environment-vs-development",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is economic development more important than environmental protection?",
+        summary: "Debate on development priorities. Team A prioritizes economic growth, Team B prioritizes environmental conservation.",
+        hints: ["Team A: Discuss poverty, employment, infrastructure, standard of living, immediate needs.", "Team B: Discuss climate change, sustainability, intergenerational justice, biodiversity.", "Consider sustainable development goals."],
+        bullets: [
+            { text: "Team A: Development IS more important.", keywords: ["poverty", "jobs", "growth", "immediate", "needs", "infrastructure", "survival"] },
+            { text: "Team B: Environment IS more important.", keywords: ["climate", "sustainability", "future", "generations", "health", "biodiversity", "limits"] },
+            { text: "Analyze contradictions.", keywords: ["pollution", "resources", "extraction", "industry", "agriculture", "water", "air"] },
+            { text: "Find middle ground.", keywords: ["sustainable", "development", "green", "economy", "balance", "SDGs", "both"] }
+        ]
+    },
+    {
+        id: "g10-socsci-mining-forests",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should mining be banned in forest areas?",
+        summary: "Debate on resource extraction vs. conservation. Team A supports ban, Team B argues for regulated mining.",
+        hints: ["Team A: Discuss biodiversity, tribal rights, ecological damage, irreversible harm.", "Team B: Discuss mineral needs, economy, jobs, regulated extraction, alternatives limited.", "Use examples like Niyamgiri, coal blocks in forests."],
+        bullets: [
+            { text: "Team A: Mining SHOULD be banned.", keywords: ["forests", "tribal", "rights", "biodiversity", "ecology", "irreversible", "sacred"] },
+            { text: "Team B: Mining should NOT be banned.", keywords: ["minerals", "economy", "employment", "regulated", "responsible", "growth"] },
+            { text: "Examine real cases.", keywords: ["Niyamgiri", "coal", "iron", "tribal", "displacement", "Odisha", "Chhattisgarh"] },
+            { text: "Propose solutions.", keywords: ["rehabilitation", "compensation", "sustainable", "mining", "forest", "consent", "FRA"] }
+        ]
+    },
+    {
+        id: "g10-socsci-sustainable-development",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is sustainable development practical in developing countries like India?",
+        summary: "Debate on feasibility of sustainability. Team A argues it's possible and necessary, Team B claims it's a luxury for rich nations.",
+        hints: ["Team A: Discuss leapfrogging technology, renewable energy, green jobs, long-term savings.", "Team B: Discuss poverty priorities, cost of green tech, Western hypocrisy, carbon colonialism.", "Consider India's climate commitments and development needs."],
+        bullets: [
+            { text: "Team A: Sustainable development IS practical.", keywords: ["renewable", "solar", "jobs", "leapfrog", "technology", "innovation", "affordable"] },
+            { text: "Team B: It's a LUXURY for rich nations.", keywords: ["poverty", "cost", "Western", "hypocrisy", "carbon", "colonialism", "growth", "first"] },
+            { text: "Analyze India's position.", keywords: ["climate", "commitments", "SDGs", "development", "responsibility", "equity", "common"] },
+            { text: "Propose practical approach.", keywords: ["phased", "transition", "adaptation", "mitigation", "climate", "justice", "co-benefits"] }
+        ]
+    },
+    // Geography - Agriculture & Industry
+    {
+        id: "g10-socsci-chemical-fertilizers",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should chemical fertilizers be completely banned?",
+        summary: "Debate on agricultural practices. Team A supports ban for health/environment, Team B argues for food security needs.",
+        hints: ["Team A: Discuss soil degradation, health effects, organic alternatives, water pollution.", "Team B: Discuss food production, population, organic limitations, farmer livelihoods, transition time.", "Consider Green Revolution legacy and organic farming growth."],
+        bullets: [
+            { text: "Team A: Chemical fertilizers SHOULD be banned.", keywords: ["organic", "health", "soil", "pollution", "water", "toxic", "residue", "natural"] },
+            { text: "Team B: Ban would be DISASTROUS.", keywords: ["food", "security", "population", "production", "famine", "farmer", "income", "yield"] },
+            { text: "Examine alternatives.", keywords: ["organic", "Vermicompost", "biofertilizers", "Sikkim", "model", "transition"] },
+            { text: "Propose balanced approach.", keywords: ["integrated", "nutrient", "management", "regulated", "use", "gradual", "shift"] }
+        ]
+    },
+    {
+        id: "g10-socsci-industrialization-poverty",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is industrialization the best way to reduce poverty?",
+        summary: "Debate on poverty alleviation strategies. Team A supports industrialization, Team B argues for agriculture/services focus.",
+        hints: ["Team A: Discuss manufacturing, jobs, exports, technology, SEZ examples, urbanization.", "Team B: Discuss agriculture employment majority, rural development, services, inclusive growth.", "Consider India's mixed economy experience."],
+        bullets: [
+            { text: "Team A: Industrialization IS best way.", keywords: ["manufacturing", "jobs", "Make", "India", "exports", "technology", "urban", "growth"] },
+            { text: "Team B: Other sectors MORE important.", keywords: ["agriculture", "rural", "services", "IT", "inclusive", "employment", "majority"] },
+            { text: "Analyze evidence.", keywords: ["China", "East", "Asia", "MGNREGA", "rural", "urban", "disparity", "statistics"] },
+            { text: "Propose integrated strategy.", keywords: ["agro-industry", "MSME", "skill", "development", "balanced", "multi-pronged"] }
+        ]
+    },
+    {
+        id: "g10-socsci-dams",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Are dams more harmful than beneficial?",
+        summary: "Debate on dam projects. Team A argues dams are harmful, Team B defends their benefits for water/power.",
+        hints: ["Team A: Discuss displacement, environmental damage, siltation, social conflict, alternatives.", "Team B: Discuss irrigation, electricity, flood control, drinking water, development.", "Use examples: Sardar Sarovar, Tehri, Polavaram."],
+        bullets: [
+            { text: "Team A: Dams are MORE HARMFUL.", keywords: ["displacement", "tribal", "submergence", "siltation", "ecology", "Narmada", "Bachao"] },
+            { text: "Team B: Dams are MORE BENEFICIAL.", keywords: ["irrigation", "power", "water", "supply", "flood", "control", "development", "Bhakra"] },
+            { text: "Examine specific cases.", keywords: ["Sardar", "Sarovar", "Tehri", "Polavaram", "costs", "benefits", "analysis"] },
+            { text: "Propose alternatives/best practices.", keywords: ["small", "dams", "check", "rainwater", "harvesting", "solar", "rehabilitation", "consultation"] }
+        ]
+    },
+    // Economics - Development & Growth
+    {
+        id: "g10-socsci-gdp-development",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is GDP the best measure of development?",
+        summary: "Debate on development indicators. Team A defends GDP as practical measure, Team B argues for multidimensional indices.",
+        hints: ["Team A: Discuss economic growth, comparison, data availability, objective measurement.", "Team B: Discuss inequality, happiness, environment, HDI, Bhutan's GNH, beyond GDP.", "Consider HDI, SDG indicators, and other alternatives."],
+        bullets: [
+            { text: "Team A: GDP IS best measure.", keywords: ["growth", "economic", "objective", "compare", "data", "production", "standard"] },
+            { text: "Team B: GDP is INADEQUATE.", keywords: ["inequality", "HDI", "happiness", "environment", "distribution", "quality", "life"] },
+            { text: "Examine alternatives.", keywords: ["HDI", "SDGs", "GNH", "Bhutan", "multidimensional", "poverty", "index"] },
+            { text: "Propose comprehensive approach.", keywords: ["combination", "indicators", "balance", "quantitative", "qualitative", "well-being"] }
+        ]
+    },
+    {
+        id: "g10-socsci-free-services",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should governments provide free basic services (education, healthcare)?",
+        summary: "Debate on welfare state. Team A supports free universal services, Team B argues for targeted/privatized approaches.",
+        hints: ["Team A: Discuss rights, human capital, equality, Kerala model, public investment returns.", "Team B: Discuss fiscal burden, inefficiency, quality issues, targeting, private sector efficiency.", "Consider RTE, RSBY, and Delhi mohalla clinics as examples."],
+        bullets: [
+            { text: "Team A: Services SHOULD be free.", keywords: ["rights", "education", "health", "equality", "human", "capital", "public", "good"] },
+            { text: "Team B: Free services are UNSUSTAINABLE.", keywords: ["fiscal", "deficit", "taxes", "inefficiency", "quality", "target", "private"] },
+            { text: "Analyze models.", keywords: ["Kerala", "Scandinavian", "Delhi", "clinics", "RTE", "outcomes", "comparison"] },
+            { text: "Propose viable approach.", keywords: ["universal", "basic", "quality", "public", "private", "partnership", "targeted"] }
+        ]
+    },
+    {
+        id: "g10-socsci-globalization",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is globalization beneficial for India?",
+        summary: "Debate on economic integration. Team A supports globalization for growth, Team B opposes citing inequality and culture.",
+        hints: ["Team A: Discuss FDI, technology, exports, jobs, competition, IT sector success.", "Team B: Discuss inequality, job losses, MNC dominance, cultural erosion, 1991 crisis.", "Consider post-1991 reforms and their impact."],
+        bullets: [
+            { text: "Team A: Globalization IS beneficial.", keywords: ["growth", "FDI", "technology", "jobs", "exports", "competition", "integration", "IT"] },
+            { text: "Team B: Globalization is HARMFUL.", keywords: ["inequality", "MNCs", "exploitation", "culture", "loss", "agriculture", "distress", "reforms"] },
+            { text: "Analyze 1991 impact.", keywords: ["liberalization", "privatization", "growth", "rate", "poverty", "data", "comparison", "before"] },
+            { text: "Propose managed approach.", keywords: ["strategic", "autonomy", "local", "industry", "protection", "fair", "trade", "regulation"] }
+        ]
+    },
+    // Economics - Consumer Rights & Money
+    {
+        id: "g10-socsci-consumer-benefit",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Do consumers really benefit from globalization?",
+        summary: "Debate on consumer welfare. Team A argues consumers benefit from choice/price, Team B cites quality/safety concerns.",
+        hints: ["Team A: Discuss variety, lower prices, quality standards, competition benefits.", "Team B: Discuss adulteration, fake products, loss of local goods, exploitative marketing.", "Consider consumer courts and protection laws in India."],
+        bullets: [
+            { text: "Team A: Consumers DO benefit.", keywords: ["choice", "variety", "prices", "competition", "quality", "standards", "global", "brands"] },
+            { text: "Team B: Consumers are EXPLOITED.", keywords: ["adulteration", "fake", "local", "loss", "unfair", "marketing", "safety"] },
+            { text: "Examine protection mechanisms.", keywords: ["Consumer", "Protection", "Act", "courts", "COPRA", "awareness", "rights"] },
+            { text: "Assess overall impact.", keywords: ["urban", "rural", "rich", "poor", "digital", "divide", "access", "equity"] }
+        ]
+    },
+    {
+        id: "g10-socsci-online-shopping",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should online shopping be regulated more strictly?",
+        summary: "Debate on e-commerce regulation. Team A supports stricter rules for fairness/privacy, Team B argues for innovation/freedom.",
+        hints: ["Team A: Discuss predatory pricing, data privacy, MSME impact, GST compliance, foreign companies.", "Team B: Discuss innovation, consumer convenience, competition, market freedom, job creation.", "Consider draft e-commerce rules and Flipkart/Amazon issues."],
+        bullets: [
+            { text: "Team A: STRICTER regulation needed.", keywords: ["fair", "market", "data", "privacy", "predatory", "MSME", "FDI", "rules"] },
+            { text: "Team B: Less regulation BETTER.", keywords: ["innovation", "convenience", "jobs", "competition", "freedom", "growth", "technology"] },
+            { text: "Analyze issues.", keywords: ["Amazon", "Flipkart", "deep", "discounting", "inventory", "model", "sellers", "platforms"] },
+            { text: "Propose balanced regulation.", keywords: ["level", "playing", "field", "consumer", "protection", "without", "stifling", "growth"] }
+        ]
+    },
+    {
+        id: "g10-socsci-digital-money",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is digital money safer than cash?",
+        summary: "Debate on payment methods. Team A argues digital is safer, Team B prefers cash for privacy/reliability.",
+        hints: ["Team A: Discuss traceability, reduced theft, convenience, UPI success, formalization.", "Team B: Discuss privacy, cyber fraud, digital divide, power/internet dependency, exclusion.", "Consider demonetization and digital push in India."],
+        bullets: [
+            { text: "Team A: Digital IS safer.", keywords: ["traceable", "transparent", "theft", "UPI", "convenience", "formal", "economy"] },
+            { text: "Team B: Cash is SAFER.", keywords: ["privacy", "cyber", "fraud", "hacking", "infrastructure", "exclusion", "control"] },
+            { text: "Examine India experience.", keywords: ["demonetization", "UPI", "growth", "cash", "return", "RBI", "data", "digital", "push"] },
+            { text: "Propose inclusive approach.", keywords: ["choice", "literacy", "security", "infrastructure", "access", "both", "options"] }
+        ]
+    },
+    // Interdisciplinary / Real-Life Topics
+    {
+        id: "g10-socsci-growth-vs-climate",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should India prioritize economic growth over climate change?",
+        summary: "Debate on national priorities. Team A prioritizes growth for development needs, Team B emphasizes climate action urgency.",
+        hints: ["Team A: Discuss poverty, employment, Western historical emissions, differentiated responsibility.", "Team B: Discuss extreme weather, agriculture vulnerability, renewable opportunities, future costs.", "Consider India's net zero commitment and development paradox."],
+        bullets: [
+            { text: "Team A: Growth IS priority.", keywords: ["poverty", "jobs", "Western", "responsibility", "differentiated", "development", "rights"] },
+            { text: "Team B: Climate IS priority.", keywords: ["existential", "agriculture", "heat", "floods", "costs", "renewable", "leadership"] },
+            { text: "Analyze commitments.", keywords: ["net", "zero", "2070", "COP26", "pledges", "NDCs", "ambition", "action"] },
+            { text: "Find co-benefits.", keywords: ["green", "growth", "jobs", "solar", "LEDS", "sustainable", "development", "low", "carbon"] }
+        ]
+    },
+    {
+        id: "g10-socsci-urbanization",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is urbanization improving quality of life?",
+        summary: "Debate on urban growth. Team A argues cities offer opportunities/better life, Team B cites slums/pollution/stress.",
+        hints: ["Team A: Discuss education, healthcare, employment, connectivity, modern amenities, Smart Cities.", "Team B: Discuss overcrowding, slums, pollution, stress, inequality, loss of community, crime.", "Consider UN projections and India's urban future."],
+        bullets: [
+            { text: "Team A: Urbanization IMPROVES life.", keywords: ["opportunities", "education", "healthcare", "jobs", "amenities", "connectivity", "modern"] },
+            { text: "Team B: Urbanization DEGRADES life.", keywords: ["slums", "pollution", "stress", "inequality", "traffic", "cost", "living", "alienation"] },
+            { text: "Examine evidence.", keywords: ["HDI", "urban", "rural", "data", "infrastructure", "migrant", "challenges", "census"] },
+            { text: "Propose better urbanization.", keywords: ["planned", "cities", "smart", "sustainable", "inclusive", "housing", "transport", "green"] }
+        ]
+    },
+    {
+        id: "g10-socsci-free-education",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Should education be completely free in India?",
+        summary: "Debate on education financing. Team A supports fully free education, Team B argues for fees with scholarships.",
+        hints: ["Team A: Discuss right to education, equality, human capital, RTE, public good.", "Team B: Discuss fiscal cost, quality concerns, accountability, higher education sustainability.", "Consider Finland's model vs. current Indian system."],
+        bullets: [
+            { text: "Team A: Education SHOULD be free.", keywords: ["right", "equality", "RTE", "human", "capital", "public", "good", "investment"] },
+            { text: "Team B: Fees are NECESSARY.", keywords: ["quality", "sustainability", "accountability", "fiscal", "burden", "scholarships", "targeted"] },
+            { text: "Examine global models.", keywords: ["Finland", "Germany", "Scandinavian", "public", "schools", "outcomes", "funding"] },
+            { text: "Propose phased approach.", keywords: ["primary", "secondary", "higher", "funded", "quality", "fees", "waivers", "merit"] }
+        ]
+    },
+    {
+        id: "g10-socsci-inequality",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Debate: Is inequality increasing despite development?",
+        summary: "Debate on growth and distribution. Team A argues inequality is rising, Team B claims development benefits all.",
+        hints: ["Team A: Discuss rising billionaires, Oxfam reports, rural-urban gap, Gini coefficient.", "Team B: Discuss poverty reduction, middle class growth, absolute improvement, global comparison.", "Consider India's inequality data and trickle-down debate."],
+        bullets: [
+            { text: "Team A: Inequality IS increasing.", keywords: ["billionaires", "Oxfam", "Gini", "concentration", "wealth", "top", "1", "percent"] },
+            { text: "Team B: Development helps ALL.", keywords: ["poverty", "reduction", "middle", "class", "consumption", "absolute", "better", "trickle"] },
+            { text: "Analyze data.", keywords: ["PLFS", "NSSO", "income", "distribution", "wealth", "gap", "statistics", "trends"] },
+            { text: "Propose inclusive policies.", keywords: ["progressive", "tax", "MGNREGA", "direct", "benefit", "transfer", "redistribution", "equity"] }
+        ]
     }
 ];
 
