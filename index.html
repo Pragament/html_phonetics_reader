@@ -30,7 +30,7 @@
 
     
 </head>
-<body>
+<body class="practice-focus">
     <div class="sticky-header">
         <!-- Add this auth section at the beginning of the sticky header -->
         <div class="auth-section">
@@ -76,6 +76,8 @@
                 <span class="slider"></span>
             </label>
         </div>
+
+        <button id="toggleLegacyUiBtn" class="practice-toggle-btn" type="button">Show Phonetics Reader</button>
     </div>
     
     <div class="main-container">
@@ -179,6 +181,137 @@
             </div>
         </div>
     </div>
+
+    <section class="practice-shell" aria-labelledby="practiceTitle">
+        <div class="practice-hero">
+            <div>
+                <p class="eyebrow">Spoken English Practice</p>
+                <h2 id="practiceTitle">STEM conversation lab with WebLLM</h2>
+                <p class="practice-subtitle">
+                    Pick a CBSE topic, load an on-device model, talk naturally, and get instant speaking feedback with a color-coded correction diff.
+                </p>
+            </div>
+            <div class="practice-status-card">
+                <span class="status-kicker">Model Status</span>
+                <strong id="llmStatusLabel">Not loaded</strong>
+                <span id="llmProgressText">Choose a model and load it to start live practice.</span>
+                <div class="progress-track" aria-hidden="true">
+                    <div id="llmProgressBar" class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="practice-grid">
+            <aside class="practice-sidebar">
+                <div class="practice-card">
+                    <div class="section-label">
+                        <span>Model</span>
+                    </div>
+                    <select id="llmModelSelect"></select>
+                    <button id="loadModelBtn" class="practice-action">Load Selected Model</button>
+                </div>
+
+                <div class="practice-card">
+                    <div class="section-label">
+                        <span>Topic Filters</span>
+                    </div>
+                    <div class="filter-grid">
+                        <select id="cbseGradeFilter">
+                            <option value="all">All CBSE grades</option>
+                        </select>
+                        <select id="subjectFilter">
+                            <option value="all">All subjects</option>
+                        </select>
+                    </div>
+                    <input type="text" id="topicSearchInput" placeholder="Search topic keywords">
+                    <div id="topicList" class="topic-list"></div>
+                </div>
+            </aside>
+
+            <div class="practice-main">
+                <div class="practice-card selected-topic-card">
+                    <div class="selected-topic-header">
+                        <div>
+                            <p class="status-kicker">Selected Topic</p>
+                            <h3 id="selectedTopicTitle">Choose a topic to begin</h3>
+                        </div>
+                        <div id="selectedTopicMeta" class="topic-meta-pills"></div>
+                    </div>
+                    <p id="selectedTopicSummary" class="selected-topic-summary">
+                        Filter the topic list by CBSE grade and subject, then choose a science, technology, engineering or mathematics topic for practice.
+                    </p>
+                    <div class="hint-columns">
+                        <div>
+                            <h4>Conversation Hints</h4>
+                            <ul id="topicHintsList" class="hint-list"></ul>
+                        </div>
+                        <div>
+                            <h4>Practice Checklist</h4>
+                            <ul id="topicBulletList" class="bullet-progress-list"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practice-card conversation-card">
+                    <div class="conversation-toolbar">
+                        <div>
+                            <p class="status-kicker">Live Chat</p>
+                            <h3>Speak and practice in English</h3>
+                        </div>
+                        <div class="conversation-actions">
+                            <button id="practiceMicBtn" class="practice-action secondary">Start Speaking</button>
+                            <button id="stopSpeechBtn" class="practice-action ghost">Stop Voice</button>
+                        </div>
+                    </div>
+
+                    <div id="speechSupportNote" class="support-note"></div>
+                    <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+
+                    <div class="composer">
+                        <textarea id="practiceInput" placeholder="Say or type your answer in English. Example: Photosynthesis is the process by which green plants make food using sunlight, carbon dioxide, and water."></textarea>
+                        <div class="composer-actions">
+                            <span id="listeningBadge" class="listening-badge">Mic idle</span>
+                            <button id="sendPracticeBtn" class="practice-action">Send to Tutor</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-grid">
+                    <div class="practice-card">
+                        <div class="section-label">
+                            <span>Instant Feedback</span>
+                        </div>
+                        <div id="feedbackSummary" class="feedback-summary">Your grammar, fluency and topic coverage feedback will appear here after each turn.</div>
+                        <div class="feedback-metrics">
+                            <div class="metric-chip">
+                                <span>Grammar</span>
+                                <strong id="grammarScore">0%</strong>
+                            </div>
+                            <div class="metric-chip">
+                                <span>Topic Coverage</span>
+                                <strong id="coverageScore">0%</strong>
+                            </div>
+                            <div class="metric-chip">
+                                <span>Turns</span>
+                                <strong id="turnCount">0</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="practice-card">
+                        <div class="section-label">
+                            <span>Correction Diff</span>
+                        </div>
+                        <div id="diffLegend" class="diff-legend">
+                            <span class="diff-added-label">Added / corrected</span>
+                            <span class="diff-removed-label">Needs fixing</span>
+                        </div>
+                        <div id="feedbackDiff" class="feedback-diff">The tutor-corrected version of your sentence will appear here with inline color highlights.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <div id="promptsModal" class="modal">
         <div class="modal-content">
@@ -271,6 +404,8 @@
     </div>
 
     
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
+    <script type="module" src="webllm-practice.js"></script>
 </body>
 </html>
