@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMV6FJHHE4"></script>
-     <!-- Firebase App (the core Firebase SDK) -->
+    <!-- Firebase App (the core Firebase SDK) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 
     <!-- Firebase Analytics -->
@@ -18,10 +19,10 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-RMV6FJHHE4');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-RMV6FJHHE4');
     </script>
 
     <title>Phonetics Reader</title>
@@ -30,9 +31,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.3.1/dist/driver.css" />
 
-    
 </head>
+
 <body class="practice-focus">
     <div class="sticky-header">
         <!-- Add this auth section at the beginning of the sticky header -->
@@ -46,12 +48,12 @@
                 <button id="signOutButton" class="auth-btn">Sign out</button>
             </div>
         </div>
-        
+
         <div class="control-buttons">
             <button id="toggleSpeakBtn">Speak</button>
             <button id="pauseBtn">Pause</button>
         </div>
-        
+
         <div class="control-group">
             <span class="control-label">Speed:</span>
             <div class="number-control">
@@ -60,7 +62,7 @@
                 <button class="number-btn" id="speedUp">+</button>
             </div>
         </div>
-        
+
         <div class="control-group">
             <span class="control-label">Word:</span>
             <div class="number-control">
@@ -71,7 +73,7 @@
             <span class="control-label">of</span>
             <span id="totalWords">0</span>
         </div>
-        
+
         <div class="switch-container">
             <span class="control-label">Loop:</span>
             <label class="switch">
@@ -80,9 +82,16 @@
             </label>
         </div>
 
-        <button id="toggleLegacyUiBtn" class="practice-toggle-btn" type="button">Show Phonetics Reader</button>
+        <button id="toggleLegacyUiBtn" class="practice-toggle-btn" type="button">
+            Show Phonetics Reader
+        </button>
+
+        <button id="startTourBtn" class="floating-tour-btn">
+            <span style="margin-right:5px;">💡</span>
+            Start Tour
+        </button>
     </div>
-    
+
     <div class="main-container">
         <div class="sidebar">
             <div class="output-header">
@@ -96,13 +105,14 @@
             <div id="phoneticsOutput"></div>
             <div class="word-count" id="wordCount">Total words: 0</div>
         </div>
-        
+
         <div class="content-area">
             <h1>Phonetics Reader</h1>
-            
+
             <div class="input-section">
-                <textarea id="inputText" placeholder="Enter a sentence to see its phonetics and hear it spoken aloud...">The quick brown fox jumps over the lazy dog. This sentence contains all letters of the English alphabet.</textarea>
-                
+                <textarea id="inputText"
+                    placeholder="Enter a sentence to see its phonetics and hear it spoken aloud...">The quick brown fox jumps over the lazy dog. This sentence contains all letters of the English alphabet.</textarea>
+
                 <!-- System Prompt Dropdown Section -->
                 <div class="system-prompt-section">
                     <div class="section-label">
@@ -115,19 +125,19 @@
                         <option value="translate">Translate to English</option>
                     </select>
                 </div>
-                
+
                 <div class="text-controls">
                     <button class="text-btn" id="clearBtn">Clear Text</button>
                     <button class="text-btn" id="pasteBtn">Paste from Clipboard</button>
                     <button class="text-btn" id="microphoneBtn">🎤 Speech Input</button>
                     <button class="text-btn" id="autoCorrectBtn">Apply Prompt</button>
                 </div>
-                
+
                 <div class="android-warning" id="androidWarning">
                     Optimized for Android Chrome - speaking word by word
                 </div>
             </div>
-            
+
             <div class="controls">
                 <div class="control-section">
                     <div class="section-label">
@@ -136,7 +146,7 @@
                     </div>
                     <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
                 </div>
-                
+
                 <div class="control-section voice-selector">
                     <div class="section-label">
                         <span>Voice</span>
@@ -145,16 +155,17 @@
                         <option value="">Default</option>
                     </select>
                 </div>
-                
+
                 <div class="control-section">
                     <div class="word-nav-container">
                         <div class="section-label">
                             <span>Word Navigation</span>
                             <span class="value" id="wordPosition">0/0</span>
                         </div>
-                        <input type="range" id="wordSliderFull" class="word-slider" min="0" value="0" step="1" style="flex-grow: 1;">
+                        <input type="range" id="wordSliderFull" class="word-slider" min="0" value="0" step="1"
+                            style="flex-grow: 1;">
                     </div>
-                    
+
                     <div class="section-label">
                         <span>Jump by Words</span>
                     </div>
@@ -191,7 +202,8 @@
                 <p class="eyebrow">Spoken English Practice</p>
                 <h2 id="practiceTitle">STEM conversation lab with WebLLM</h2>
                 <p class="practice-subtitle">
-                    Pick a CBSE topic, load an on-device model, talk naturally, and get instant speaking feedback with a color-coded correction diff.
+                    Pick a CBSE topic, load an on-device model, talk naturally, and get instant speaking feedback with a
+                    color-coded correction diff.
                 </p>
             </div>
             <div class="practice-status-card">
@@ -204,7 +216,8 @@
                 <div id="pwaPrompt" class="pwa-prompt" hidden>
                     <div>
                         <strong id="pwaPromptTitle">Install app</strong>
-                        <p id="pwaPromptText">Install this site as a desktop app for faster access and a distraction-free practice window.</p>
+                        <p id="pwaPromptText">Install this site as a desktop app for faster access and a
+                            distraction-free practice window.</p>
                     </div>
                     <button id="pwaActionBtn" class="practice-action ghost" type="button">Install App</button>
                 </div>
@@ -269,7 +282,8 @@
                         <div id="selectedTopicMeta" class="topic-meta-pills"></div>
                     </div>
                     <p id="selectedTopicSummary" class="selected-topic-summary">
-                        Filter the topic list by CBSE grade and subject, then choose a science, technology, engineering or mathematics topic for practice.
+                        Filter the topic list by CBSE grade and subject, then choose a science, technology, engineering
+                        or mathematics topic for practice.
                     </p>
                     <div class="hint-columns">
                         <div>
@@ -299,7 +313,8 @@
                     <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
 
                     <div class="composer">
-                        <textarea id="practiceInput" placeholder="Say or type your answer in English. Example: Photosynthesis is the process by which green plants make food using sunlight, carbon dioxide, and water."></textarea>
+                        <textarea id="practiceInput"
+                            placeholder="Say or type your answer in English. Example: Photosynthesis is the process by which green plants make food using sunlight, carbon dioxide, and water."></textarea>
                         <div class="composer-actions">
                             <span id="listeningBadge" class="listening-badge">Mic idle</span>
                             <button id="sendPracticeBtn" class="practice-action">Send to Tutor</button>
@@ -312,7 +327,8 @@
                         <div class="section-label">
                             <span>Instant Feedback</span>
                         </div>
-                        <div id="feedbackSummary" class="feedback-summary">Your grammar, fluency and topic coverage feedback will appear here after each turn.</div>
+                        <div id="feedbackSummary" class="feedback-summary">Your grammar, fluency and topic coverage
+                            feedback will appear here after each turn.</div>
                         <div class="feedback-metrics">
                             <div class="metric-chip">
                                 <span>Grammar</span>
@@ -359,13 +375,14 @@
                             <span class="diff-added-label">Added / corrected</span>
                             <span class="diff-removed-label">Needs fixing</span>
                         </div>
-                        <div id="feedbackDiff" class="feedback-diff">The tutor-corrected version of your sentence will appear here with inline color highlights.</div>
+                        <div id="feedbackDiff" class="feedback-diff">The tutor-corrected version of your sentence will
+                            appear here with inline color highlights.</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <div id="promptsModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -375,7 +392,9 @@
             <div class="modal-body">
                 <div class="custom-prompt-form">
                     <input type="text" id="newPromptName" placeholder="Prompt name" class="modal-input">
-                    <textarea id="newPromptText" placeholder="Enter your custom prompt template. Use {text} as placeholder for the input text." class="modal-textarea"></textarea>
+                    <textarea id="newPromptText"
+                        placeholder="Enter your custom prompt template. Use {text} as placeholder for the input text."
+                        class="modal-textarea"></textarea>
                     <button id="addPromptBtn" class="text-btn">Add Prompt</button>
                 </div>
                 <div class="custom-prompts-list">
@@ -400,31 +419,31 @@
             <button id="clearHistoryBtn">Clear All History</button>
         </div>
     </div>
-        
+
     <div id="publishModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-            <h2>Publish Read</h2>
-            <span class="close">&times;</span>
+                <h2>Publish Read</h2>
+                <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-            <p id="publishTextPreview"></p>
-            
-            <!-- Class Selector -->
-            <label for="publishClass">Class/Category:</label>
-            <select id="publishClass">
-                <option value="general">General</option>
-                <option value="english">English</option>
-                <option value="phonetics">Phonetics</option>
-                <option value="linguistics">Linguistics</option>
-            </select>
+                <p id="publishTextPreview"></p>
 
-            <!-- Tags Input -->
-            <label for="publishTags">Tags (comma separated):</label>
-            <input type="text" id="publishTags" placeholder="e.g., vowels, IPA, practice">
+                <!-- Class Selector -->
+                <label for="publishClass">Class/Category:</label>
+                <select id="publishClass">
+                    <option value="general">General</option>
+                    <option value="english">English</option>
+                    <option value="phonetics">Phonetics</option>
+                    <option value="linguistics">Linguistics</option>
+                </select>
 
-            <!-- Publish Button -->
-            <button id="confirmPublishBtn">Publish</button>
+                <!-- Tags Input -->
+                <label for="publishTags">Tags (comma separated):</label>
+                <input type="text" id="publishTags" placeholder="e.g., vowels, IPA, practice">
+
+                <!-- Publish Button -->
+                <button id="confirmPublishBtn">Publish</button>
             </div>
         </div>
     </div>
@@ -443,12 +462,12 @@
             </select>
 
             <label for="filterDate">Date Range:</label>
-            <input type="date" id="filterStart"> to 
+            <input type="date" id="filterStart"> to
             <input type="date" id="filterEnd">
 
             <label for="filterTags">Tags:</label>
             <input type="text" id="filterTags" placeholder="comma separated">
-            
+
             <button id="applyFiltersBtn">Apply Filters</button>
         </div>
 
@@ -456,9 +475,18 @@
         <ul id="communityList"></ul>
     </div>
 
-    
+    <button id="startTourBtn" class="floating-tour-btn">
+        <span style="margin-right: 5px;">💡</span> Start Tour
+    </button>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.3.1/dist/driver.js.iife.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
     <script type="module" src="webllm-practice.js"></script>
+    <script src="tour.js"></script>
+
 </body>
+</body>
+
 </html>

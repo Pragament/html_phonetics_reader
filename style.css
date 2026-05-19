@@ -231,16 +231,19 @@ button:hover {
 button:active {
     transform: translateY(0);
 }
+
 /* 🔥 Highlight Auto Correct button */
 .autocorrect-btn {
-    background-color: #ffaa00;  /* orange */
+    background-color: #ffaa00;
+    /* orange */
     font-weight: bold;
     transform: scale(1.1);
     transition: 0.2s;
 }
 
 .autocorrect-btn:hover {
-    background-color: #e68900; /* darker orange */
+    background-color: #e68900;
+    /* darker orange */
     transform: scale(1.15);
 }
 
@@ -618,7 +621,8 @@ select {
     padding: 20px;
 }
 
-.modal-input, .modal-textarea {
+.modal-input,
+.modal-textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -706,7 +710,7 @@ select {
         align-items: flex-start;
         gap: 5px;
     }
-    
+
     .prompt-actions {
         flex-direction: column;
     }
@@ -720,7 +724,8 @@ select {
     margin-bottom: 10px;
 }
 
-.modal-input:focus, .modal-textarea:focus {
+.modal-input:focus,
+.modal-textarea:focus {
     border-color: #6e8efb;
     outline: none;
     box-shadow: 0 0 0 2px rgba(110, 142, 251, 0.2);
@@ -763,9 +768,17 @@ select {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Recognition status indicator */
@@ -805,8 +818,13 @@ select {
 }
 
 @keyframes fadeHighlight {
-    0% { background-color: #ffeb3b; }
-    100% { background-color: transparent; }
+    0% {
+        background-color: #ffeb3b;
+    }
+
+    100% {
+        background-color: transparent;
+    }
 }
 
 /* ===== AUTHENTICATION STYLES ===== */
@@ -844,7 +862,7 @@ select {
     height: 30px;
     border-radius: 50%;
     border: 2px solid #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #userName {
@@ -866,13 +884,13 @@ select {
         justify-content: center;
         margin-bottom: 10px;
     }
-    
+
     #userInfo {
         flex-direction: column;
         gap: 5px;
         text-align: center;
     }
-    
+
     #userName {
         max-width: 100px;
     }
@@ -883,7 +901,7 @@ select {
         padding: 5px 10px;
         font-size: 12px;
     }
-    
+
     #userName {
         font-size: 12px;
         max-width: 80px;
@@ -909,7 +927,9 @@ select {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Notification toast for auth messages */
@@ -1050,7 +1070,7 @@ select {
     color: #555;
 }
 
-.community-filters select, 
+.community-filters select,
 .community-filters input {
     padding: 6px;
     border: 1px solid #ddd;
@@ -1092,20 +1112,23 @@ select {
 }
 
 /* Error and empty state messages */
-#historyList li, #communityList li {
+#historyList li,
+#communityList li {
     font-style: italic;
     color: #777;
     justify-content: center;
     border-left: 4px solid #ddd;
 }
 
-#historyList li, #communityList li {
+#historyList li,
+#communityList li {
     font-style: italic;
     color: #777;
     justify-content: center;
     border-left: 4px solid #ddd;
 }
-#historyList li:not(:has(div)) button, 
+
+#historyList li:not(:has(div)) button,
 #communityList li:not(:has(div)) button {
     display: none;
 }
@@ -1116,12 +1139,12 @@ select {
         grid-template-columns: 1fr;
         gap: 5px;
     }
-    
+
     #historyList li {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     #historyList li div:last-child {
         margin-top: 10px;
         align-self: flex-end;
@@ -1137,6 +1160,7 @@ select {
 .btn {
     display: none;
 }
+
 .loading {
     text-align: center;
     color: #666;
@@ -1148,9 +1172,11 @@ select {
     color: #f44336;
     font-weight: bold;
 }
+
 /* Pronunciation feedback highlights */
 .pronunciation-match {
-    background-color: #4CAF50 !important;  /* Green */
+    background-color: #4CAF50 !important;
+    /* Green */
     color: white;
     padding: 2px 6px;
     border-radius: 3px;
@@ -1158,7 +1184,8 @@ select {
 }
 
 .pronunciation-mismatch {
-    background-color: #f44336 !important;  /* Red */
+    background-color: #f44336 !important;
+    /* Red */
     color: white;
     padding: 2px 6px;
     border-radius: 3px;
@@ -1514,7 +1541,7 @@ select {
     margin: 0;
 }
 
-.chat-message p + p,
+.chat-message p+p,
 .chat-message ul,
 .chat-message ol,
 .chat-message pre,
@@ -1561,9 +1588,17 @@ select {
 }
 
 @keyframes practicePulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.04); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .feedback-grid {
@@ -1694,6 +1729,7 @@ select {
 }
 
 @media (max-width: 980px) {
+
     .practice-grid,
     .feedback-grid,
     .hint-columns,
@@ -1721,4 +1757,102 @@ select {
     .pwa-prompt {
         align-items: stretch;
     }
+}
+
+/* ===== TOUR BUTTON ===== */
+
+.floating-tour-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 14px 22px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, #0a84ff, #00a6a6);
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+
+    transition: all 0.25s ease;
+}
+
+.floating-tour-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+}
+
+.floating-tour-btn:active {
+    transform: scale(0.98);
+}
+
+/* ===== DRIVER.JS TOUR CUSTOM COLORS ===== */
+
+.driver-popover {
+    background-color: #788bff !important;
+    color: white !important;
+}
+
+.driver-popover-title {
+    color: white !important;
+}
+
+.driver-popover-description {
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.driver-popover-progress-text {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.driver-popover-prev-btn,
+.driver-popover-next-btn,
+.driver-popover-done-btn {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    text-shadow: none !important;
+}
+
+.driver-popover-prev-btn:hover,
+.driver-popover-next-btn:hover,
+.driver-popover-done-btn:hover {
+    background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.driver-popover-close-btn {
+    color: white !important;
+}
+
+.driver-popover-close-btn:hover {
+    color: rgba(255, 255, 255, 0.75) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.driver-popover-arrow-side-left .driver-popover-arrow {
+    border-left-color: #788bff !important;
+}
+
+.driver-popover-arrow-side-right .driver-popover-arrow {
+    border-right-color: #788bff !important;
+}
+
+.driver-popover-arrow-side-top .driver-popover-arrow {
+    border-top-color: #788bff !important;
+}
+
+.driver-popover-arrow-side-bottom .driver-popover-arrow {
+    border-bottom-color: #788bff !important;
 }
