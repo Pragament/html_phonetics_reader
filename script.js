@@ -1062,38 +1062,38 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     function highlightPronunciationFeedback(recognizedWord) {
-    const normalizedRec = normalizeWord(recognizedWord);
+        const normalizedRec = normalizeWord(recognizedWord);
 
-    if (pronunciationPosition >= expectedWords.length) {
-        recognitionStatus.textContent = 'Well done! End of text reached. 🎉';
-        recognitionStatus.classList.add('active');
-        return;
-    }
-
-    const expected = expectedWords[pronunciationPosition];
-    const wordElement = document.getElementById(`word-${pronunciationPosition}`);
-
-    if (wordElement) {
-        wordElement.classList.remove('pronunciation-match', 'pronunciation-mismatch');
-
-        if (normalizedRec === expected) {
-            wordElement.classList.add('pronunciation-match');
-            recognitionStatus.textContent = `Correct: "${recognizedWord}" ✓`;
-        } else {
-            wordElement.classList.add('pronunciation-mismatch');
-            recognitionStatus.textContent = `Try: "${words[pronunciationPosition]}" (heard "${recognizedWord}")`;
+        if (pronunciationPosition >= expectedWords.length) {
+            recognitionStatus.textContent = 'Well done! End of text reached. 🎉';
+            recognitionStatus.classList.add('active');
+            return;
         }
 
-        wordElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        recognitionStatus.classList.add('active');
+        const expected = expectedWords[pronunciationPosition];
+        const wordElement = document.getElementById(`word-${pronunciationPosition}`);
+
+        if (wordElement) {
+            wordElement.classList.remove('pronunciation-match', 'pronunciation-mismatch');
+
+            if (normalizedRec === expected) {
+                wordElement.classList.add('pronunciation-match');
+                recognitionStatus.textContent = `Correct: "${recognizedWord}" ✓`;
+            } else {
+                wordElement.classList.add('pronunciation-mismatch');
+                recognitionStatus.textContent = `Try: "${words[pronunciationPosition]}" (heard "${recognizedWord}")`;
+            }
+
+            wordElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            recognitionStatus.classList.add('active');
+        }
+
+        // ALWAYS advance immediately after feedback
+        pronunciationPosition++;
+
+        // Optional: If wrong, give extra time before next word is expected
+        // But position already advanced, so next spoken word will match next expected
     }
-
-    // ALWAYS advance immediately after feedback
-    pronunciationPosition++;
-
-    // Optional: If wrong, give extra time before next word is expected
-    // But position already advanced, so next spoken word will match next expected
-}
 
     // Highlight the current word being spoken
     function highlightWord(index) {
