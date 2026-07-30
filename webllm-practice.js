@@ -24,7 +24,7 @@ const MODEL_OPTIONS = [
 ];
 
 const STEM_TOPICS = [
-    // Grade 4 Science
+    // === GRADE 4 SCIENCE ===
     {
         id: "g4-sci-plants",
         grade: "Grade 4",
@@ -81,7 +81,8 @@ const STEM_TOPICS = [
             { text: "Mention conservation methods.", keywords: ["save", "waste", "tap", "reuse", "harvest"] }
         ]
     },
-    // Grade 4 Math
+
+    // === GRADE 4 MATHEMATICS ===
     {
         id: "g4-math-numbers",
         grade: "Grade 4",
@@ -110,7 +111,78 @@ const STEM_TOPICS = [
             { text: "Check answers.", keywords: ["verify", "check", "correct", "answer"] }
         ]
     },
-    // Grade 5 Science
+    {
+        id: "g4-math-multiplication",
+        grade: "Grade 4",
+        subject: "Mathematics",
+        title: "Multiplication and Division",
+        summary: "Learn multiplication and division of large numbers.",
+        hints: ["Explain multiplication by 10, 100, 1000.", "Show how to divide by 10, 100, 1000.", "Use multiplication and division in word problems."],
+        bullets: [
+            { text: "Multiply by multiples of 10.", keywords: ["multiply", "10", "100", "1000", "trick"] },
+            { text: "Divide by multiples of 10.", keywords: ["divide", "10", "100", "1000", "short"] },
+            { text: "Solve word problems.", keywords: ["problem", "story", "product", "quotient"] },
+            { text: "Check answers.", keywords: ["verify", "inverse", "check", "correct"] }
+        ]
+    },
+    {
+        id: "g4-math-fractions",
+        grade: "Grade 4",
+        subject: "Mathematics",
+        title: "Fractions",
+        summary: "Understand fractions as part of a whole and compare them.",
+        hints: ["Define numerator and denominator.", "Compare fractions with same denominator.", "Add and subtract simple fractions."],
+        bullets: [
+            { text: "Identify fractions.", keywords: ["fraction", "numerator", "denominator", "part", "whole"] },
+            { text: "Compare fractions.", keywords: ["compare", "greater", "smaller", "same", "denominator"] },
+            { text: "Add fractions.", keywords: ["add", "fraction", "same", "denominator", "sum"] },
+            { text: "Subtract fractions.", keywords: ["subtract", "fraction", "same", "denominator", "difference"] }
+        ]
+    },
+    {
+        id: "g4-math-perimeter",
+        grade: "Grade 4",
+        subject: "Mathematics",
+        title: "Perimeter and Area",
+        summary: "Calculate the perimeter and area of squares and rectangles.",
+        hints: ["Define perimeter as boundary length.", "Define area as space inside.", "Use formulas for rectangles and squares."],
+        bullets: [
+            { text: "Calculate perimeter.", keywords: ["perimeter", "sum", "sides", "rectangle", "square", "unit"] },
+            { text: "Calculate area.", keywords: ["area", "length", "breadth", "side", "square", "unit"] },
+            { text: "Use formulas.", keywords: ["rectangle", "square", "2", "l", "+", "b", "side"] },
+            { text: "Solve word problems.", keywords: ["problem", "story", "area", "perimeter", "application"] }
+        ]
+    },
+    {
+        id: "g4-math-time",
+        grade: "Grade 4",
+        subject: "Mathematics",
+        title: "Time and Calendar",
+        summary: "Learn to read time and use a calendar.",
+        hints: ["Convert hours to minutes.", "Read the calendar (days, weeks, months).", "Calculate time duration."],
+        bullets: [
+            { text: "Read time.", keywords: ["hour", "minute", "second", "clock", "AM", "PM"] },
+            { text: "Convert time units.", keywords: ["convert", "minutes", "hours", "days", "weeks", "months"] },
+            { text: "Use a calendar.", keywords: ["calendar", "days", "dates", "months", "year"] },
+            { text: "Calculate duration.", keywords: ["duration", "start", "end", "time", "between"] }
+        ]
+    },
+    {
+        id: "g4-math-money",
+        grade: "Grade 4",
+        subject: "Mathematics",
+        title: "Money (Rupees and Paise)",
+        summary: "Solve problems involving money, including addition and subtraction.",
+        hints: ["Convert rupees to paise.", "Add and subtract amounts.", "Solve word problems on buying and selling."],
+        bullets: [
+            { text: "Convert money.", keywords: ["rupees", "paise", "convert", "decimal", "value"] },
+            { text: "Add money.", keywords: ["add", "total", "sum", "rupees", "paise"] },
+            { text: "Subtract money.", keywords: ["subtract", "balance", "difference", "cost", "paid"] },
+            { text: "Solve word problems.", keywords: ["problem", "shop", "buy", "sell", "change"] }
+        ]
+    },
+
+    // === GRADE 5 SCIENCE ===
     {
         id: "g5-sci-plants",
         grade: "Grade 5",
@@ -153,7 +225,22 @@ const STEM_TOPICS = [
             { text: "Mention vaccination importance.", keywords: ["vaccine", "immunization", "prevent", "disease"] }
         ]
     },
-    // Grade 5 Math
+    {
+        id: "g5-sci-force",
+        grade: "Grade 5",
+        subject: "Science",
+        title: "Force and Energy (Simple Machines)",
+        summary: "Understand the concept of force and different simple machines.",
+        hints: ["Define force and its effects.", "List different simple machines.", "Explain how each simple machine makes work easier."],
+        bullets: [
+            { text: "Define force.", keywords: ["force", "push", "pull", "move", "stop"] },
+            { text: "List simple machines.", keywords: ["lever", "pulley", "wheel", "axle", "inclined", "plane", "screw"] },
+            { text: "Explain levers.", keywords: ["lever", "fulcrum", "load", "effort", "seesaw"] },
+            { text: "Mention uses of simple machines.", keywords: ["crane", "ramp", "bottle", "opener", "scissors"] }
+        ]
+    },
+
+    // === GRADE 5 MATHEMATICS ===
     {
         id: "g5-math-factors",
         grade: "Grade 5",
@@ -196,7 +283,50 @@ const STEM_TOPICS = [
             { text: "Compare decimal numbers.", keywords: ["compare", "greater", "smaller", "decimal", "value"] }
         ]
     },
-    // Grade 6 Science
+    {
+        id: "g5-math-geometry",
+        grade: "Grade 5",
+        subject: "Mathematics",
+        title: "Geometry and Shapes",
+        summary: "Learn about 2D and 3D shapes and their properties.",
+        hints: ["Identify different 2D shapes.", "Identify different 3D shapes.", "Define line, line segment, ray, and angle."],
+        bullets: [
+            { text: "Identify 2D shapes.", keywords: ["circle", "square", "rectangle", "triangle", "pentagon"] },
+            { text: "Identify 3D shapes.", keywords: ["cube", "cuboid", "cone", "cylinder", "sphere"] },
+            { text: "Define lines and angles.", keywords: ["line", "line", "segment", "ray", "angle", "right"] },
+            { text: "Draw and measure angles.", keywords: ["protractor", "degree", "acute", "obtuse", "right"] }
+        ]
+    },
+    {
+        id: "g5-math-perimeter",
+        grade: "Grade 5",
+        subject: "Mathematics",
+        title: "Perimeter, Area, and Volume",
+        summary: "Calculate perimeter, area, and volume of basic shapes.",
+        hints: ["Use formulas for perimeter and area.", "Explain volume as space occupied.", "Calculate volume of cubes and cuboids."],
+        bullets: [
+            { text: "Calculate perimeter.", keywords: ["perimeter", "rectangle", "square", "triangle", "sum"] },
+            { text: "Calculate area.", keywords: ["area", "rectangle", "square", "triangle", "length", "breadth"] },
+            { text: "Calculate volume.", keywords: ["volume", "cube", "cuboid", "length", "width", "height"] },
+            { text: "Solve word problems.", keywords: ["problem", "story", "area", "volume", "application"] }
+        ]
+    },
+    {
+        id: "g5-math-data",
+        grade: "Grade 5",
+        subject: "Mathematics",
+        title: "Data Handling",
+        summary: "Learn to represent data using pictographs and bar graphs.",
+        hints: ["Collect and organize data.", "Draw a pictograph.", "Draw a bar graph."],
+        bullets: [
+            { text: "Collect and organize data.", keywords: ["data", "tally", "frequency", "table", "organize"] },
+            { text: "Draw pictographs.", keywords: ["pictograph", "symbol", "key", "represent", "data"] },
+            { text: "Draw bar graphs.", keywords: ["bar", "graph", "scale", "bars", "represent"] },
+            { text: "Interpret graphs.", keywords: ["interpret", "read", "graph", "data", "information"] }
+        ]
+    },
+
+    // === GRADE 6 SCIENCE ===
     {
         id: "g6-sci-food",
         grade: "Grade 6",
@@ -267,7 +397,78 @@ const STEM_TOPICS = [
             { text: "List conservation methods.", keywords: ["rainwater", "harvesting", "recycle", "reuse", "conserve"] }
         ]
     },
-    // Grade 6 Math
+    {
+        id: "g6-sci-fiber",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Fibre to Fabric",
+        summary: "Learn about the process of making fabric from fibre.",
+        hints: ["Explain the difference between natural and synthetic fibres.", "Describe the process of spinning and weaving.", "Give examples of natural and synthetic fibres."],
+        bullets: [
+            { text: "Classify fibres.", keywords: ["natural", "synthetic", "plant", "animal", "fibre"] },
+            { text: "Explain spinning.", keywords: ["spinning", "yarn", "thread", "twist", "fibre"] },
+            { text: "Describe weaving.", keywords: ["weaving", "loom", "fabric", "warp", "weft"] },
+            { text: "List fibre sources.", keywords: ["cotton", "jute", "silk", "wool", "polyester", "nylon"] }
+        ]
+    },
+    {
+        id: "g6-sci-changes",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Changes Around Us",
+        summary: "Understand different types of changes: physical and chemical.",
+        hints: ["Define physical change.", "Define chemical change.", "Give examples of reversible and irreversible changes."],
+        bullets: [
+            { text: "Define physical change.", keywords: ["physical", "change", "reversible", "shape", "state"] },
+            { text: "Define chemical change.", keywords: ["chemical", "new", "substance", "irreversible", "reaction"] },
+            { text: "Give examples of changes.", keywords: ["melting", "burning", "rusting", "cooking", "cutting"] },
+            { text: "Explain reversible changes.", keywords: ["reversible", "reverse", "original", "form", "change"] }
+        ]
+    },
+    {
+        id: "g6-sci-magnets",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Fun with Magnets",
+        summary: "Learn about magnets, their properties, and uses.",
+        hints: ["Explain the properties of magnets.", "Describe how magnets attract and repel.", "Give uses of magnets in daily life."],
+        bullets: [
+            { text: "Define magnet.", keywords: ["magnet", "attract", "iron", "pole", "magnetic"] },
+            { text: "Explain magnet properties.", keywords: ["poles", "north", "south", "attract", "repel"] },
+            { text: "Classify magnetic materials.", keywords: ["magnetic", "non-magnetic", "iron", "cobalt", "nickel"] },
+            { text: "List uses of magnets.", keywords: ["compass", "speaker", "motor", "generator", "toy"] }
+        ]
+    },
+    {
+        id: "g6-sci-garbage",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Garbage In, Garbage Out",
+        summary: "Understand waste management and recycling.",
+        hints: ["Explain the difference between biodegradable and non-biodegradable waste.", "Describe composting.", "Mention the importance of reducing, reusing, and recycling."],
+        bullets: [
+            { text: "Classify waste.", keywords: ["biodegradable", "non-biodegradable", "garbage", "waste"] },
+            { text: "Explain composting.", keywords: ["compost", "manure", "organic", "decompose", "fertilizer"] },
+            { text: "Describe recycling.", keywords: ["recycle", "paper", "plastic", "glass", "metal"] },
+            { text: "Mention 3R principle.", keywords: ["reduce", "reuse", "recycle", "waste", "management"] }
+        ]
+    },
+    {
+        id: "g6-sci-electricity",
+        grade: "Grade 6",
+        subject: "Science",
+        title: "Electricity and Circuits",
+        summary: "Understand electric current and simple circuits.",
+        hints: ["Explain the concept of electric current.", "Describe the components of a circuit.", "Draw simple circuit diagrams."],
+        bullets: [
+            { text: "Define electric current.", keywords: ["current", "electricity", "flow", "charge", "circuit"] },
+            { text: "Describe circuit components.", keywords: ["battery", "wire", "bulb", "switch", "cell"] },
+            { text: "Draw circuit diagrams.", keywords: ["circuit", "diagram", "symbol", "battery", "bulb"] },
+            { text: "Explain open and closed circuits.", keywords: ["open", "closed", "circuit", "switch", "flow"] }
+        ]
+    },
+
+    // === GRADE 6 MATHEMATICS ===
     {
         id: "g6-math-knowing",
         grade: "Grade 6",
@@ -338,7 +539,92 @@ const STEM_TOPICS = [
             { text: "Explain reflection symmetry.", keywords: ["reflection", "mirror", "image", "flip", "symmetry"] }
         ]
     },
-    // Grade 7 Science
+    {
+        id: "g6-math-playing",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Playing with Numbers",
+        summary: "Learn divisibility rules and number patterns.",
+        hints: ["Explain divisibility rules for 2,3,4,5,6,8,9,10.", "Find factors and multiples.", "Understand prime factorization."],
+        bullets: [
+            { text: "Apply divisibility rules.", keywords: ["divisible", "2", "3", "5", "9", "10", "rule"] },
+            { text: "Find factors and multiples.", keywords: ["factor", "multiple", "common", "HCF", "LCM"] },
+            { text: "Prime factorization.", keywords: ["prime", "factorization", "factor", "tree", "index"] },
+            { text: "Solve number puzzles.", keywords: ["puzzle", "pattern", "find", "number", "trick"] }
+        ]
+    },
+    {
+        id: "g6-math-shapes",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Understanding Elementary Shapes",
+        summary: "Learn about angles, triangles, and quadrilaterals.",
+        hints: ["Define different types of angles.", "Classify triangles by sides and angles.", "Classify quadrilaterals."],
+        bullets: [
+            { text: "Classify angles.", keywords: ["acute", "obtuse", "right", "reflex", "straight"] },
+            { text: "Classify triangles.", keywords: ["equilateral", "isosceles", "scalene", "acute", "obtuse"] },
+            { text: "Classify quadrilaterals.", keywords: ["square", "rectangle", "parallelogram", "rhombus", "trapezium"] },
+            { text: "Measure angles.", keywords: ["protractor", "degree", "angle", "measure", "tool"] }
+        ]
+    },
+    {
+        id: "g6-math-mensuration",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Mensuration",
+        summary: "Calculate perimeter and area of simple shapes.",
+        hints: ["Find perimeter of squares and rectangles.", "Find area of squares and rectangles.", "Solve real-life problems."],
+        bullets: [
+            { text: "Find perimeter.", keywords: ["perimeter", "rectangle", "square", "triangle", "sum"] },
+            { text: "Find area.", keywords: ["area", "rectangle", "square", "length", "breadth", "side"] },
+            { text: "Use formulas.", keywords: ["formula", "2(l+b)", "side", "2", "l", "×", "b"] },
+            { text: "Solve applications.", keywords: ["field", "room", "fence", "carpet", "tile"] }
+        ]
+    },
+    {
+        id: "g6-math-ratio",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Ratio and Proportion",
+        summary: "Understand ratios and proportions in real-life situations.",
+        hints: ["Define ratio and proportion.", "Simplify ratios.", "Apply unitary method."],
+        bullets: [
+            { text: "Define ratio.", keywords: ["ratio", "compare", "two", "quantities", "colon"] },
+            { text: "Define proportion.", keywords: ["proportion", "equal", "ratio", "cross", "product"] },
+            { text: "Simplify ratios.", keywords: ["simplify", "divide", "common", "factor", "lowest"] },
+            { text: "Apply unitary method.", keywords: ["unitary", "method", "cost", "one", "unit"] }
+        ]
+    },
+    {
+        id: "g6-math-data",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Data Handling",
+        summary: "Learn to record, organize, and present data.",
+        hints: ["Organize data in tables.", "Draw bar graphs.", "Find mean and mode."],
+        bullets: [
+            { text: "Organize data.", keywords: ["data", "tally", "frequency", "table", "record"] },
+            { text: "Draw bar graphs.", keywords: ["bar", "graph", "axis", "scale", "represent"] },
+            { text: "Find mean.", keywords: ["mean", "average", "sum", "divide", "total"] },
+            { text: "Find mode.", keywords: ["mode", "frequent", "data", "repeated", "value"] }
+        ]
+    },
+    {
+        id: "g6-math-geometry",
+        grade: "Grade 6",
+        subject: "Mathematics",
+        title: "Practical Geometry",
+        summary: "Construct basic geometric shapes using tools.",
+        hints: ["Draw line segments.", "Construct angles using protractor.", "Construct perpendicular bisectors."],
+        bullets: [
+            { text: "Draw line segments.", keywords: ["line", "segment", "ruler", "measure", "construct"] },
+            { text: "Construct angles.", keywords: ["angle", "protractor", "degree", "construct", "bisect"] },
+            { text: "Draw perpendiculars.", keywords: ["perpendicular", "bisect", "line", "right", "angle"] },
+            { text: "Use compass.", keywords: ["compass", "circle", "arc", "construct", "radius"] }
+        ]
+    },
+
+    // === GRADE 7 SCIENCE ===
     {
         id: "g7-sci-nutrition",
         grade: "Grade 7",
@@ -465,7 +751,50 @@ const STEM_TOPICS = [
             { text: "Describe vegetative propagation.", keywords: ["cutting", "grafting", "layering", "root", "stem"] }
         ]
     },
-    // Grade 7 Math
+    {
+        id: "g7-sci-physical",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Physical and Chemical Changes",
+        summary: "Distinguish between physical and chemical changes with examples.",
+        hints: ["Define physical change.", "Define chemical change.", "Give examples of both types."],
+        bullets: [
+            { text: "Define physical change.", keywords: ["physical", "change", "reversible", "shape", "state"] },
+            { text: "Define chemical change.", keywords: ["chemical", "new", "substance", "irreversible", "reaction"] },
+            { text: "Give examples.", keywords: ["rusting", "burning", "melting", "cutting", "cooking"] },
+            { text: "Explain rusting.", keywords: ["rust", "iron", "oxygen", "water", "chemical"] }
+        ]
+    },
+    {
+        id: "g7-sci-wastewater",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Wastewater Story",
+        summary: "Understand the importance of wastewater treatment.",
+        hints: ["Explain the process of wastewater treatment.", "Describe sewage treatment plants.", "Mention the importance of sanitation."],
+        bullets: [
+            { text: "Define wastewater.", keywords: ["wastewater", "sewage", "dirty", "water", "treatment"] },
+            { text: "Explain treatment process.", keywords: ["treatment", "plant", "sedimentation", "filtration", "chlorination"] },
+            { text: "Describe sewage system.", keywords: ["sewage", "pipe", "drain", "sanitation", "sewer"] },
+            { text: "Mention sanitation importance.", keywords: ["sanitation", "health", "hygiene", "disease", "prevention"] }
+        ]
+    },
+    {
+        id: "g7-sci-forests",
+        grade: "Grade 7",
+        subject: "Science",
+        title: "Forests: Our Lifeline",
+        summary: "Learn about the importance of forests in the ecosystem.",
+        hints: ["Describe the components of a forest ecosystem.", "Explain the role of forests in the water cycle.", "Mention the importance of forests for wildlife."],
+        bullets: [
+            { text: "Describe forest ecosystem.", keywords: ["forest", "trees", "plants", "animals", "ecosystem"] },
+            { text: "Explain forest role.", keywords: ["water", "cycle", "oxygen", "carbon", "dioxide"] },
+            { text: "Describe forest layers.", keywords: ["canopy", "understorey", "shrub", "forest", "floor"] },
+            { text: "Mention conservation.", keywords: ["conserve", "forest", "wildlife", "protection", "plantation"] }
+        ]
+    },
+
+    // === GRADE 7 MATHEMATICS ===
     {
         id: "g7-math-integers",
         grade: "Grade 7",
@@ -564,7 +893,78 @@ const STEM_TOPICS = [
             { text: "Perform operations.", keywords: ["add", "subtract", "multiply", "divide", "rational"] }
         ]
     },
-    // Grade 8 Science
+    {
+        id: "g7-math-compare",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Comparing Quantities",
+        summary: "Understand ratios, percentages, and profit/loss.",
+        hints: ["Calculate percentage.", "Solve profit and loss problems.", "Understand simple interest."],
+        bullets: [
+            { text: "Calculate percentage.", keywords: ["percentage", "ratio", "fraction", "100", "part"] },
+            { text: "Profit and loss.", keywords: ["profit", "loss", "cost", "price", "sell", "discount"] },
+            { text: "Simple interest.", keywords: ["interest", "principal", "rate", "time", "simple"] },
+            { text: "Solve word problems.", keywords: ["problem", "shop", "loan", "investment", "return"] }
+        ]
+    },
+    {
+        id: "g7-math-mensuration",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Mensuration",
+        summary: "Calculate perimeter, area, and volume of 2D and 3D shapes.",
+        hints: ["Find area of parallelogram and triangle.", "Find area of circle.", "Calculate volume of cuboid."],
+        bullets: [
+            { text: "Find area of parallelogram.", keywords: ["parallelogram", "area", "base", "height", "formula"] },
+            { text: "Find area of triangle.", keywords: ["triangle", "area", "base", "height", "1/2"] },
+            { text: "Find area of circle.", keywords: ["circle", "area", "pi", "r", "square", "radius"] },
+            { text: "Find volume of cuboid.", keywords: ["cuboid", "volume", "length", "width", "height"] }
+        ]
+    },
+    {
+        id: "g7-math-exponents",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Exponents and Powers",
+        summary: "Learn about laws of exponents and their applications.",
+        hints: ["Define exponent and base.", "Apply laws of exponents.", "Work with negative exponents."],
+        bullets: [
+            { text: "Define exponent.", keywords: ["exponent", "base", "power", "index", "multiply"] },
+            { text: "Apply laws.", keywords: ["product", "quotient", "zero", "power", "law"] },
+            { text: "Use negative exponents.", keywords: ["negative", "exponent", "reciprocal", "inverse", "fraction"] },
+            { text: "Simplify expressions.", keywords: ["simplify", "expression", "exponent", "base", "power"] }
+        ]
+    },
+    {
+        id: "g7-math-symmetry",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Symmetry",
+        summary: "Explore lines of symmetry and rotational symmetry.",
+        hints: ["Find lines of symmetry.", "Explain rotational symmetry.", "Give examples of symmetrical objects."],
+        bullets: [
+            { text: "Find lines of symmetry.", keywords: ["line", "symmetry", "mirror", "axis", "fold"] },
+            { text: "Explain rotational symmetry.", keywords: ["rotational", "symmetry", "angle", "center", "order"] },
+            { text: "Identify symmetry in nature.", keywords: ["nature", "design", "snowflake", "flower", "butterfly"] },
+            { text: "Create symmetrical patterns.", keywords: ["pattern", "mirror", "draw", "construct", "design"] }
+        ]
+    },
+    {
+        id: "g7-math-visualizing",
+        grade: "Grade 7",
+        subject: "Mathematics",
+        title: "Visualizing Solid Shapes",
+        summary: "Understand 3D shapes, their nets, and views.",
+        hints: ["Draw nets of cubes and cuboids.", "Identify different views (top, front, side).", "Use Euler's formula."],
+        bullets: [
+            { text: "Draw nets.", keywords: ["net", "cube", "cuboid", "cylinder", "cone", "prism"] },
+            { text: "Identify views.", keywords: ["top", "front", "side", "view", "perspective"] },
+            { text: "Count faces, edges, vertices.", keywords: ["faces", "edges", "vertices", "solid", "count"] },
+            { text: "Apply Euler's formula.", keywords: ["Euler", "formula", "F", "+", "V", "-", "E", "=", "2"] }
+        ]
+    },
+
+    // === GRADE 8 SCIENCE ===
     {
         id: "g8-sci-crops",
         grade: "Grade 8",
@@ -705,7 +1105,64 @@ const STEM_TOPICS = [
             { text: "Explain LED conductivity.", keywords: ["LED", "test", "conduction", "direction", "current"] }
         ]
     },
-    // Grade 8 Math
+    {
+        id: "g8-sci-synthetic",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Synthetic Fibres and Plastics",
+        summary: "Learn about synthetic materials, their properties, and environmental impact.",
+        hints: ["Describe different synthetic fibres.", "Explain the properties of plastics.", "Discuss the environmental impact."],
+        bullets: [
+            { text: "Describe synthetic fibres.", keywords: ["nylon", "polyester", "acrylic", "rayon", "fibre"] },
+            { text: "Explain plastic properties.", keywords: ["plastic", "polymer", "thermoplastic", "thermosetting", "property"] },
+            { text: "Discuss environmental impact.", keywords: ["pollution", "non-biodegradable", "recycle", "waste", "plastic"] },
+            { text: "Mention alternatives.", keywords: ["biodegradable", "eco-friendly", "jute", "cotton", "wool"] }
+        ]
+    },
+    {
+        id: "g8-sci-metals",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Materials: Metals and Non-Metals",
+        summary: "Compare the properties and uses of metals and non-metals.",
+        hints: ["List physical properties of metals.", "List physical properties of non-metals.", "Explain chemical reactivity."],
+        bullets: [
+            { text: "List metal properties.", keywords: ["lustre", "malleable", "ductile", "conductor", "sonorous"] },
+            { text: "List non-metal properties.", keywords: ["dull", "brittle", "insulator", "non-sonorous", "powder"] },
+            { text: "Explain chemical reactions.", keywords: ["oxygen", "water", "acid", "displacement", "reaction"] },
+            { text: "List uses of metals.", keywords: ["iron", "copper", "aluminium", "gold", "silver", "application"] }
+        ]
+    },
+    {
+        id: "g8-sci-coal",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Coal and Petroleum",
+        summary: "Learn about fossil fuels, their formation, and conservation.",
+        hints: ["Explain how coal is formed.", "Explain how petroleum is formed.", "Describe the process of refining petroleum."],
+        bullets: [
+            { text: "Explain coal formation.", keywords: ["coal", "carbon", "fossil", "fuel", "formation"] },
+            { text: "Explain petroleum formation.", keywords: ["petroleum", "oil", "natural", "gas", "fossil"] },
+            { text: "Describe refining process.", keywords: ["refining", "distillation", "petrol", "diesel", "fraction"] },
+            { text: "Discuss conservation.", keywords: ["conservation", "renewable", "alternative", "energy", "pollution"] }
+        ]
+    },
+    {
+        id: "g8-sci-light",
+        grade: "Grade 8",
+        subject: "Science",
+        title: "Light",
+        summary: "Understand reflection, refraction, and the human eye.",
+        hints: ["Explain laws of reflection.", "Describe the structure of the human eye.", "Explain dispersion of light."],
+        bullets: [
+            { text: "State reflection laws.", keywords: ["incident", "reflected", "normal", "angle", "equal"] },
+            { text: "Describe eye structure.", keywords: ["cornea", "iris", "lens", "retina", "pupil"] },
+            { text: "Explain dispersion.", keywords: ["dispersion", "prism", "spectrum", "rainbow", "color"] },
+            { text: "Explain vision defects.", keywords: ["myopia", "hypermetropia", "presbyopia", "correction", "lens"] }
+        ]
+    },
+
+    // === GRADE 8 MATHEMATICS ===
     {
         id: "g8-math-rational",
         grade: "Grade 8",
@@ -790,7 +1247,134 @@ const STEM_TOPICS = [
             { text: "Identify 3D shapes.", keywords: ["cube", "cuboid", "cylinder", "cone", "sphere", "prism"] }
         ]
     },
-    // Grade 9 Science (Physics)
+    {
+        id: "g8-math-linear",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Linear Equations in One Variable",
+        summary: "Solve linear equations in one variable and apply to real-life problems.",
+        hints: ["Solve equations with variable on both sides.", "Simplify equations with brackets.", "Apply to word problems."],
+        bullets: [
+            { text: "Solve equations.", keywords: ["linear", "variable", "both", "sides", "transpose"] },
+            { text: "Simplify expressions.", keywords: ["bracket", "simplify", "like", "terms", "coefficient"] },
+            { text: "Form equations.", keywords: ["word", "problem", "form", "equation", "variable"] },
+            { text: "Apply to real-life.", keywords: ["age", "number", "geometry", "application", "problem"] }
+        ]
+    },
+    {
+        id: "g8-math-quadrilaterals",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Understanding Quadrilaterals",
+        summary: "Learn about properties of various quadrilaterals.",
+        hints: ["Define polygons.", "Explain properties of parallelograms.", "Classify quadrilaterals."],
+        bullets: [
+            { text: "Define polygons.", keywords: ["polygon", "side", "angle", "regular", "irregular"] },
+            { text: "Explain parallelogram properties.", keywords: ["parallelogram", "opposite", "equal", "parallel", "diagonal"] },
+            { text: "Classify quadrilaterals.", keywords: ["square", "rectangle", "rhombus", "trapezium", "kite"] },
+            { text: "Use angle sum property.", keywords: ["angle", "sum", "360", "quadrilateral", "interior"] }
+        ]
+    },
+    {
+        id: "g8-math-mensuration",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Mensuration",
+        summary: "Calculate areas and volumes of various 2D and 3D shapes.",
+        hints: ["Find area of trapezium.", "Find area of quadrilateral.", "Calculate surface area and volume of 3D shapes."],
+        bullets: [
+            { text: "Find area of trapezium.", keywords: ["trapezium", "parallel", "sides", "height", "area"] },
+            { text: "Find area of polygon.", keywords: ["polygon", "area", "diagonal", "triangle", "sum"] },
+            { text: "Find surface area.", keywords: ["surface", "area", "cube", "cuboid", "cylinder", "formula"] },
+            { text: "Find volume.", keywords: ["volume", "cube", "cuboid", "cylinder", "capacity"] }
+        ]
+    },
+    {
+        id: "g8-math-data",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Data Handling",
+        summary: "Learn to represent and analyze data using charts and graphs.",
+        hints: ["Draw bar graphs and pie charts.", "Calculate probability.", "Interpret data."],
+        bullets: [
+            { text: "Draw bar graphs.", keywords: ["bar", "graph", "frequency", "class", "interval"] },
+            { text: "Draw pie charts.", keywords: ["pie", "chart", "angle", "sector", "percentage"] },
+            { text: "Calculate probability.", keywords: ["probability", "outcomes", "favorable", "total", "chance"] },
+            { text: "Interpret data.", keywords: ["interpret", "read", "chart", "data", "information"] }
+        ]
+    },
+    {
+        id: "g8-math-compare",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Comparing Quantities",
+        summary: "Learn about percentages, profit/loss, and simple/compound interest.",
+        hints: ["Calculate percentages.", "Solve profit and loss problems.", "Calculate compound interest."],
+        bullets: [
+            { text: "Calculate percentage.", keywords: ["percentage", "ratio", "increase", "decrease", "value"] },
+            { text: "Profit and loss.", keywords: ["profit", "loss", "discount", "marked", "price", "selling"] },
+            { text: "Simple interest.", keywords: ["simple", "interest", "principal", "rate", "time", "formula"] },
+            { text: "Compound interest.", keywords: ["compound", "interest", "principal", "rate", "time", "n"] }
+        ]
+    },
+    {
+        id: "g8-math-proportion",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Direct and Inverse Proportions",
+        summary: "Understand direct and inverse variation.",
+        hints: ["Define direct proportion.", "Define inverse proportion.", "Solve problems using unitary method."],
+        bullets: [
+            { text: "Define direct proportion.", keywords: ["direct", "proportion", "increase", "decrease", "ratio"] },
+            { text: "Define inverse proportion.", keywords: ["inverse", "proportion", "increase", "decrease", "product"] },
+            { text: "Use unitary method.", keywords: ["unitary", "method", "cost", "one", "unit", "find"] },
+            { text: "Solve real problems.", keywords: ["speed", "time", "work", "wages", "application"] }
+        ]
+    },
+    {
+        id: "g8-math-algebraic",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Algebraic Expressions",
+        summary: "Perform operations on algebraic expressions.",
+        hints: ["Add and subtract algebraic expressions.", "Multiply algebraic expressions.", "Use identities."],
+        bullets: [
+            { text: "Add expressions.", keywords: ["add", "like", "terms", "coefficient", "variable"] },
+            { text: "Subtract expressions.", keywords: ["subtract", "like", "terms", "coefficient", "variable"] },
+            { text: "Multiply expressions.", keywords: ["multiply", "monomial", "binomial", "polynomial", "distribute"] },
+            { text: "Use identities.", keywords: ["identity", "square", "difference", "product", "expand"] }
+        ]
+    },
+    {
+        id: "g8-math-visualizing",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Visualizing Solid Shapes",
+        summary: "Understand 3D shapes, their nets, and views.",
+        hints: ["Draw nets of 3D shapes.", "Identify views of 3D shapes.", "Apply Euler's formula."],
+        bullets: [
+            { text: "Draw nets.", keywords: ["net", "cube", "cuboid", "cylinder", "cone", "pyramid"] },
+            { text: "Identify views.", keywords: ["top", "front", "side", "view", "perspective"] },
+            { text: "Count elements.", keywords: ["faces", "edges", "vertices", "solid", "count"] },
+            { text: "Apply Euler formula.", keywords: ["Euler", "formula", "F", "+", "V", "-", "E", "=", "2"] }
+        ]
+    },
+    {
+        id: "g8-math-playing",
+        grade: "Grade 8",
+        subject: "Mathematics",
+        title: "Playing with Numbers",
+        summary: "Learn number puzzles and divisibility rules.",
+        hints: ["Apply divisibility rules.", "Solve number puzzles.", "Find patterns in numbers."],
+        bullets: [
+            { text: "Apply divisibility rules.", keywords: ["divisible", "2", "3", "4", "5", "6", "8", "9"] },
+            { text: "Solve puzzles.", keywords: ["puzzle", "number", "logic", "find", "trick"] },
+            { text: "Find patterns.", keywords: ["pattern", "square", "cube", "sum", "digit"] },
+            { text: "Solve cryptarithms.", keywords: ["cryptarithm", "puzzle", "letter", "digit", "solve"] }
+        ]
+    },
+
+    // === GRADE 9 SCIENCE (PHYSICS) ===
     {
         id: "g9-phy-motion",
         grade: "Grade 9",
@@ -861,7 +1445,8 @@ const STEM_TOPICS = [
             { text: "Explain sound range.", keywords: ["audible", "infrasonic", "ultrasonic", "range", "frequency"] }
         ]
     },
-    // Grade 9 Science (Chemistry)
+
+    // === GRADE 9 SCIENCE (CHEMISTRY) ===
     {
         id: "g9-chem-matter",
         grade: "Grade 9",
@@ -918,7 +1503,8 @@ const STEM_TOPICS = [
             { text: "Describe electron configuration.", keywords: ["configuration", "K", "L", "M", "shell", "electron"] }
         ]
     },
-    // Grade 9 Science (Biology)
+
+    // === GRADE 9 SCIENCE (BIOLOGY) ===
     {
         id: "g9-bio-cell",
         grade: "Grade 9",
@@ -989,7 +1575,8 @@ const STEM_TOPICS = [
             { text: "Discuss food security.", keywords: ["security", "production", "storage", "distribution", "nutrition"] }
         ]
     },
-    // Grade 9 Math
+
+    // === GRADE 9 MATHEMATICS ===
     {
         id: "g9-math-number",
         grade: "Grade 9",
@@ -1116,7 +1703,8 @@ const STEM_TOPICS = [
             { text: "Understand range.", keywords: ["range", "zero", "one", "impossible", "certain", "sure"] }
         ]
     },
-    // Grade 10 Science (Physics)
+
+    // === GRADE 10 SCIENCE (PHYSICS) ===
     {
         id: "g10-phy-electricity",
         grade: "Grade 10",
@@ -1187,7 +1775,8 @@ const STEM_TOPICS = [
             { text: "Discuss nuclear energy.", keywords: ["nuclear", "fission", "fusion", "reactor", "uranium"] }
         ]
     },
-    // Grade 10 Science (Chemistry)
+
+    // === GRADE 10 SCIENCE (CHEMISTRY) ===
     {
         id: "g10-chem-reactions",
         grade: "Grade 10",
@@ -1258,7 +1847,8 @@ const STEM_TOPICS = [
             { text: "Explain trends.", keywords: ["trend", "atomic", "radius", "valency", "metallic", "character"] }
         ]
     },
-    // Grade 10 Science (Biology)
+
+    // === GRADE 10 SCIENCE (BIOLOGY) ===
     {
         id: "g10-bio-life",
         grade: "Grade 10",
@@ -1329,7 +1919,8 @@ const STEM_TOPICS = [
             { text: "Discuss issues.", keywords: ["pollution", "ozone", "depletion", "biodegradable", "management"] }
         ]
     },
-    // Grade 10 Math
+
+    // === GRADE 10 MATHEMATICS ===
     {
         id: "g10-math-reals",
         grade: "Grade 10",
@@ -1526,448 +2117,306 @@ const STEM_TOPICS = [
             { text: "Solve real problems.", keywords: ["deck", "card", "coin", "die", "marble", "ball"] }
         ]
     },
-    // CBSE Grade 10 Social Science - Debatable Topics (Group Chat: 2 Teams, 4 Students)
-    // Political Science - Democracy & Governance
+
+    // === GRADE 10 SOCIAL SCIENCE (HISTORY) ===
     {
-        id: "g10-socsci-democracy-best",
+        id: "g10-sst-history-1",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Is democracy always the best form of government?",
-        summary: "A group debate exploring the merits and limitations of democracy as a governing system. Team A argues FOR, Team B argues AGAINST.",
-        hints: ["Team A: Discuss citizen participation, protection of rights, peaceful transitions.", "Team B: Discuss efficiency in decision-making, economic growth under authoritarian regimes.", "Consider examples from different countries."],
+        title: "The Rise of Nationalism in Europe",
+        summary: "Understand the rise of nationalism in Europe, including the French Revolution and the making of Germany and Italy.",
+        hints: ["Explain the French Revolution's role in nationalism.", "Describe the unification of Germany and Italy.", "Define liberalism and conservatism."],
         bullets: [
-            { text: "Team A: Arguments FOR democracy.", keywords: ["people", "rule", "vote", "rights", "freedom", "participation", "accountability"] },
-            { text: "Team B: Arguments AGAINST democracy.", keywords: ["slow", "decisions", "corruption", "populism", "majority", "tyranny", "inefficient"] },
-            { text: "Provide historical examples.", keywords: ["India", "Singapore", "China", "economic", "growth", "development"] },
-            { text: "Conclude with balanced view.", keywords: ["balance", "context", "suitable", "mature", "institutions"] }
+            { text: "Explain the French Revolution.", keywords: ["French", "Revolution", "nationalism", "Napoleon", "Europe"] },
+            { text: "Describe German unification.", keywords: ["Germany", "Bismarck", "unification", "Prussia", "Austria"] },
+            { text: "Describe Italian unification.", keywords: ["Italy", "Cavour", "Garibaldi", "Mazzini", "unification"] },
+            { text: "Define liberalism.", keywords: ["liberalism", "conservatism", "revolution", "monarchy", "democracy"] }
         ]
     },
     {
-        id: "g10-socsci-compulsory-voting",
+        id: "g10-sst-history-2",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Should voting be made compulsory in India?",
-        summary: "Debate on mandatory voting laws. Team A supports compulsory voting, Team B opposes it.",
-        hints: ["Team A: Discuss civic duty, true representation, reducing vote bank politics.", "Team B: Discuss right to not vote, practical challenges, uninformed voters.", "Consider examples from Australia and other countries."],
+        title: "Nationalism in India",
+        summary: "Trace the growth of nationalism in India and the important events of the freedom struggle.",
+        hints: ["Describe the Non-Cooperation Movement.", "Explain the Civil Disobedience Movement.", "Discuss the Quit India Movement."],
         bullets: [
-            { text: "Team A: Arguments FOR compulsory voting.", keywords: ["civic", "duty", "democracy", "participation", "representative", "legitimate"] },
-            { text: "Team B: Arguments AGAINST compulsory voting.", keywords: ["freedom", "choice", "right", "not", "vote", "forced", "uninformed"] },
-            { text: "Discuss implementation challenges.", keywords: ["Australia", "penalty", "turnout", "enforcement", "accessibility"] },
-            { text: "Propose alternatives.", keywords: ["awareness", "education", "NOTA", "reform", "voluntary"] }
+            { text: "Explain the Non-Cooperation Movement.", keywords: ["Gandhi", "Non-Cooperation", "Rowlatt", "Jallianwala", "Satyagraha"] },
+            { text: "Explain the Civil Disobedience Movement.", keywords: ["Dandi", "Salt", "Satyagraha", "Civil", "Disobedience"] },
+            { text: "Discuss the Quit India Movement.", keywords: ["Quit", "India", "1942", "Gandhi", "revolution"] },
+            { text: "Describe Round Table Conferences.", keywords: ["Round", "Table", "Gandhi", "Ambedkar", "Communal", "Award"] }
         ]
     },
     {
-        id: "g10-socsci-social-media",
+        id: "g10-sst-history-3",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Does social media strengthen or weaken democracy?",
-        summary: "Debate on the impact of social media on democratic processes. Team A argues it strengthens, Team B argues it weakens.",
-        hints: ["Team A: Discuss citizen engagement, transparency, grassroots movements, awareness.", "Team B: Discuss fake news, polarization, manipulation, echo chambers.", "Use recent examples from India and globally."],
+        title: "The Age of Industrialisation",
+        summary: "Learn about the industrial revolution and its impact on Europe and India.",
+        hints: ["Describe the industrial revolution in Britain.", "Explain the impact on Indian textile industry.", "Discuss the role of merchants."],
         bullets: [
-            { text: "Team A: Social media STRENGTHENS democracy.", keywords: ["transparency", "engagement", "voice", "activism", "accountability", "information"] },
-            { text: "Team B: Social media WEAKENS democracy.", keywords: ["fake", "news", "misinformation", "polarization", "algorithms", "manipulation"] },
-            { text: "Give specific examples.", keywords: ["Arab", "Spring", "elections", "hate", "speech", "viral"] },
-            { text: "Suggest solutions.", keywords: ["regulation", "digital", "literacy", "fact", "checking", "responsible"] }
+            { text: "Describe the industrial revolution.", keywords: ["industrial", "revolution", "Britain", "textiles", "steam"] },
+            { text: "Explain Indian textile industry.", keywords: ["India", "textiles", "Manchester", "export", "decline"] },
+            { text: "Discuss the role of merchants.", keywords: ["merchant", "trade", "cottage", "industry", "factory"] },
+            { text: "Explain the rise of factory system.", keywords: ["factory", "machine", "worker", "production", "urbanization"] }
+        ]
+    },
+
+    // === GRADE 10 SOCIAL SCIENCE (GEOGRAPHY) ===
+    {
+        id: "g10-sst-geo-1",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Resources and Development",
+        summary: "Learn about types of resources, their development, and resource planning in India.",
+        hints: ["Classify resources.", "Explain resource planning.", "Describe land use in India."],
+        bullets: [
+            { text: "Classify resources.", keywords: ["biotic", "abiotic", "renewable", "non-renewable", "potential"] },
+            { text: "Explain resource planning.", keywords: ["resource", "planning", "development", "sustainable", "conservation"] },
+            { text: "Describe land use.", keywords: ["land", "use", "forest", "agriculture", "pasture", "waste"] },
+            { text: "Explain soil types.", keywords: ["alluvial", "black", "red", "laterite", "soil", "fertility"] }
         ]
     },
     {
-        id: "g10-socsci-coalition",
+        id: "g10-sst-geo-2",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Is coalition government good for India?",
-        summary: "Debate on the effectiveness of coalition governments. Team A supports coalition system, Team B prefers majority governments.",
-        hints: ["Team A: Discuss diverse representation, consensus building, regional interests.", "Team B: Discuss instability, policy paralysis, corruption, horse-trading.", "Use examples from Indian political history."],
+        title: "Forest and Wildlife Resources",
+        summary: "Understand the importance of forests and wildlife, and their conservation.",
+        hints: ["Describe types of forests.", "Explain the importance of biodiversity.", "Discuss conservation efforts."],
         bullets: [
-            { text: "Team A: Coalition is GOOD for India.", keywords: ["diversity", "consensus", "inclusive", "federal", "regional", "representation"] },
-            { text: "Team B: Coalition is BAD for India.", keywords: ["instability", "blackmail", "policy", "paralysis", "corruption", "compromise"] },
-            { text: "Analyze historical examples.", keywords: ["UPA", "NDA", "1990s", "stable", "unstable", "era"] },
-            { text: "Compare with majority governments.", keywords: ["decisive", "dictatorial", "accountability", "balance", "efficiency"] }
+            { text: "Describe types of forests.", keywords: ["tropical", "deciduous", "evergreen", "mangrove", "forest"] },
+            { text: "Explain biodiversity.", keywords: ["biodiversity", "species", "ecosystem", "flora", "fauna"] },
+            { text: "Discuss conservation.", keywords: ["conservation", "sanctuary", "national", "park", "project", "tiger"] },
+            { text: "Explain community conservation.", keywords: ["community", "forest", "rights", "joint", "management"] }
         ]
     },
     {
-        id: "g10-socsci-election-spending",
+        id: "g10-sst-geo-3",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Should there be a limit on election spending?",
-        summary: "Debate on campaign finance reform. Team A supports spending limits, Team B opposes them as restriction on political speech.",
-        hints: ["Team A: Discuss level playing field, reducing corruption, wealthy influence.", "Team B: Discuss freedom of expression, reaching voters, legitimate expenses.", "Consider current EC rules and their effectiveness."],
+        title: "Water Resources",
+        summary: "Learn about water availability, scarcity, and conservation methods.",
+        hints: ["Explain water scarcity.", "Describe rainwater harvesting.", "Discuss multi-purpose projects."],
         bullets: [
-            { text: "Team A: Arguments FOR spending limits.", keywords: ["fair", "level", "corruption", "money", "power", "rich", "candidates"] },
-            { text: "Team B: Arguments AGAINST spending limits.", keywords: ["free", "speech", "reach", "voters", "communication", "democracy"] },
-            { text: "Examine current rules.", keywords: ["Election", "Commission", "cap", "expenditure", "violation", "enforcement"] },
-            { text: "Suggest reforms.", keywords: ["transparency", "state", "funding", "RTI", "disclosure", "accountability"] }
-        ]
-    },
-    // Political Science - Rights & Equality
-    {
-        id: "g10-socsci-free-speech",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Is freedom of speech being misused today?",
-        summary: "Debate on the boundaries of free speech. Team A argues it is being misused, Team B defends absolute free expression.",
-        hints: ["Team A: Discuss hate speech, misinformation, defamation, incitement to violence.", "Team B: Discuss marketplace of ideas, dissent, artistic freedom, slippery slope.", "Reference Article 19 and reasonable restrictions."],
-        bullets: [
-            { text: "Team A: Free speech IS misused.", keywords: ["hate", "speech", "fake", "news", "defamation", "incitement", "harm"] },
-            { text: "Team B: Free speech is NOT misused.", keywords: ["dissent", "criticism", "expression", "essential", "democracy", "check"] },
-            { text: "Discuss constitutional limits.", keywords: ["Article", "19", "reasonable", "restrictions", "sovereignty", "public", "order"] },
-            { text: "Propose balanced approach.", keywords: ["responsible", "speech", "accountability", "without", "censorship", "balance"] }
+            { text: "Explain water scarcity.", keywords: ["water", "scarcity", "stress", "demand", "supply"] },
+            { text: "Describe rainwater harvesting.", keywords: ["rainwater", "harvesting", "tank", "traditional", "method"] },
+            { text: "Discuss multi-purpose projects.", keywords: ["dam", "irrigation", "power", "flood", "project"] },
+            { text: "Explain integrated water management.", keywords: ["integrated", "management", "basin", "river", "conservation"] }
         ]
     },
     {
-        id: "g10-socsci-reservation",
+        id: "g10-sst-geo-4",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Should reservation policies continue in India?",
-        summary: "Debate on affirmative action. Team A supports continuation of reservations, Team B argues for merit-based system.",
-        hints: ["Team A: Discuss historical injustice, representation, social equality, Constitution mandate.", "Team B: Discuss merit, efficiency, creamy layer, division, economic criteria.", "Consider current debates on EWS and economic reservations."],
+        title: "Agriculture",
+        summary: "Study different types of farming and major crops in India.",
+        hints: ["Describe types of farming.", "Explain major crop distribution.", "Discuss the impact of globalization."],
         bullets: [
-            { text: "Team A: Reservations SHOULD continue.", keywords: ["social", "justice", "historical", "inequality", "representation", "Constitution", "Mandal"] },
-            { text: "Team B: Reservations should NOT continue.", keywords: ["merit", "efficiency", "creamy", "layer", "economy", "criteria", "competence"] },
-            { text: "Analyze impact data.", keywords: ["representation", "education", "jobs", "empowerment", "statistics", "OBC", "SC", "ST"] },
-            { text: "Suggest alternatives/improvements.", keywords: ["EWS", "economic", "criteria", "private", "sector", "education", "reform"] }
+            { text: "Describe types of farming.", keywords: ["subsistence", "commercial", "intensive", "extensive", "plantation"] },
+            { text: "Explain major crops.", keywords: ["rice", "wheat", "sugarcane", "cotton", "coffee", "tea"] },
+            { text: "Discuss global impact.", keywords: ["WTO", "subsidy", "globalization", "market", "trade"] },
+            { text: "Explain food security.", keywords: ["food", "security", "buffer", "stock", "PDS", "government"] }
         ]
     },
     {
-        id: "g10-socsci-rights-vs-duties",
+        id: "g10-sst-geo-5",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Are fundamental rights more important than fundamental duties?",
-        summary: "Debate on the balance between rights and duties. Team A prioritizes rights, Team B emphasizes duties.",
-        hints: ["Team A: Discuss individual liberty, constitutional supremacy, protection from state.", "Team B: Discuss social responsibility, civic virtue, national interest, moral obligation.", "Reference Part III and IVA of Constitution."],
+        title: "Minerals and Energy Resources",
+        summary: "Learn about types of minerals and energy resources in India.",
+        hints: ["Classify minerals.", "Explain distribution of minerals.", "Discuss conventional and non-conventional energy."],
         bullets: [
-            { text: "Team A: Rights are MORE important.", keywords: ["liberty", "individual", "Constitution", "protection", "democracy", "freedom", "justice"] },
-            { text: "Team B: Duties are EQUALLY/MORE important.", keywords: ["responsibility", "society", "nation", "citizenship", "morality", "unity", "integrity"] },
-            { text: "Examine constitutional provisions.", keywords: ["Article", "12-35", "51A", "Part", "III", "IVA", "enforceable", "moral"] },
-            { text: "Find synthesis.", keywords: ["balance", "correlative", "both", "essential", "responsible", "citizenship"] }
+            { text: "Classify minerals.", keywords: ["metallic", "non-metallic", "ferrous", "non-ferrous", "mineral"] },
+            { text: "Explain mineral distribution.", keywords: ["iron", "coal", "petroleum", "manganese", "location"] },
+            { text: "Discuss conventional energy.", keywords: ["coal", "oil", "natural", "gas", "thermal", "power"] },
+            { text: "Discuss non-conventional energy.", keywords: ["solar", "wind", "nuclear", "geothermal", "renewable"] }
         ]
     },
     {
-        id: "g10-socsci-uniform-civil-code",
+        id: "g10-sst-geo-6",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Should uniform civil code be implemented in India?",
-        summary: "Debate on Article 44. Team A supports UCC for national integration, Team B opposes citing religious freedom and diversity.",
-        hints: ["Team A: Discuss equality, gender justice, national integration, constitutional directive.", "Team B: Discuss religious freedom, diversity, minority rights, personal laws, Article 25.", "Reference Goa and other countries' experiences."],
+        title: "Manufacturing Industries",
+        summary: "Study the importance of manufacturing and the location of industries.",
+        hints: ["Explain the importance of manufacturing.", "Describe the location of industries.", "Discuss industrial pollution."],
         bullets: [
-            { text: "Team A: UCC SHOULD be implemented.", keywords: ["equality", "gender", "justice", "uniform", "Article", "44", "integration"] },
-            { text: "Team B: UCC should NOT be forced.", keywords: ["diversity", "religious", "freedom", "minority", "rights", "personal", "laws"] },
-            { text: "Analyze constitutional aspects.", keywords: ["Directive", "Principles", "Fundamental", "Rights", "Article", "25", "harmony"] },
-            { text: "Learn from examples.", keywords: ["Goa", "Hindu", "Code", "minorities", "women", "reform", "gradual"] }
-        ]
-    },
-    // History - Nationalism & Freedom Movement
-    {
-        id: "g10-socsci-non-violence",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Was non-violence the most effective strategy in India's freedom struggle?",
-        summary: "Debate on Gandhian strategy. Team A supports non-violence as most effective, Team B argues for revolutionary/armed struggle.",
-        hints: ["Team A: Discuss mass participation, moral superiority, international sympathy, unity.", "Team B: Discuss slow progress, British intransigence, INA, revolutionary contributions.", "Compare with other independence movements."],
-        bullets: [
-            { text: "Team A: Non-violence WAS most effective.", keywords: ["Gandhi", "mass", "satyagraha", "moral", "unity", "international", "support"] },
-            { text: "Team B: Armed struggle ALSO contributed.", keywords: ["Bhagat", "Singh", "INA", "Bose", "revolutionary", "pressure", "alternative"] },
-            { text: "Analyze historical impact.", keywords: ["Quit", "India", "Dandi", "March", "independence", "1947", "contributions"] },
-            { text: "Evaluate combined effect.", keywords: ["both", "complementary", "holistic", "freedom", "strategy", "together"] }
+            { text: "Explain manufacturing importance.", keywords: ["manufacturing", "GDP", "employment", "economic", "growth"] },
+            { text: "Describe industry location.", keywords: ["iron", "steel", "textile", "sugar", "automobile", "location"] },
+            { text: "Discuss industrial pollution.", keywords: ["pollution", "water", "air", "noise", "control"] },
+            { text: "Explain industrial policies.", keywords: ["policy", "liberalization", "privatization", "globalization"] }
         ]
     },
     {
-        id: "g10-socsci-partition",
+        id: "g10-sst-geo-7",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Did the partition of India have any unavoidable causes?",
-        summary: "Debate on inevitability of Partition. Team A argues it was unavoidable, Team B believes it could have been prevented.",
-        hints: ["Team A: Discuss Two-Nation theory, communal violence, British divide and rule, irreconcilable differences.", "Team B: Discuss failed negotiations, Mountbatten Plan haste, lack of leadership consensus, alternatives.", "Consider Cabinet Mission Plan and other options."],
+        title: "Lifelines of National Economy",
+        summary: "Understand the importance of transport, communication, and trade.",
+        hints: ["Explain the importance of transport.", "Describe different modes of transport.", "Discuss trade and communication."],
         bullets: [
-            { text: "Team A: Partition WAS unavoidable.", keywords: ["Two-Nation", "communal", "violence", "Hindu", "Muslim", "divide", "British"] },
-            { text: "Team B: Partition was AVOIDABLE.", keywords: ["negotiation", "Cabinet", "Mission", "unity", "haste", "leadership", "failure"] },
-            { text: "Examine causes.", keywords: ["Jinnah", "Nehru", "Gandhi", "League", "Congress", "direct", "action"] },
-            { text: "Assess consequences.", keywords: ["violence", "migration", "Kashmir", "legacy", "could", "have", "been", "different"] }
+            { text: "Explain transport importance.", keywords: ["transport", "road", "rail", "water", "air", "economy"] },
+            { text: "Describe modes of transport.", keywords: ["roadways", "railways", "pipelines", "waterways", "airways"] },
+            { text: "Discuss trade.", keywords: ["trade", "export", "import", "balance", "trade", "WTO"] },
+            { text: "Explain communication.", keywords: ["communication", "IT", "postal", "telecom", "digital"] }
+        ]
+    },
+
+    // === GRADE 10 SOCIAL SCIENCE (POLITICAL SCIENCE) ===
+    {
+        id: "g10-sst-pol-1",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Power Sharing",
+        summary: "Learn about forms of power sharing and its importance in democracies.",
+        hints: ["Explain vertical and horizontal power sharing.", "Describe power sharing in Belgium and Sri Lanka.", "Discuss the importance of power sharing."],
+        bullets: [
+            { text: "Explain vertical power sharing.", keywords: ["vertical", "central", "state", "local", "government"] },
+            { text: "Explain horizontal power sharing.", keywords: ["horizontal", "legislature", "executive", "judiciary"] },
+            { text: "Describe Belgium's model.", keywords: ["Belgium", "French", "Dutch", "German", "community"] },
+            { text: "Describe Sri Lanka's model.", keywords: ["Sri", "Lanka", "Sinhala", "Tamil", "majority", "minority"] }
         ]
     },
     {
-        id: "g10-socsci-colonial-history",
+        id: "g10-sst-pol-2",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Should colonial history be taught in the same depth today?",
-        summary: "Debate on curriculum priorities. Team A supports detailed colonial history, Team B argues for reduced focus on past.",
-        hints: ["Team A: Discuss understanding present, post-colonial impact, learning from mistakes, identity.", "Team B: Discuss future-oriented education, nationalism, practical skills, moving forward.", "Consider current curriculum debates in India."],
+        title: "Federalism",
+        summary: "Understand the concept of federalism and its practice in India.",
+        hints: ["Explain the features of federalism.", "Describe the Indian federal system.", "Discuss the role of state governments."],
         bullets: [
-            { text: "Team A: Colonial history MUST be taught deeply.", keywords: ["understand", "present", "post-colonial", "exploitation", "lessons", "identity"] },
-            { text: "Team B: Focus should be REDUCED.", keywords: ["future", "positive", "history", "skills", "development", "modern", "India"] },
-            { text: "Debate content balance.", keywords: ["British", "Raj", "freedom", "struggle", "achievements", "glorification", "balance"] },
-            { text: "Propose curriculum approach.", keywords: ["critical", "thinking", "multiple", "perspectives", "context", "relevance"] }
-        ]
-    },
-    // History - Global Events
-    {
-        id: "g10-socsci-ww2-inevitable",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Was World War II inevitable?",
-        summary: "Debate on causes of WWII. Team A argues Treaty of Versailles and conditions made it unavoidable, Team B suggests diplomatic alternatives.",
-        hints: ["Team A: Discuss Treaty of Versailles, rise of fascism, economic depression, appeasement failure.", "Team B: Discuss diplomatic alternatives, League of Nations potential, earlier intervention.", "Consider interwar period decisions."],
-        bullets: [
-            { text: "Team A: WWII WAS inevitable.", keywords: ["Versailles", "Hitler", "fascism", "depression", "appeasement", "unstable", "conditions"] },
-            { text: "Team B: WWII was AVOIDABLE.", keywords: ["League", "diplomacy", "containment", "earlier", "action", "alternative", "history"] },
-            { text: "Analyze Treaty of Versailles.", keywords: ["reparations", "humiliation", "Germany", "unfair", "seeds", "conflict"] },
-            { text: "Learn lessons.", keywords: ["United", "Nations", "peace", "prevention", "international", "cooperation"] }
+            { text: "Explain features of federalism.", keywords: ["federalism", "two-tier", "division", "powers", "constitution"] },
+            { text: "Describe Indian federalism.", keywords: ["Union", "State", "List", "Concurrent", "Residuary"] },
+            { text: "Discuss state governments.", keywords: ["state", "governor", "chief", "minister", "assembly"] },
+            { text: "Explain the role of judiciary.", keywords: ["judiciary", "constitution", "interpretation", "disputes"] }
         ]
     },
     {
-        id: "g10-socsci-industrialization",
+        id: "g10-sst-pol-3",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Did industrialization do more harm than good?",
-        summary: "Debate on Industrial Revolution impact. Team A argues harm (exploitation, environment), Team B argues good (progress, technology).",
-        hints: ["Team A: Discuss child labor, worker exploitation, environmental damage, inequality, urban slums.", "Team B: Discuss economic growth, technology, medicine, standard of living, connectivity.", "Consider long-term historical perspective."],
+        title: "Democracy and Diversity",
+        summary: "Explore the relationship between democracy and social diversity.",
+        hints: ["Explain how democracy accommodates diversity.", "Describe the politics of social divisions.", "Discuss the role of caste and religion in politics."],
         bullets: [
-            { text: "Team A: Industrialization did MORE HARM.", keywords: ["exploitation", "labor", "pollution", "inequality", "colonialism", "slums", "greed"] },
-            { text: "Team B: Industrialization did MORE GOOD.", keywords: ["progress", "technology", "medicine", "transport", "communication", "living", "standard"] },
-            { text: "Weigh evidence.", keywords: ["GDP", "longevity", "conditions", "wages", "data", "analysis", "context"] },
-            { text: "Modern relevance.", keywords: ["Industry", "4.0", "automation", "future", "learning", "lessons", "sustainability"] }
+            { text: "Explain democracy and diversity.", keywords: ["diversity", "democracy", "accommodation", "pluralism"] },
+            { text: "Describe social divisions.", keywords: ["caste", "religion", "language", "region", "division"] },
+            { text: "Discuss politics of caste.", keywords: ["caste", "politics", "inequality", "representation", "discrimination"] },
+            { text: "Discuss politics of religion.", keywords: ["religion", "communalism", "secularism", "politics"] }
         ]
     },
     {
-        id: "g10-socsci-revolutions",
+        id: "g10-sst-pol-4",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Should revolutions be justified to bring change?",
-        summary: "Debate on revolutionary vs. evolutionary change. Team A supports revolutionary change, Team B favors peaceful reform.",
-        hints: ["Team A: Discuss French Revolution, Russian Revolution, structural change, urgency.", "Team B: Discuss violence, instability, evolutionary democracy, reform movements.", "Compare different paths to change in history."],
+        title: "Gender, Religion and Caste",
+        summary: "Understand the social inequalities based on gender, religion, and caste.",
+        hints: ["Explain gender discrimination.", "Describe communal politics.", "Discuss the role of caste in politics."],
         bullets: [
-            { text: "Team A: Revolutions ARE justified.", keywords: ["oppression", "structural", "change", "French", "Russian", "freedom", "justice"] },
-            { text: "Team B: Revolutions are NOT justified.", keywords: ["violence", "chaos", "reform", "peaceful", "gradual", "stable", "democracy"] },
-            { text: "Examine case studies.", keywords: ["France", "Russia", "China", "Cuba", "outcomes", "human", "cost"] },
-            { text: "Evaluate alternatives.", keywords: ["Gandhi", "Mandela", "reform", "evolution", "peaceful", "effective"] }
-        ]
-    },
-    // Geography - Resources & Development
-    {
-        id: "g10-socsci-environment-vs-development",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Is economic development more important than environmental protection?",
-        summary: "Debate on development priorities. Team A prioritizes economic growth, Team B prioritizes environmental conservation.",
-        hints: ["Team A: Discuss poverty, employment, infrastructure, standard of living, immediate needs.", "Team B: Discuss climate change, sustainability, intergenerational justice, biodiversity.", "Consider sustainable development goals."],
-        bullets: [
-            { text: "Team A: Development IS more important.", keywords: ["poverty", "jobs", "growth", "immediate", "needs", "infrastructure", "survival"] },
-            { text: "Team B: Environment IS more important.", keywords: ["climate", "sustainability", "future", "generations", "health", "biodiversity", "limits"] },
-            { text: "Analyze contradictions.", keywords: ["pollution", "resources", "extraction", "industry", "agriculture", "water", "air"] },
-            { text: "Find middle ground.", keywords: ["sustainable", "development", "green", "economy", "balance", "SDGs", "both"] }
+            { text: "Explain gender discrimination.", keywords: ["gender", "patriarchy", "women", "inequality", "discrimination"] },
+            { text: "Describe communal politics.", keywords: ["communalism", "secularism", "religious", "politics"] },
+            { text: "Discuss caste in politics.", keywords: ["caste", "politics", "social", "inequality", "reservation"] },
+            { text: "Explain the role of women.", keywords: ["women", "reservation", "bill", "empowerment", "rights"] }
         ]
     },
     {
-        id: "g10-socsci-mining-forests",
+        id: "g10-sst-pol-5",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Should mining be banned in forest areas?",
-        summary: "Debate on resource extraction vs. conservation. Team A supports ban, Team B argues for regulated mining.",
-        hints: ["Team A: Discuss biodiversity, tribal rights, ecological damage, irreversible harm.", "Team B: Discuss mineral needs, economy, jobs, regulated extraction, alternatives limited.", "Use examples like Niyamgiri, coal blocks in forests."],
+        title: "Political Parties",
+        summary: "Learn about the role and importance of political parties in a democracy.",
+        hints: ["Explain the functions of political parties.", "Describe the national parties in India.", "Discuss the challenges faced by political parties."],
         bullets: [
-            { text: "Team A: Mining SHOULD be banned.", keywords: ["forests", "tribal", "rights", "biodiversity", "ecology", "irreversible", "sacred"] },
-            { text: "Team B: Mining should NOT be banned.", keywords: ["minerals", "economy", "employment", "regulated", "responsible", "growth"] },
-            { text: "Examine real cases.", keywords: ["Niyamgiri", "coal", "iron", "tribal", "displacement", "Odisha", "Chhattisgarh"] },
-            { text: "Propose solutions.", keywords: ["rehabilitation", "compensation", "sustainable", "mining", "forest", "consent", "FRA"] }
+            { text: "Explain functions of parties.", keywords: ["party", "election", "government", "opposition", "public", "opinion"] },
+            { text: "Describe national parties.", keywords: ["Congress", "BJP", "CPI", "CPM", "NCP", "TMC"] },
+            { text: "Discuss challenges.", keywords: ["challenge", "money", "muscle", "dynasty", "defection"] },
+            { text: "Explain party reforms.", keywords: ["reform", "RTI", "funding", "defection", "law"] }
         ]
     },
     {
-        id: "g10-socsci-sustainable-development",
+        id: "g10-sst-pol-6",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Is sustainable development practical in developing countries like India?",
-        summary: "Debate on feasibility of sustainability. Team A argues it's possible and necessary, Team B claims it's a luxury for rich nations.",
-        hints: ["Team A: Discuss leapfrogging technology, renewable energy, green jobs, long-term savings.", "Team B: Discuss poverty priorities, cost of green tech, Western hypocrisy, carbon colonialism.", "Consider India's climate commitments and development needs."],
+        title: "Outcomes of Democracy",
+        summary: "Assess the outcomes of democracy in terms of accountability, legitimacy, and development.",
+        hints: ["Explain how democracy is accountable.", "Describe legitimacy of democracy.", "Discuss economic development in democracies."],
         bullets: [
-            { text: "Team A: Sustainable development IS practical.", keywords: ["renewable", "solar", "jobs", "leapfrog", "technology", "innovation", "affordable"] },
-            { text: "Team B: It's a LUXURY for rich nations.", keywords: ["poverty", "cost", "Western", "hypocrisy", "carbon", "colonialism", "growth", "first"] },
-            { text: "Analyze India's position.", keywords: ["climate", "commitments", "SDGs", "development", "responsibility", "equity", "common"] },
-            { text: "Propose practical approach.", keywords: ["phased", "transition", "adaptation", "mitigation", "climate", "justice", "co-benefits"] }
-        ]
-    },
-    // Geography - Agriculture & Industry
-    {
-        id: "g10-socsci-chemical-fertilizers",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Should chemical fertilizers be completely banned?",
-        summary: "Debate on agricultural practices. Team A supports ban for health/environment, Team B argues for food security needs.",
-        hints: ["Team A: Discuss soil degradation, health effects, organic alternatives, water pollution.", "Team B: Discuss food production, population, organic limitations, farmer livelihoods, transition time.", "Consider Green Revolution legacy and organic farming growth."],
-        bullets: [
-            { text: "Team A: Chemical fertilizers SHOULD be banned.", keywords: ["organic", "health", "soil", "pollution", "water", "toxic", "residue", "natural"] },
-            { text: "Team B: Ban would be DISASTROUS.", keywords: ["food", "security", "population", "production", "famine", "farmer", "income", "yield"] },
-            { text: "Examine alternatives.", keywords: ["organic", "Vermicompost", "biofertilizers", "Sikkim", "model", "transition"] },
-            { text: "Propose balanced approach.", keywords: ["integrated", "nutrient", "management", "regulated", "use", "gradual", "shift"] }
+            { text: "Explain accountability.", keywords: ["accountability", "transparency", "responsiveness", "citizen"] },
+            { text: "Describe legitimacy.", keywords: ["legitimacy", "acceptance", "popular", "support", "election"] },
+            { text: "Discuss economic development.", keywords: ["development", "growth", "inequality", "poverty", "welfare"] },
+            { text: "Explain democracy and dignity.", keywords: ["dignity", "rights", "liberty", "equality", "respect"] }
         ]
     },
     {
-        id: "g10-socsci-industrialization-poverty",
+        id: "g10-sst-pol-7",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Is industrialization the best way to reduce poverty?",
-        summary: "Debate on poverty alleviation strategies. Team A supports industrialization, Team B argues for agriculture/services focus.",
-        hints: ["Team A: Discuss manufacturing, jobs, exports, technology, SEZ examples, urbanization.", "Team B: Discuss agriculture employment majority, rural development, services, inclusive growth.", "Consider India's mixed economy experience."],
+        title: "Challenges to Democracy",
+        summary: "Understand the various challenges faced by democracies and how to overcome them.",
+        hints: ["Explain the foundational challenges.", "Describe the challenges of expansion.", "Discuss the deepening of democracy."],
         bullets: [
-            { text: "Team A: Industrialization IS best way.", keywords: ["manufacturing", "jobs", "Make", "India", "exports", "technology", "urban", "growth"] },
-            { text: "Team B: Other sectors MORE important.", keywords: ["agriculture", "rural", "services", "IT", "inclusive", "employment", "majority"] },
-            { text: "Analyze evidence.", keywords: ["China", "East", "Asia", "MGNREGA", "rural", "urban", "disparity", "statistics"] },
-            { text: "Propose integrated strategy.", keywords: ["agro-industry", "MSME", "skill", "development", "balanced", "multi-pronged"] }
+            { text: "Explain foundational challenges.", keywords: ["foundational", "transition", "authoritarian", "democracy"] },
+            { text: "Describe challenges of expansion.", keywords: ["expansion", "devolution", "local", "government"] },
+            { text: "Discuss deepening of democracy.", keywords: ["deepening", "institutions", "participation", "reforms"] },
+            { text: "Explain political reforms.", keywords: ["reform", "political", "ethical", "electoral", "law"] }
+        ]
+    },
+
+    // === GRADE 10 SOCIAL SCIENCE (ECONOMICS) ===
+    {
+        id: "g10-sst-eco-1",
+        grade: "Grade 10",
+        subject: "Social Science",
+        title: "Sectors of the Indian Economy",
+        summary: "Learn about the primary, secondary, and tertiary sectors in India.",
+        hints: ["Classify sectors.", "Explain GDP contribution.", "Discuss employment distribution."],
+        bullets: [
+            { text: "Classify sectors.", keywords: ["primary", "secondary", "tertiary", "sector", "economy"] },
+            { text: "Explain GDP contribution.", keywords: ["GDP", "share", "growth", "contribution", "sector"] },
+            { text: "Discuss employment distribution.", keywords: ["employment", "organised", "unorganised", "sector"] },
+            { text: "Explain NREGA.", keywords: ["NREGA", "employment", "guarantee", "rural", "welfare"] }
         ]
     },
     {
-        id: "g10-socsci-dams",
+        id: "g10-sst-eco-2",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Are dams more harmful than beneficial?",
-        summary: "Debate on dam projects. Team A argues dams are harmful, Team B defends their benefits for water/power.",
-        hints: ["Team A: Discuss displacement, environmental damage, siltation, social conflict, alternatives.", "Team B: Discuss irrigation, electricity, flood control, drinking water, development.", "Use examples: Sardar Sarovar, Tehri, Polavaram."],
+        title: "Money and Credit",
+        summary: "Understand the role of money and credit in the economy.",
+        hints: ["Explain modern forms of money.", "Describe credit and its sources.", "Discuss the role of banks."],
         bullets: [
-            { text: "Team A: Dams are MORE HARMFUL.", keywords: ["displacement", "tribal", "submergence", "siltation", "ecology", "Narmada", "Bachao"] },
-            { text: "Team B: Dams are MORE BENEFICIAL.", keywords: ["irrigation", "power", "water", "supply", "flood", "control", "development", "Bhakra"] },
-            { text: "Examine specific cases.", keywords: ["Sardar", "Sarovar", "Tehri", "Polavaram", "costs", "benefits", "analysis"] },
-            { text: "Propose alternatives/best practices.", keywords: ["small", "dams", "check", "rainwater", "harvesting", "solar", "rehabilitation", "consultation"] }
-        ]
-    },
-    // Economics - Development & Growth
-    {
-        id: "g10-socsci-gdp-development",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Is GDP the best measure of development?",
-        summary: "Debate on development indicators. Team A defends GDP as practical measure, Team B argues for multidimensional indices.",
-        hints: ["Team A: Discuss economic growth, comparison, data availability, objective measurement.", "Team B: Discuss inequality, happiness, environment, HDI, Bhutan's GNH, beyond GDP.", "Consider HDI, SDG indicators, and other alternatives."],
-        bullets: [
-            { text: "Team A: GDP IS best measure.", keywords: ["growth", "economic", "objective", "compare", "data", "production", "standard"] },
-            { text: "Team B: GDP is INADEQUATE.", keywords: ["inequality", "HDI", "happiness", "environment", "distribution", "quality", "life"] },
-            { text: "Examine alternatives.", keywords: ["HDI", "SDGs", "GNH", "Bhutan", "multidimensional", "poverty", "index"] },
-            { text: "Propose comprehensive approach.", keywords: ["combination", "indicators", "balance", "quantitative", "qualitative", "well-being"] }
+            { text: "Explain modern money.", keywords: ["currency", "coins", "digital", "money", "legal", "tender"] },
+            { text: "Describe credit sources.", keywords: ["bank", "loan", "informal", "formal", "credit"] },
+            { text: "Discuss role of banks.", keywords: ["RBI", "reserve", "interest", "deposit", "loan"] },
+            { text: "Explain credit impacts.", keywords: ["debt", "trap", "investment", "business", "growth"] }
         ]
     },
     {
-        id: "g10-socsci-free-services",
+        id: "g10-sst-eco-3",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Should governments provide free basic services (education, healthcare)?",
-        summary: "Debate on welfare state. Team A supports free universal services, Team B argues for targeted/privatized approaches.",
-        hints: ["Team A: Discuss rights, human capital, equality, Kerala model, public investment returns.", "Team B: Discuss fiscal burden, inefficiency, quality issues, targeting, private sector efficiency.", "Consider RTE, RSBY, and Delhi mohalla clinics as examples."],
+        title: "Globalization and the Indian Economy",
+        summary: "Study the impact of globalization on the Indian economy.",
+        hints: ["Explain the concept of globalization.", "Describe the role of MNCs.", "Discuss the impact on Indian economy."],
         bullets: [
-            { text: "Team A: Services SHOULD be free.", keywords: ["rights", "education", "health", "equality", "human", "capital", "public", "good"] },
-            { text: "Team B: Free services are UNSUSTAINABLE.", keywords: ["fiscal", "deficit", "taxes", "inefficiency", "quality", "target", "private"] },
-            { text: "Analyze models.", keywords: ["Kerala", "Scandinavian", "Delhi", "clinics", "RTE", "outcomes", "comparison"] },
-            { text: "Propose viable approach.", keywords: ["universal", "basic", "quality", "public", "private", "partnership", "targeted"] }
+            { text: "Explain globalization.", keywords: ["globalization", "trade", "investment", "technology", "integration"] },
+            { text: "Describe MNCs.", keywords: ["MNC", "multinational", "investment", "production", "market"] },
+            { text: "Discuss impact on India.", keywords: ["India", "jobs", "competition", "growth", "inequality"] },
+            { text: "Explain government policies.", keywords: ["WTO", "LPG", "reform", "policy", "trade", "barrier"] }
         ]
     },
     {
-        id: "g10-socsci-globalization",
+        id: "g10-sst-eco-4",
         grade: "Grade 10",
         subject: "Social Science",
-        title: "Debate: Is globalization beneficial for India?",
-        summary: "Debate on economic integration. Team A supports globalization for growth, Team B opposes citing inequality and culture.",
-        hints: ["Team A: Discuss FDI, technology, exports, jobs, competition, IT sector success.", "Team B: Discuss inequality, job losses, MNC dominance, cultural erosion, 1991 crisis.", "Consider post-1991 reforms and their impact."],
+        title: "Consumer Rights",
+        summary: "Learn about consumer rights and protection in India.",
+        hints: ["Explain consumer rights.", "Describe the Consumer Protection Act.", "Discuss the role of consumer courts."],
         bullets: [
-            { text: "Team A: Globalization IS beneficial.", keywords: ["growth", "FDI", "technology", "jobs", "exports", "competition", "integration", "IT"] },
-            { text: "Team B: Globalization is HARMFUL.", keywords: ["inequality", "MNCs", "exploitation", "culture", "loss", "agriculture", "distress", "reforms"] },
-            { text: "Analyze 1991 impact.", keywords: ["liberalization", "privatization", "growth", "rate", "poverty", "data", "comparison", "before"] },
-            { text: "Propose managed approach.", keywords: ["strategic", "autonomy", "local", "industry", "protection", "fair", "trade", "regulation"] }
-        ]
-    },
-    // Economics - Consumer Rights & Money
-    {
-        id: "g10-socsci-consumer-benefit",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Do consumers really benefit from globalization?",
-        summary: "Debate on consumer welfare. Team A argues consumers benefit from choice/price, Team B cites quality/safety concerns.",
-        hints: ["Team A: Discuss variety, lower prices, quality standards, competition benefits.", "Team B: Discuss adulteration, fake products, loss of local goods, exploitative marketing.", "Consider consumer courts and protection laws in India."],
-        bullets: [
-            { text: "Team A: Consumers DO benefit.", keywords: ["choice", "variety", "prices", "competition", "quality", "standards", "global", "brands"] },
-            { text: "Team B: Consumers are EXPLOITED.", keywords: ["adulteration", "fake", "local", "loss", "unfair", "marketing", "safety"] },
-            { text: "Examine protection mechanisms.", keywords: ["Consumer", "Protection", "Act", "courts", "COPRA", "awareness", "rights"] },
-            { text: "Assess overall impact.", keywords: ["urban", "rural", "rich", "poor", "digital", "divide", "access", "equity"] }
-        ]
-    },
-    {
-        id: "g10-socsci-online-shopping",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Should online shopping be regulated more strictly?",
-        summary: "Debate on e-commerce regulation. Team A supports stricter rules for fairness/privacy, Team B argues for innovation/freedom.",
-        hints: ["Team A: Discuss predatory pricing, data privacy, MSME impact, GST compliance, foreign companies.", "Team B: Discuss innovation, consumer convenience, competition, market freedom, job creation.", "Consider draft e-commerce rules and Flipkart/Amazon issues."],
-        bullets: [
-            { text: "Team A: STRICTER regulation needed.", keywords: ["fair", "market", "data", "privacy", "predatory", "MSME", "FDI", "rules"] },
-            { text: "Team B: Less regulation BETTER.", keywords: ["innovation", "convenience", "jobs", "competition", "freedom", "growth", "technology"] },
-            { text: "Analyze issues.", keywords: ["Amazon", "Flipkart", "deep", "discounting", "inventory", "model", "sellers", "platforms"] },
-            { text: "Propose balanced regulation.", keywords: ["level", "playing", "field", "consumer", "protection", "without", "stifling", "growth"] }
-        ]
-    },
-    {
-        id: "g10-socsci-digital-money",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Is digital money safer than cash?",
-        summary: "Debate on payment methods. Team A argues digital is safer, Team B prefers cash for privacy/reliability.",
-        hints: ["Team A: Discuss traceability, reduced theft, convenience, UPI success, formalization.", "Team B: Discuss privacy, cyber fraud, digital divide, power/internet dependency, exclusion.", "Consider demonetization and digital push in India."],
-        bullets: [
-            { text: "Team A: Digital IS safer.", keywords: ["traceable", "transparent", "theft", "UPI", "convenience", "formal", "economy"] },
-            { text: "Team B: Cash is SAFER.", keywords: ["privacy", "cyber", "fraud", "hacking", "infrastructure", "exclusion", "control"] },
-            { text: "Examine India experience.", keywords: ["demonetization", "UPI", "growth", "cash", "return", "RBI", "data", "digital", "push"] },
-            { text: "Propose inclusive approach.", keywords: ["choice", "literacy", "security", "infrastructure", "access", "both", "options"] }
-        ]
-    },
-    // Interdisciplinary / Real-Life Topics
-    {
-        id: "g10-socsci-growth-vs-climate",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Should India prioritize economic growth over climate change?",
-        summary: "Debate on national priorities. Team A prioritizes growth for development needs, Team B emphasizes climate action urgency.",
-        hints: ["Team A: Discuss poverty, employment, Western historical emissions, differentiated responsibility.", "Team B: Discuss extreme weather, agriculture vulnerability, renewable opportunities, future costs.", "Consider India's net zero commitment and development paradox."],
-        bullets: [
-            { text: "Team A: Growth IS priority.", keywords: ["poverty", "jobs", "Western", "responsibility", "differentiated", "development", "rights"] },
-            { text: "Team B: Climate IS priority.", keywords: ["existential", "agriculture", "heat", "floods", "costs", "renewable", "leadership"] },
-            { text: "Analyze commitments.", keywords: ["net", "zero", "2070", "COP26", "pledges", "NDCs", "ambition", "action"] },
-            { text: "Find co-benefits.", keywords: ["green", "growth", "jobs", "solar", "LEDS", "sustainable", "development", "low", "carbon"] }
-        ]
-    },
-    {
-        id: "g10-socsci-urbanization",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Is urbanization improving quality of life?",
-        summary: "Debate on urban growth. Team A argues cities offer opportunities/better life, Team B cites slums/pollution/stress.",
-        hints: ["Team A: Discuss education, healthcare, employment, connectivity, modern amenities, Smart Cities.", "Team B: Discuss overcrowding, slums, pollution, stress, inequality, loss of community, crime.", "Consider UN projections and India's urban future."],
-        bullets: [
-            { text: "Team A: Urbanization IMPROVES life.", keywords: ["opportunities", "education", "healthcare", "jobs", "amenities", "connectivity", "modern"] },
-            { text: "Team B: Urbanization DEGRADES life.", keywords: ["slums", "pollution", "stress", "inequality", "traffic", "cost", "living", "alienation"] },
-            { text: "Examine evidence.", keywords: ["HDI", "urban", "rural", "data", "infrastructure", "migrant", "challenges", "census"] },
-            { text: "Propose better urbanization.", keywords: ["planned", "cities", "smart", "sustainable", "inclusive", "housing", "transport", "green"] }
-        ]
-    },
-    {
-        id: "g10-socsci-free-education",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Should education be completely free in India?",
-        summary: "Debate on education financing. Team A supports fully free education, Team B argues for fees with scholarships.",
-        hints: ["Team A: Discuss right to education, equality, human capital, RTE, public good.", "Team B: Discuss fiscal cost, quality concerns, accountability, higher education sustainability.", "Consider Finland's model vs. current Indian system."],
-        bullets: [
-            { text: "Team A: Education SHOULD be free.", keywords: ["right", "equality", "RTE", "human", "capital", "public", "good", "investment"] },
-            { text: "Team B: Fees are NECESSARY.", keywords: ["quality", "sustainability", "accountability", "fiscal", "burden", "scholarships", "targeted"] },
-            { text: "Examine global models.", keywords: ["Finland", "Germany", "Scandinavian", "public", "schools", "outcomes", "funding"] },
-            { text: "Propose phased approach.", keywords: ["primary", "secondary", "higher", "funded", "quality", "fees", "waivers", "merit"] }
-        ]
-    },
-    {
-        id: "g10-socsci-inequality",
-        grade: "Grade 10",
-        subject: "Social Science",
-        title: "Debate: Is inequality increasing despite development?",
-        summary: "Debate on growth and distribution. Team A argues inequality is rising, Team B claims development benefits all.",
-        hints: ["Team A: Discuss rising billionaires, Oxfam reports, rural-urban gap, Gini coefficient.", "Team B: Discuss poverty reduction, middle class growth, absolute improvement, global comparison.", "Consider India's inequality data and trickle-down debate."],
-        bullets: [
-            { text: "Team A: Inequality IS increasing.", keywords: ["billionaires", "Oxfam", "Gini", "concentration", "wealth", "top", "1", "percent"] },
-            { text: "Team B: Development helps ALL.", keywords: ["poverty", "reduction", "middle", "class", "consumption", "absolute", "better", "trickle"] },
-            { text: "Analyze data.", keywords: ["PLFS", "NSSO", "income", "distribution", "wealth", "gap", "statistics", "trends"] },
-            { text: "Propose inclusive policies.", keywords: ["progressive", "tax", "MGNREGA", "direct", "benefit", "transfer", "redistribution", "equity"] }
+            { text: "Explain consumer rights.", keywords: ["consumer", "rights", "safety", "information", "choice"] },
+            { text: "Describe Consumer Protection Act.", keywords: ["COPRA", "consumer", "protection", "act", "1986", "2019"] },
+            { text: "Discuss consumer courts.", keywords: ["consumer", "court", "district", "state", "national"] },
+            { text: "Explain consumer awareness.", keywords: ["awareness", "advertising", "marketing", "protection", "education"] }
         ]
     }
 ];
