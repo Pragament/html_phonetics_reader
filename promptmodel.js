@@ -407,6 +407,39 @@
     .pm-card.pm-expanded .pm-preview { display: none; }
     .pm-card.pm-expanded .pm-full    { display: block; }
 
+    #pm-ai-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #f7faff 0%, #eef4ff 100%);
+      border: 1px solid #e7eefc;
+      border-radius: 14px;
+    }
+    .pm-ai-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #0a84ff, #6e8efb);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(10,132,255,.18);
+      transition: transform .15s, box-shadow .15s, opacity .15s;
+    }
+    .pm-ai-link-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(10,132,255,.24);
+      opacity: .95;
+    }
+    .pm-ai-link-btn:active { transform: scale(.97); }
+
     #pm-footer {
       padding: 14px 24px;
       border-top: 1px solid #eef0f7;
@@ -449,6 +482,7 @@
       .pm-card-title { color: #e0e6ff; }
       .pm-preview { color: #8a9bc0; }
       .pm-full { background: #161929; color: #c0cce8; border-color: rgba(255,255,255,.08); }
+      #pm-ai-links { background: linear-gradient(135deg, #1f2340 0%, #252850 100%); border-color: rgba(255,255,255,.08); }
       #pm-body { scrollbar-color: #3a4060 #1a1d2e; }
       #pm-footer { border-color: rgba(255,255,255,.08); }
       #pm-footer-note { color: #556080; }
@@ -597,8 +631,18 @@
         countPill.innerHTML = '📝 ' + PROMPTS.length + ' prompts';
         metaDiv.appendChild(countPill);
 
-        // Render prompt cards
+        // Render AI launch buttons and prompt cards
         bodyDiv.innerHTML = '';
+
+        var aiLinks = document.createElement('div');
+        aiLinks.id = 'pm-ai-links';
+        aiLinks.innerHTML = [
+            '<a class="pm-ai-link-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">🤖 ChatGPT</a>',
+            '<a class="pm-ai-link-btn" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">💎 Gemini</a>',
+            '<a class="pm-ai-link-btn" href="https://grok.com/" target="_blank" rel="noopener noreferrer">🦊 Grok</a>'
+        ].join('');
+        bodyDiv.appendChild(aiLinks);
+
         PROMPTS.forEach(function (p) {
             var fullText = buildPrompt(p.content, students, topic);
             var preview = fullText.substring(0, 180).trim();
