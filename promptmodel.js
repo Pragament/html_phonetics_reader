@@ -28,7 +28,16 @@
                 '• End the session with a quick quiz: ask 2 short questions about [Topic] to the group.',
                 '',
                 'Keep your language simple, warm, and suitable for school students.',
-                'Make sure every student gets at least one turn to speak.'
+                'Make sure every student gets at least one turn to speak.',
+                '',
+                'Important Rules:',
+                '- After asking a question to a student, WAIT for the student to type their response.',
+                '- Do not move to the next student until the current student has answered.',
+                '- After each student response, give correction (if needed), feedback, and then ask the next student.',
+                '- Only when the user types “End discussion”, then show the final summary, vocabulary list, and speaking homework.',
+                '- Do not end the discussion on your own.',
+                '',
+                'Now begin the discussion.'
             ].join('\n')
         },
         {
@@ -52,7 +61,16 @@
                 'Example message format:',
                 '@[First student] Can you explain what [Topic] means in one sentence? 🤔',
                 '',
-                'Keep the chat lively and make every student feel included!'
+                'Keep the chat lively and make every student feel included!',
+                '',
+                'Important Rules:',
+                '- After asking a question to a student, WAIT for the student to type their response.',
+                '- Do not move to the next student until the current student has answered.',
+                '- After each student response, give correction (if needed), feedback, and then ask the next student.',
+                '- Only when the user types “End discussion”, then show the final summary, vocabulary list, and speaking homework.',
+                '- Do not end the discussion on your own.',
+                '',
+                'Now begin the discussion.'
             ].join('\n')
         },
         {
@@ -78,7 +96,16 @@
                 'After the debate:',
                 '• Announce the winning team.',
                 '• Give each student one specific grammar tip.',
-                '• Ask the group: "What did you learn today?"'
+                '• Ask the group: "What did you learn today?"',
+                '',
+                'Important Rules:',
+                '- After asking a question to a student, WAIT for the student to type their response.',
+                '- Do not move to the next student until the current student has answered.',
+                '- After each student response, give correction (if needed), feedback, and then ask the next student.',
+                '- Only when the user types “End discussion”, then show the final summary, vocabulary list, and speaking homework.',
+                '- Do not end the discussion on your own.',
+                '',
+                'Now begin the discussion.'
             ].join('\n')
         },
         {
@@ -103,7 +130,16 @@
                 '• Pause and summarise what the group has discovered so far.',
                 '• Correct any misconceptions with: "Interesting thought! Let\'s explore why that might not be exactly right…"',
                 '',
-                'Goal: By the end, students should be able to explain [Topic] completely in their own words.'
+                'Goal: By the end, students should be able to explain [Topic] completely in their own words.',
+                '',
+                'Important Rules:',
+                '- After asking a question to a student, WAIT for the student to type their response.',
+                '- Do not move to the next student until the current student has answered.',
+                '- After each student response, give correction (if needed), feedback, and then ask the next student.',
+                '- Only when the user types “End discussion”, then show the final summary, vocabulary list, and speaking homework.',
+                '- Do not end the discussion on your own.',
+                '',
+                'Now begin the discussion.'
             ].join('\n')
         },
         {
@@ -131,7 +167,16 @@
                 '"Alright [First student], [Second student] and everyone else — let\'s see who knows [Topic] best! 🏆"',
                 '',
                 'At the end: announce the winner and give every student a certificate message like:',
-                '"[Student] — Great job! You showed strong understanding of [Topic]! 🌟"'
+                '"[Student] — Great job! You showed strong understanding of [Topic]! 🌟"',
+                '',
+                'Important Rules:',
+                '- After asking a question to a student, WAIT for the student to type their response.',
+                '- Do not move to the next student until the current student has answered.',
+                '- After each student response, give correction (if needed), feedback, and then ask the next student.',
+                '- Only when the user types “End discussion”, then show the final summary, vocabulary list, and speaking homework.',
+                '- Do not end the discussion on your own.',
+                '',
+                'Now begin the discussion.'
             ].join('\n')
         },
         {
@@ -156,7 +201,16 @@
                 '• Pause after each response to give English feedback.',
                 '• At the end, break character and ask: "What did we learn about [Topic] today?"',
                 '',
-                'Goal: Students practise English AND apply their subject knowledge in a memorable way.'
+                'Goal: Students practise English AND apply their subject knowledge in a memorable way.',
+                '',
+                'Important Rules:',
+                '- After asking a question to a student, WAIT for the student to type their response.',
+                '- Do not move to the next student until the current student has answered.',
+                '- After each student response, give correction (if needed), feedback, and then ask the next student.',
+                '- Only when the user types “End discussion”, then show the final summary, vocabulary list, and speaking homework.',
+                '- Do not end the discussion on your own.',
+                '',
+                'Now begin the discussion.'
             ].join('\n')
         }
     ];
